@@ -4,7 +4,7 @@
 
   --first-color: #ffffff;
   --first-color-alt: #c4b0b0;
-  --white-color: #626262e9;
+  --white-color: #000000e9;
   --dark-background: #7b7b7b;
   --dark-text-color: #ffffff;
   --highlight-color: #cccccc; /* Light gray for highlight */
@@ -13,8 +13,73 @@
 .dark-mode {
   --first-color: #1e1e1e;
   --white-color: var(--dark-text-color);
-  --highlight-color: #444444; /* Dark gray for highlight in dark mode */
-}
+  --highlight-color: #444444; 
+  .profile-background{
+    transition: 0.3s;
+    background: lightblue;
+    background: radial-gradient(
+        circle,
+        rgb(170, 162, 162),
+        #333 30%,
+        rgba(88, 84, 84, 0.226) 0%
+      ),
+      radial-gradient(
+        circle at 40px 40px,
+        rgb(233, 228, 228),
+        #333 30%,
+        rgba(88, 84, 84, 0) 0%
+      ),
+      radial-gradient(
+        circle at 600px 200px,
+        rgb(233, 228, 228),
+        #333 10%,
+        rgba(88, 84, 84, 0) 0%
+      ),
+      radial-gradient(
+        circle at 800px 100px,
+        rgb(233, 228, 228),
+        #333 10%,
+        rgba(88, 84, 84, 0) 0%
+      ),
+      radial-gradient(
+        circle at 700px 500px,
+        rgb(233, 228, 228),
+        #333 2%,
+        rgba(88, 84, 84, 0.123) 0%
+      ),
+      radial-gradient(
+        circle at 200px 400px,
+        rgb(233, 228, 228),
+        #333 1%,
+        rgba(88, 84, 84, 0) 0%
+      ),
+      radial-gradient(
+        circle at 300px 700px,
+        rgb(233, 228, 228),
+        #333 15%,
+        rgba(88, 84, 84, 0) 0%
+      ),
+      radial-gradient(
+        circle at 900px 500px,
+        rgb(233, 228, 228),
+        #333 20%,
+        rgba(88, 84, 84, 0) 0%
+      ),
+      radial-gradient(
+        circle at 650px 400px,
+        rgb(233, 228, 228),
+        #333 10%,
+        rgba(88, 84, 84, 0) 0%
+      ),
+      radial-gradient(
+        circle at 600px 600px,
+        rgb(233, 228, 228),
+        #333 1%,
+        rgba(88, 84, 84, 0.959) 0%
+      );
+  }
+}/* Dark gray for highlight in dark mode */
+
 body {
     font-family: Arial, sans-serif;
     background-color: var(--first-color )!important;
@@ -22,22 +87,159 @@ body {
     padding: 0;
   }
   
-  .container {
+  .background-picture-profile {
+    /* background-image: url(./abstract-organic-pattern-design-background_1048-19286.avif); */
+    height: 200px;
+  
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-bottom: 2vh;
+  }
+  
+  .profile-picture {
+    border: transparent 5px solid;
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    z-index: 2;
+  
+    position: relative;
+    left: calc(50% - 200px/2);
+    top: calc(40% - 125px/2 - 47px);
+  
+  }
+
+  .profile-background{
+    width: 100%;
+    height: 90vh;
+    margin-left: auto;
+    border-radius: 50px;
+    transition: 0.3s;
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20vh;
+    
+  /* Add your background pattern here */
+  background: rgb(30, 127, 159);
+  background: radial-gradient(
+      circle,
+      rgb(233, 232, 232),
+      #54999d 30%,
+      rgba(255, 255, 255, 0.296) 0%
+    ),
+    radial-gradient(
+      circle at 40px 40px,
+      rgb(233, 232, 232),
+      #54999d 30%,
+      rgba(60, 114, 139, 0.534) 0%
+    ),
+    radial-gradient(
+      circle at 600px 200px,
+      rgb(233, 232, 232),
+      #54999d 10%,
+      rgba(88, 84, 84, 0.226) 0%
+    ),
+    radial-gradient(
+      circle at 800px 100px,
+      rgb(233, 232, 232),
+      #54999d 10%,
+      rgba(88, 84, 84, 0) 0%
+    ),
+    radial-gradient(
+      circle at 700px 500px,
+      rgb(233, 232, 232),
+      #54999d 2%,
+      rgba(88, 84, 84, 0.123) 0%
+    ),
+    radial-gradient(
+      circle at 200px 400px,
+      rgb(233, 232, 232),
+      #54999d 1%,
+      rgba(88, 84, 84, 0) 0%
+    ),
+    radial-gradient(
+      circle at 300px 700px,
+      rgb(233, 232, 232),
+      #54999d 15%,
+      rgba(88, 84, 84, 0) 0%
+    ),
+    radial-gradient(
+      circle at 900px 500px,
+      rgb(233, 232, 232),
+      #54999d 20%,
+      rgba(88, 84, 84, 0) 0%
+    ),
+    radial-gradient(
+      circle at 650px 400px,
+      rgb(233, 232, 232),
+      #54999d 10%,
+      rgba(88, 84, 84, 0) 0%
+    ),
+    radial-gradient(
+      circle at 600px 600px,
+      rgb(233, 232, 232),
+      #54999d 1%,
+      rgba(88, 84, 84, 0.959) 0%
+    );
+  }
+
+  .container-profile-photo {
     width: auto;
+    min-height: 50vh;
+    height: 70vh;
     min-width: 400px;
     max-width: 100px;
-    margin: 50px auto;
     background-color: transparent;
     padding: 30px;
     border: 3px solid #959595;
-    border-radius: 8px;
+    border-radius: 20px;
     box-shadow: 0px 5px 11px 0px rgba(95, 95, 95, 1);
     align-items: left;
+    backdrop-filter: blur(20px);
+    overflow: auto;
+  }
+  .container-profile-info{
+    display: flex;
+    flex-direction: column;
+    
+  }
+
+  .container-profile-data{
+    width: auto;
+    height: 34vh;
+    min-width: 400px;
+    max-width: 100px;
+    background-color: transparent;
+    padding: 30px;
+    border: 3px solid #959595;
+    border-radius: 20px;
+    box-shadow: 0px 5px 11px 0px rgba(95, 95, 95, 1);
+    align-items: left;
+    backdrop-filter: blur(20px);
+    overflow: auto;
+  }
+
+  .container-profile-recent{
+    width: auto;
+    height: 34vh;
+    min-width: 400px;
+    max-width: 100px;
+    margin-top: 2vh;
+    background-color: transparent;
+    padding: 30px;
+    border: 3px solid #959595;
+    border-radius: 20px;
+    box-shadow: 0px 5px 11px 0px rgba(95, 95, 95, 1);
+    align-items: left;
+    backdrop-filter: blur(20px);
+    overflow: auto;
   }
   
-  h1 {
-    text-align: center;
+  .profile-text {
+    text-align: left !important;
     margin-bottom: 20px;
+    
   }
   
   .form-group-profile {
@@ -59,7 +261,6 @@ body {
   label {
     display: block;
     font-weight: bold;
-    margin-bottom: 8px;
     margin-left: 5px;
     text-align: left;
   }
@@ -69,20 +270,35 @@ body {
   input[type="email"],
   input[type="tel"] {
     width: calc(100% - 40px);
+    height: 18px;
     padding: 6px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    outline: none;
-    transition: border-color ease;
-    color: #1e1e1e;
-    background-color: #ffffff;
+    border: none;
+    border-bottom: 1px solid ;
+    /* border: 1px solid #ccc;
+    border-radius: 10px; */
+    /* outline: none; */
+    /* transition: border-color ease; */
+    color: var(--white-color);
+    background-color: transparent;
   }
   
   input[type="firstname"]:read-only,
   input[type="lastname"]:read-only,
   input[type="email"]:read-only,
   input[type="tel"]:read-only {
-    background-color: #f9f9f9;
+    background-color: transparent;
+
+  }
+
+  input[type="firstname"]:focus,
+  input[type="lastname"]:focus,
+  input[type="email"]:focus,
+  input[type="tel"]:focus {
+    outline: none !important;
+    border: none !important;
+    border-bottom: 1px solid ;
+    box-shadow: none !important;
+
   }
   
   .save-button {
@@ -198,8 +414,4 @@ body {
     opacity: 1;
     transform: translateY(0px);
     transition-duration: 0.3s;
-  }
-
-  input[type="email"]{
-    width: calc(100% - 38px);
   }

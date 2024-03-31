@@ -74,8 +74,9 @@ main {
     left: 0;
     height: 100vh;
     width: var(--nav-width);
-    background-color: var(--first-color);
+    background-color: transparent;
     padding-top: 1rem;
+    backdrop-filter: blur(15px);
 }
 
 .nav {

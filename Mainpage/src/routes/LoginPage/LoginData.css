@@ -46,7 +46,7 @@
   
   label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
     font-weight: bold;
   }
   
@@ -61,7 +61,8 @@
     
   }
   
-  input:focus {
+  input[type='text'],
+  input[type='password']:focus {
     color: rgb(132, 132, 132);
     outline-color: rgb(186, 186, 186);
     box-shadow: -3px 0px 15px rgb(148, 148, 148);
