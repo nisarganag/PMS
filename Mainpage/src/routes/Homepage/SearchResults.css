@@ -1,0 +1,18 @@
+.result-list {
+    width: auto;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 5px 11px 0px rgba(95, 95, 95, 1);
+    border-radius: 10px;
+    margin-top: 1rem;
+    min-width: 400px;
+    max-width: auto;
+    overflow-y: visible;
+    padding: 10px;
+    color: black;
+}
+
+.result-component{
+    
+}

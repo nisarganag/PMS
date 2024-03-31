@@ -1,0 +1,86 @@
+*{
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+.mode-toggle {
+    position: fixed;
+    top: 21px;
+    right: 80px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 999;
+  }
+  
+  /* Styles for moon and sun icons */
+  .sun-icon {
+    color: #FFD700; /* Yellow color for sun icon */
+    font-size: 20px;
+  }
+  
+  .moon-icon {
+    color: #708090; /* Slate gray color for moon icon */
+    font-size: 20px;
+  }
+  /* Default light mode styles */
+
+  .light-mode{
+    background-color: #ffffff;
+    color: #000000;
+  }
+
+  .light-mode .routes {
+    color: #000000; /* Black color for text */
+    background-color: #ffffff; /* White background color */
+  }
+  
+  /* Dark mode styles */
+  .dark-mode {
+    background-color: #101111;
+    color: #ffffff;
+  }
+  
+  /* Dark mode styles for center page content */
+  .dark-mode .routes {
+    color: #ffffff; /* White color for text */
+    background-color: #101111; /* Dark background color */
+  }
+  
+  /* Styles for main content area */
+  .content {
+    height: 100vh;
+    overflow: auto;
+  }
+  
+  /* Styles for sidebar */
+  .sidebar {
+    width: 200px;
+    background-color: #000000; /* Dark background color for sidebar */
+    color: #fff;
+    z-index: 100; /* White color for text in sidebar */
+  }
+  
+  /* Styles for main content */
+  .routes {
+    flex: 1;
+    padding: 20px;
+    margin-left: 100px;
+    backdrop-filter: blur(5px);
+
+  }
+
+  .DropDownprofile{
+    width: 200px;
+    background-color: #000000; /* Dark background color for sidebar */
+    color: #fff;
+    z-index: 10;
+  }
+
+  @media screen and (max-width: 768px) {
+    .routes{
+      margin-left: 10px;
+    }
+  }
+  

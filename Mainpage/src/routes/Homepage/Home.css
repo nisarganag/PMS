@@ -1,0 +1,43 @@
+:root{
+    --light-image: url(./Screenshot_2024-03-20_202235.png)  no-repeat;
+    --dark-image: url(./Screenshot_2024-03-20_202252.png) no-repeat;
+}
+
+.dark-mode {
+    --light-image: var(--dark-image);
+    .page-logo{
+        mix-blend-mode:lighten ;
+    }
+  }
+
+ 
+.homePage{
+    background-color: none;
+    align-items: left;
+    text-align: center;
+    padding: 30px;
+    width: auto;
+    margin-left:25% ;
+}
+
+.search_bar{
+    padding-top: 20vh;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 200px;
+}
+
+
+.page-logo{
+    display: inline-block;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-bottom: 60px ;
+    background-size: 600px;
+    vertical-align: bottom;
+    width: 80vh;
+    transition: 0.3s;
+    mix-blend-mode: darken;
+}

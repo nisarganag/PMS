@@ -1,0 +1,3 @@
+pms-backend/target/*.jar filter=lfs diff=lfs merge=lfs -text
+pms-backend/target/pms-backend-0.0.1-SNAPSHOT-jar-with-dependencies.jar filter=lfs diff=lfs merge=lfs -text
+pms-backend/target/pms-backend-0.0.1-SNAPSHOT.jar filter=lfs diff=lfs merge=lfs -text
