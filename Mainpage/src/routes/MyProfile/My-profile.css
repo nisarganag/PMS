@@ -83,8 +83,6 @@
 body {
     font-family: Arial, sans-serif;
     background-color: var(--first-color )!important;
-    margin: 0;
-    padding: 0;
   }
   
   .background-picture-profile {
@@ -243,7 +241,7 @@ body {
   }
   
   .form-group-profile {
-    margin-bottom: 20px;
+    margin-bottom: 19px;
     display: flex;
     flex-direction: column;
   
@@ -414,4 +412,8 @@ body {
     opacity: 1;
     transform: translateY(0px);
     transition-duration: 0.3s;
+  }
+  
+  .upload-photo-button{
+    margin: 10px;
   }
