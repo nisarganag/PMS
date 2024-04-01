@@ -41,7 +41,7 @@ public class AuthenticationService {
                 throw new RuntimeException("Fill all the fields properly.");
             }
         var jwtToken = jwtService.generateToken(user);
-        return AuthenticationResponse.builder().token(jwtToken).build();
+        return AuthenticationResponse.builder().token(jwtToken).email(user.getEmail()).build();
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {

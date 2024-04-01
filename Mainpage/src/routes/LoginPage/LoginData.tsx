@@ -1,34 +1,36 @@
-import { useState } from 'react';
-import axios from 'axios'; // Import Axios library
-import './LoginData.css';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import axios from "axios"; // Import Axios library
+import "./LoginData.css";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ onToggle }: { onToggle: () => void }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
-  const handleSubmit = async (e: { preventDefault: () => void; }) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/api/v1/auth/authenticate', {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "http://localhost:8080/api/v1/auth/authenticate",
+        {
+          email,
+          password,
+        }
+      );
       const token = response.data.token;
-      const emailId= response.data.email;
-      localStorage.setItem('emailId', emailId);
-  
+      const emailId = response.data.email;
+      localStorage.setItem("emailId", emailId);
+
       // Store the token in local storage
-      localStorage.setItem('token', token);
+      localStorage.setItem("token", token);
       if (token) {
         navigate("/");
       } else {
         // console.log('Login Successful'); // Optional: You can handle login success here
       }
     } catch (error) {
-      console.error('Login failed:', error);
+      console.error("Login failed:", error);
       // console.log('Error details:', error.response.data); // Handle login failure
     }
   };
@@ -59,36 +61,53 @@ const Login = ({ onToggle }: { onToggle: () => void }) => {
             required
           />
         </div>
-        <button className ="bn5" type='submit'>Login</button>
-        <p className="toggle-text"> Don't have an account? <button className="toggle-button" onClick={onToggle}>Sign Up</button></p>
+        <button className="bn5" type="submit">
+          Login
+        </button>
+        <p className="toggle-text">
+          {" "}
+          Don't have an account?{" "}
+          <button className="toggle-button" onClick={onToggle}>
+            Sign Up
+          </button>
+        </p>
       </form>
     </div>
   );
 };
 
 const SignupPage = ({ onToggle }: { onToggle: () => void }) => {
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
-    const handleSubmit = async (e: { preventDefault: () => void; }) => { // Modify to async function
-        e.preventDefault();
-        try {
-          const response = await axios.post('http://localhost:8080/api/v1/auth/register', {
-            firstName,
-            lastName,
-            email,
-            password,
-          });
-          const SignUpToken = response.data.token;
-          localStorage.setItem('SignUpToken', SignUpToken);
-          console.log('Signup Successful'); // Optional: You can handle signup success here
-          console.log(SignUpToken);
-        } catch (error) {
-          console.error('Signup failed:', error); // Handle signup failure
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
+    // Modify to async function
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/v1/auth/register",
+        {
+          firstName,
+          lastName,
+          email,
+          password,
         }
-    };
+      );
+      const token = response.data.token;
+      const emailId = response.data.email;
+      localStorage.setItem("token", token);
+      localStorage.setItem("emailId", emailId);
+      if (token) {
+        navigate("/");
+      } else {
+        // console.log('Login Successful'); // Optional: You can handle login success here
+      }
+    } catch (error) {
+      console.error("Signup failed:", error); // Handle signup failure
+    }
+  };
 
   return (
     <div className="auth-container">
@@ -141,8 +160,15 @@ const SignupPage = ({ onToggle }: { onToggle: () => void }) => {
             required
           />
         </div>
-        <a className="bn5" type='submit'>Sign Up</a>
-        <p className="toggle-text">Already have an account? <button className="toggle-button" onClick={onToggle}>Login</button></p>
+        <button className="bn5" type="submit">
+          Sign Up
+        </button>
+        <p className="toggle-text">
+          Already have an account?{" "}
+          <button className="toggle-button" onClick={onToggle}>
+            Login
+          </button>
+        </p>
       </form>
     </div>
   );
@@ -157,10 +183,13 @@ const AuthPage = () => {
 
   return (
     <div>
-      {isLoginPage ? <Login onToggle={handleToggle} /> : <SignupPage onToggle={handleToggle} />}
+      {isLoginPage ? (
+        <Login onToggle={handleToggle} />
+      ) : (
+        <SignupPage onToggle={handleToggle} />
+      )}
     </div>
   );
 };
 
 export default AuthPage;
-
