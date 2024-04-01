@@ -241,26 +241,16 @@ const UserProfile = () => {
           />
         </div>
         <input className="choose-button" type="file" onChange={handleFileChange} style={{display: 'none'}} ref={fileInput} />
-        <button
-          title="Add New"
-          className="group cursor-pointer outline-none hover:rotate-90 duration-300"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="50px"
-            height="50px"
-            viewBox="0 0 24 24"
-            className="stroke-zinc-400 fill-none group-hover:fill-zinc-800 group-active:stroke-zinc-200 group-active:fill-zinc-600 group-active:duration-0 duration-300"
-          >
-            <path
-              d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
-              stroke-width="1.5"
-            ></path>
-            <path d="M8 12H16" stroke-width="1.5"></path>
-            <path d="M12 16V8" stroke-width="1.5"></path>
+        
+        <button className="upload-photo-button" onClick={handleButtonClick}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="70" viewBox="0 0 20 20" height="60" fill="none" className="svg-icon">
+            <g stroke-width="1.5" stroke-linecap="round" stroke="#de8a2a">
+              <circle r="7.5" cy="10" cx="10"></circle>
+              <path d="m9.99998 7.5v5"></path>
+              <path d="m7.5 9.99998h5"></path>
+            </g>
           </svg>
         </button>
-        <button className="upload-photo-button" onClick={handleButtonClick}>Upload Photo</button>
 
         <div className="form-group-profile">
           <label htmlFor="email">Email:</label>

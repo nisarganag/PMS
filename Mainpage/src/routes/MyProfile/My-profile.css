@@ -423,4 +423,45 @@ body {
   
   .upload-photo-button{
     margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 12px;
+    gap: 4px;
+    height: 50px;
+    width: 50px;
+    border: none;
+    background: #1b1b1cd0;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+
+  .upload-photo-button:hover{
+    background: #1b1b1cea;
+  }
+
+  .upload-photo-button:hover .svg-icon{
+    animation: rotate 1.3s linear infinite;
+  }
+
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+  
+    25% {
+      transform: rotate(20deg);
+    }
+  
+    50% {
+      transform: rotate(0deg);
+    }
+  
+    75% {
+      transform: rotate(-20deg);
+    }
+  
+    100% {
+      transform: rotate(0deg);
+    }
   }
