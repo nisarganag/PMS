@@ -3,20 +3,20 @@ import { FaSave } from "react-icons/fa";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import "./My-profile.css";
-import photo from "./0f166c6cdf3643e7b8179432a1ddf709.png"
+// import photo from "./0f166c6cdf3643e7b8179432a1ddf709.png"
 
 const UserProfile = () => {
-  // const history = useNavigate();
-  // useEffect(() => {
-  //   const token = localStorage.getItem("token");
-  //   if (!token) {
-  //     history("/login");
-  //   }
-  // }, [history]);
+  const history = useNavigate();
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      history("/login");
+    }
+  }, [history]);
   const [userData, setUserData] = useState({
-    firstName: "asd",
+    firstName: "",
     lastName: "",
-    email: "asd",
+    email: "",
     phone: "",
     photo: "",
   });
@@ -249,8 +249,8 @@ const UserProfile = () => {
         <div className="background-picture-profile">
           <img
             className="profile-picture"
-            // src={`data:image/jpeg;base64,${userData.photo}`}
-            src={photo}
+            src={`data:image/jpeg;base64,${userData.photo}`}
+            // src={photo}
             alt="profile picture"
           />
         </div>
