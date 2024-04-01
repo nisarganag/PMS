@@ -13,6 +13,60 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.form-container {
+  position: relative;
+  margin: 30px auto;
+  width: 35vh;
+}
+
+.form-container input[type="text"],
+.form-container input[type="password"] {
+  font-size: 15px;
+  color: var(--white-color);
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  padding: 5px 0;
+  background-color: transparent;
+  outline: none;
+  transition: 3s;
+}
+
+.form-container .label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* color: #ccc; */
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.form-container input[type="text"]:focus ~ .label,
+.form-container input[type="text"]:valid ~ .label,
+.form-container input[type="password"]:focus ~ .label,
+.form-container input[type="password"]:valid ~ .label {
+  top: -20px;
+  font-size: 16px;
+  /* color: #7b7b7b; */
+}
+
+.form-container .underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background-color: #333;
+  transform: scaleX(0);
+  transition: all 0.3s ease;
+}
+
+.form-container input[type="text"]:focus ~ .underline,
+.form-container input[type="text"]:valid ~ .underline,
+.form-container input[type="password"]:focus ~ .underline,
+.form-container input[type="password"]:valid ~ .underline  {
+  transform: scaleX(1);
+}
 
 .auth-container {
     display: flex;
@@ -39,35 +93,7 @@
     
   }
   
-  .form-group {
-    margin-bottom: 20px;
-    
-  }
   
-  label {
-    display: block;
-    margin-bottom: 2px;
-    font-weight: bold;
-  }
-  
-  input[type='username'],
-  input[type='password'] {
-    width: calc(100% - 22px);
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: white;
-    height: 30px;
-    
-  }
-  
-  input[type='username'],
-  input[type='password']:focus {
-    color: rgb(132, 132, 132);
-    outline-color: rgb(186, 186, 186);
-    box-shadow: -3px 0px 15px rgb(148, 148, 148);
-    transition-property: box-shadow;
-  }
 
   .auth_button {
     margin-top: 15px;

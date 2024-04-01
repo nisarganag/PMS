@@ -39,27 +39,27 @@ const Login = ({ onToggle }: { onToggle: () => void }) => {
     <div className="auth-container">
       <form className="auth-form" onSubmit={handleSubmit}>
         <h2>Login</h2>
-        <div className="form-group">
-          <label htmlFor="login-username">Username</label>
-          <input
-            type="username"
+        <div className="form-container">
+          <input type="text"
             id="login-username"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your username"
+            onChange={(e) => setEmail(e.target.value)} 
             required
-          />
+            />
+          <label htmlFor="login-username" className="label" >Username</label>
+          <div className="underline"></div>
         </div>
-        <div className="form-group">
-          <label htmlFor="login-password">Password</label>
+        <div className="form-container">
           <input
             type="password"
             id="login-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter your password"
+            // placeholder="Enter your password"
             required
           />
+          <label htmlFor="login-username" className="label" >Password</label>
+          <div className="underline"></div>
         </div>
         <button className="bn5" type="submit">
           Login
@@ -113,53 +113,56 @@ const SignupPage = ({ onToggle }: { onToggle: () => void }) => {
     <div className="auth-container">
       <form className="auth-form" onSubmit={handleSubmit}>
         <h2>Sign Up</h2>
-        <div className="form-group">
-          <label htmlFor="signup-firstname">First Name</label>
+        <div className="auth-form-name">
+          <div className="form-container">
           <input
-            type="text"
-            id="signup-firstname"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            placeholder="Enter your First Name"
-            required
-          />
-        </div>
+              type="text"
+              id="signup-firstname"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              required
+            />
+            <label htmlFor="login-username" className="label" >First Name</label>
+            <div className="underline"></div>
+          </div>
 
-        <div className="form-group">
-          <label htmlFor="signup-lastname">Last Name</label>
+          <div className="form-container">
           <input
-            type="text"
-            id="signup-lastname"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            placeholder="Enter your Last Name"
-            required
-          />
-        </div>
+              type="text"
+              id="signup-lastname"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              required
+            />
+            <label htmlFor="login-username" className="label" >Last Name</label>
+            <div className="underline"></div>
+          </div>
 
-        <div className="form-group">
-          <label htmlFor="signup-email">Email</label>
+          <div className="form-container">
           <input
             type="text"
             id="signup-email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your Email"
             required
           />
-        </div>
+            <label htmlFor="login-username" className="label" >Email</label>
+            <div className="underline"></div>
+          </div>
 
-        <div className="form-group">
-          <label htmlFor="signup-password">Password</label>
+          <div className="form-container">
           <input
             type="password"
             id="signup-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter your Password"
             required
           />
+            <label htmlFor="login-username" className="label" >Password</label>
+            <div className="underline"></div>
+          </div>
         </div>
+        
         <button className="bn5" type="submit">
           Sign Up
         </button>
