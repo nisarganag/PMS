@@ -50,7 +50,7 @@
     font-weight: bold;
   }
   
-  input[type='text'],
+  input[type='username'],
   input[type='password'] {
     width: calc(100% - 22px);
     padding: 5px;
@@ -61,7 +61,7 @@
     
   }
   
-  input[type='text'],
+  input[type='username'],
   input[type='password']:focus {
     color: rgb(132, 132, 132);
     outline-color: rgb(186, 186, 186);

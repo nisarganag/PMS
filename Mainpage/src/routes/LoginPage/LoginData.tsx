@@ -40,7 +40,7 @@ const Login = ({ onToggle }: { onToggle: () => void }) => {
         <div className="form-group">
           <label htmlFor="login-username">Username</label>
           <input
-            type="text"
+            type="username"
             id="login-username"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
