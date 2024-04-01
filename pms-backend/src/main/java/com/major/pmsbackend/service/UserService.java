@@ -82,6 +82,7 @@ public class UserService {
         dto.setGender(user.getGender());
         dto.setPhone(user.getPhone());
         if (user.getPhoto() != null) {
+            
             byte[] decompressedPhoto = DataUtils.decompressData(user.getPhoto());
             String base64Data = Base64.getEncoder().encodeToString(decompressedPhoto);
             dto.setPhoto(base64Data);
