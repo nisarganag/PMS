@@ -285,7 +285,6 @@ body {
   input[type="email"]:read-only,
   input[type="tel"]:read-only {
     background-color: transparent;
-
   }
 
   input[type="firstname"]:focus,
@@ -296,7 +295,6 @@ body {
     border: none !important;
     border-bottom: 1px solid ;
     box-shadow: none !important;
-
   }
   
   .save-button {
