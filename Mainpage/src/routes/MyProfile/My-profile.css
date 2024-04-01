@@ -89,17 +89,17 @@ body {
     /* background-image: url(./abstract-organic-pattern-design-background_1048-19286.avif); */
     height: 200px;
   
-    border-top-left-radius: 10px;
+    /* border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    margin-bottom: 2vh;
+    margin-bottom: 2vh; */
   }
   
   .profile-picture {
     border: transparent 5px solid;
-    backdrop-filter: blur(10px);
     border-radius: 50%;
     z-index: 2;
-  
+    max-width: 200px;
+    max-height: 200px;
     position: relative;
     left: calc(50% - 200px/2);
     top: calc(40% - 125px/2 - 47px);
@@ -107,8 +107,9 @@ body {
   }
 
   .profile-background{
+    margin-top: -17px;
     width: 100%;
-    height: 90vh;
+    height: 87vh;
     margin-left: auto;
     border-radius: 50px;
     transition: 0.3s;
@@ -185,7 +186,7 @@ body {
   .container-profile-photo {
     width: auto;
     min-height: 50vh;
-    height: 70vh;
+    
     min-width: 400px;
     max-width: 100px;
     background-color: transparent;
@@ -206,7 +207,8 @@ body {
 
   .container-profile-data{
     width: auto;
-    height: 34vh;
+    min-height: 30vh;
+
     min-width: 400px;
     max-width: 100px;
     background-color: transparent;
@@ -216,16 +218,14 @@ body {
     box-shadow: 0px 5px 11px 0px rgba(95, 95, 95, 1);
     align-items: left;
     backdrop-filter: blur(20px);
-    
   }
 
 
   .container-profile-recent{
     width: auto;
-    height: 34vh;
-    min-width: 400px;
-    max-width: 100px;
-    margin-top: 2vh;
+    min-height: 30vh;
+    min-width: 300px;
+    margin-top: 3vh;
     background-color: transparent;
     padding: 30px;
     border: 3px solid #959595;
@@ -250,10 +250,10 @@ body {
   }
   
   .form-group-profile {
-    margin-bottom: 19px;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
-  
+    font-size: 14px;
   }
 
   .profile-text{
@@ -277,7 +277,7 @@ body {
   input[type="email"],
   input[type="tel"] {
     width: calc(100% - 40px);
-    height: 18px;
+    height: 20px;
     padding: 6px;
     border: none;
     border-bottom: 1px solid ;
@@ -323,7 +323,7 @@ body {
 
   .edit-button {
     align-items: center;
-    margin: 5px;
+    margin: 2px;
     padding: 3px;
     border: none;
     border-radius: 5px;
@@ -422,11 +422,12 @@ body {
   }
   
   .upload-photo-button{
-    margin: 10px;
+    margin: 135px;
+    margin-left: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 6px 12px;
+    padding: 6px 10px;
     gap: 4px;
     height: 50px;
     width: 50px;
@@ -434,6 +435,8 @@ body {
     background: #1b1b1cd0;
     border-radius: 20px;
     cursor: pointer;
+    position: absolute;
+    z-index: 10;
   }
 
   .upload-photo-button:hover{
