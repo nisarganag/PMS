@@ -5,13 +5,13 @@ import { useNavigate } from "react-router-dom";
 import "./My-profile.css";
 
 const UserProfile = () => {
-  const history = useNavigate();
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      history("/login");
-    }
-  }, [history]);
+  // const history = useNavigate();
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (!token) {
+  //     history("/login");
+  //   }
+  // }, [history]);
   const [userData, setUserData] = useState({
     firstName: "",
     lastName: "",
