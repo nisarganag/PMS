@@ -6,13 +6,13 @@ import "./My-profile.css";
 // import photo from "./0f166c6cdf3643e7b8179432a1ddf709.png"
 
 const UserProfile = () => {
-  // const history = useNavigate();
-  // useEffect(() => {
-  //   const token = localStorage.getItem("token");
-  //   if (!token) {
-  //     history("/login");
-  //   }
-  // }, [history]);
+  const history = useNavigate();
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      history("/login");
+    }
+  }, [history]);
   const [userData, setUserData] = useState({
     firstName: "",
     lastName: "",
