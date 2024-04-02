@@ -31,16 +31,16 @@
     left: 0;
     bottom: 0;
     z-index: -1;
-    filter: blur(30px);
+    filter: blur(8px);
     border-radius: 20px;
-    background-color: #99ddff;
-    background-image: radial-gradient(at 85% 51%, rgb(96, 215, 193) 0px, transparent 50%),
-      radial-gradient(at 74% 68%, rgb(156, 217, 237) 0px, transparent 50%),
-      radial-gradient(at 64% 79%, rgb(137, 185, 236) 0px, transparent 50%),
-      radial-gradient(at 75% 16%, rgb(141, 142, 226) 0px, transparent 50%),
-      radial-gradient(at 90% 65%, hsla(153,70%,64%,1) 0px, transparent 50%),
-      radial-gradient(at 91% 83%, rgb(60, 20, 255) 0px, transparent 50%),
-      radial-gradient(at 72% 91%, rgb(143, 231, 239) 0px, transparent 50%);
+    background-color: #f8fdff;
+    background-image: radial-gradient(at 85% 51%, rgb(250, 250, 250) 0px, transparent 50%),
+      radial-gradient(at 74% 68%, rgb(216, 245, 255) 0px, transparent 50%),
+      radial-gradient(at 64% 79%, rgb(211, 232, 255) 0px, transparent 50%),
+      radial-gradient(at 75% 16%, rgb(207, 208, 255) 0px, transparent 50%),
+      radial-gradient(at 90% 65%, rgb(196, 255, 229) 0px, transparent 50%),
+      radial-gradient(at 91% 83%, rgb(221, 214, 255) 0px, transparent 50%),
+      radial-gradient(at 72% 91%, rgb(231, 253, 255) 0px, transparent 50%);
   }
   
   .input__button__shadow {
@@ -56,7 +56,7 @@
   }
   
   .input__button__shadow:hover {
-    background: rgba(255, 255, 255, 0.411);
+    background: rgba(93, 137, 162, 0.411);
   }
   
   .input__search {
@@ -71,7 +71,7 @@
 input[type=main-search]{
     background-color: transparent;
     color: rgb(0, 0, 0) !important;
-    
+    height: 30px;
 }
 
 input[type=main-search]:focus {
@@ -87,13 +87,21 @@ input[type=main-search]:focus {
     margin-top: auto;
 }
 .search-results{
-    width: auto;
-    background-color: rgb(255, 255, 255);
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 5px;
-    color: black;
-    margin-top: 30px;
+  width: 80%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 5px 11px 0px rgba(95, 95, 95, 1); 
+  border-radius: 27px;
+  margin-top: 1rem;
+  min-width: 400px;
+  max-width: auto;
+  overflow-y: visible;
+  justify-content: center;
+  padding: 8px;
+  margin-left: 9.2vh;
+  color: black;
+  
 }
 .with-results{
     box-shadow: 0px 5px 11px 0px rgb(138, 137, 137);

@@ -21,8 +21,8 @@
 }
 
 .search_bar{
-    padding-top: 20vh;
-    width: 50%;
+    padding-top: 15vh;
+    width: 60%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,10 +34,11 @@
     display: inline-block;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    margin-bottom: 60px ;
+    margin-bottom: 50px ;
     background-size: 600px;
     vertical-align: bottom;
     width: 80vh;
     transition: 0.3s;
     mix-blend-mode: darken;
+    margin-left: -18px;
 }

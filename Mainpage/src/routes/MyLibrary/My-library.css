@@ -55,15 +55,24 @@ button:focus-visible {
 .wrapper-library {
   width: 100%;
   display: flex;
+  height: 84vh;
 }
 .container-library {
-  max-width: 100%;
   margin: 0 auto;
+  background-color: #0000002a;
+  border-radius: 30px;
+  overflow: auto;
+  width: 150%;
+  
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
 .grid {
   display: grid;
   gap: 2rem;
+  margin-left: 10%;
 }
 .grid-three-column {
   height: 50px;
@@ -72,7 +81,7 @@ button:focus-visible {
 .library-card {
   background-color: #929292;
   padding: 5px 5px 5px 5px;
-  border-radius: 10px;
+  border-radius: 15px;
   height: 100px;
   width: 900px;
   margin: 5px 1% 5px 1%;
@@ -266,19 +275,19 @@ img {
 }
 
 .book-shelf {
-  cursor: pointer;
-  text-align: center;
-  align-items: center;
+  
   margin-left: 45%;
+  margin-top: -50vh;
   /* margin: 2rem auto; */
   display: inline-block;
-  position: absolute;
+  position: fixed;
   width: 80px;
   height: 80px;
   
   .book-shelf__book {
     animation: book-bounce 0.4s ease;
     animation-iteration-count: infinite;
+    position: absolute;
   }
   
   .book-shelf__book--two {
