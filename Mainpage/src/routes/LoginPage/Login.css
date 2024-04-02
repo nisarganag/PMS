@@ -15,11 +15,11 @@
       background: #1d1d1d;
     }
     .circles li{
-      background: rgba(236, 236, 236, 0.516);
+      background: rgba(236, 236, 236, 0.697);
     }
 
     .login-message{
-      text-shadow: 1px 3px 10px rgba(214, 214, 214, 0.767);
+      text-shadow: 1px 3px 10px rgba(215, 219, 219, 0.977);
     }
 
   }
@@ -98,7 +98,7 @@
     list-style: none;
     width: 20px;
     height: 20px;
-    background: rgba(22, 22, 22, 0.521);
+    background: rgba(109, 178, 231, 0.749);
     animation: animate 25s linear infinite;
     bottom: -150px;
     

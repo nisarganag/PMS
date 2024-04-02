@@ -7,6 +7,11 @@
   --first-color: var(--dark-background);
   --white-color: var(--dark-text-color);
   --highlight-color: #444444; 
+
+  .auth-form {
+    box-shadow: rgba(211, 211, 211, 0.2) 0px 60px 40px -10px;
+    
+  }
 }
 
 *{
@@ -78,13 +83,14 @@
   .auth-form {
     width: 450px;
     padding: 20px;
-    border: 3px solid #959595;
+    border: 0px solid #959595;
     border-radius: 8px;
     box-shadow: inset 2px 2px 10px var(--first-color),
     inset -1px -1px 5px rgba(255, 255, 255, 0.6);
     background: transparent;
     backdrop-filter: blur(20px);
     margin-left: 20%;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
     
   }
   

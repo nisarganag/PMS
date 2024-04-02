@@ -58,7 +58,8 @@ main {
     }
 
     .sidebar {
-        background-color: #1c1c1c; /* Set the background color to black */
+        background-color: #1c1c1c;
+        transition: 0.3s; /* Set the background color to black */
     }
 }
 .header-toggle {
