@@ -11,6 +11,7 @@ interface CardData {
 interface Publication {
   title: string;
   author: string;
+  description: string;
   // include other properties as needed
 }
 const Home = () => {
@@ -40,6 +41,7 @@ const Home = () => {
     const publications = data.map((publication: Publication) => ({
       title: publication.title,
       author: publication.author,
+      description: publication.description,
     }));
     setCard([...publications]);
     setLoading(false);
