@@ -83,7 +83,7 @@
     box-shadow: inset 2px 2px 10px var(--first-color),
     inset -1px -1px 5px rgba(255, 255, 255, 0.6);
     background: transparent;
-    backdrop-filter: blur(32px);
+    backdrop-filter: blur(20px);
     margin-left: 20%;
     
   }
