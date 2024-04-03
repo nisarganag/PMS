@@ -75,7 +75,8 @@ const Home = () => {
 
   return (
     <>
-      
+      <div className="center">
+      </div>
       <MovieComponent movieInfo={card} />
       {loading && <Loading />}
     </>
