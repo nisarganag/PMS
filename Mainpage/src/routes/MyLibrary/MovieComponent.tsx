@@ -15,6 +15,7 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
     <div className="wrapper-library">
       
       <div className="container-library">
+        
         <h1 className="library-title">My Library</h1>
         <div className="grid grid-three-column">
           {movieInfo.map((curVal:MovieData, id: Key | null | undefined) => {

@@ -231,26 +231,32 @@ const UserProfile = () => {
     fileInput.current?.click();
   };
   return (
-    <div className="profile-background">
-      <div className="bubbles">
-        <div className="bubble"></div>
-        <div className="bubble"></div>
-        <div className="bubble"></div>
-        <div className="bubble"></div>
-        <div className="bubble"></div>
-        <div className="bubble"></div>
-        <div className="bubble"></div>
-        <div className="bubble"></div>
-        <div className="bubble"></div>
-        <div className="bubble"></div>
-        <div className="bubble"></div>
-        <div className="bubble"></div>
-        <div className="bubble"></div>
-        <div className="bubble"></div>
-        <div className="bubble"></div>
-        <div className="bubble"></div>
+    <div>
+      <div className="profile-background">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
-      <div className="container-profile-photo">
+      
+      <div className="my-profile">
+        <div className="container-profile-photo">
         <h2 className="profile-text">My Profile</h2>
         <div>
           <button className="upload-photo-button" onClick={handleButtonClick}>
@@ -434,6 +440,8 @@ const UserProfile = () => {
           </div>
         </div>
       </div>
+      </div>
+      
     </div>
   );
 };
