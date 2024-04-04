@@ -30,7 +30,6 @@ public class UserModificationController {
     public ResponseEntity<?> deleteUser(@PathVariable Long userId) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String loggedInUsername = auth.getName();
-        @SuppressWarnings("null")
         Users user = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("User not found for id: " + userId));
         if (user != null && user.getEmail().equals(loggedInUsername)) {
@@ -45,7 +44,6 @@ public class UserModificationController {
     public ResponseEntity<?> updatePublication(@PathVariable Long userId, @RequestBody Users updatedUser) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String loggedInUsername = auth.getName();
-        @SuppressWarnings("null")
         Users user = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("User not found for id: " + userId));
         if (user.getEmail().equals(loggedInUsername)) {
@@ -58,7 +56,6 @@ public class UserModificationController {
     public ResponseEntity<?> updatePublication(@PathVariable Long userId,@RequestParam ("photo") MultipartFile file) throws Exception{
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String loggedInUsername = auth.getName();
-        @SuppressWarnings("null")
         Users user = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("User not found for id: " + userId));
         if (user.getEmail().equals(loggedInUsername)) {

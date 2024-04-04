@@ -1,8 +1,8 @@
 package com.major.pmsbackend.controller;
 
+import java.util.Date;
 import java.util.NoSuchElementException;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.major.pmsbackend.entity.Notifications;
 import com.major.pmsbackend.entity.Publications;
 import com.major.pmsbackend.entity.Users;
+import com.major.pmsbackend.repository.NotificationRepository;
 import com.major.pmsbackend.repository.PublicationRepository;
 import com.major.pmsbackend.repository.UserRepo;
 import com.major.pmsbackend.service.PublicationService;
@@ -29,8 +32,9 @@ public class PublicationModificationController {
     private UserRepo userRepository;
     @Autowired
     private PublicationRepository publicationRepository;
+    @Autowired
+    private NotificationRepository notificationRepository;
 
-    @SuppressWarnings("null")
     @DeleteMapping("/{userId}/delete/{id}")
     public ResponseEntity<?> deletePublication(@PathVariable Long userId, @PathVariable Long id) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -52,8 +56,18 @@ public class PublicationModificationController {
                 if (publication.getUser().getId().equals(userId)) {
                     // Delete the publication if it belongs to the logged-in user
                     publicationService.deletePublication(id);
+                    Notifications notification = new Notifications();
+                    notification.setUser(user);
+                    notification.setMessage("Publication '" + publication.getTitle() + "' deleted successfully");
+                    notification.setStatus(0);
+                    notification.setCreatedDate(new Date());
+                    notificationRepository.save(notification);
                     return ResponseEntity.status(HttpStatus.OK).body("Publication deleted successfully");
                 } else {
+                    Notifications notification = new Notifications();
+                    notification.setUser(user);
+                    notification.setMessage("Failed to delete publication '" + publication.getTitle() + "'");
+                    notificationRepository.save(notification);
                     return ResponseEntity.status(HttpStatus.FORBIDDEN)
                             .body("You are not authorized to delete this publication");
                 }
@@ -71,14 +85,12 @@ public class PublicationModificationController {
             @RequestBody Publications updatedPublication) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String loggedInUsername = auth.getName();
-        @SuppressWarnings("null")
         Users user = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("User not found for id: " + userId));
 
         // Check if the logged-in user is authorized to update the publication
         if (user.getEmail().equals(loggedInUsername)) {
             // Check if the publication belongs to the logged-in user
-            @SuppressWarnings("null")
             Optional<Publications> optionalPublication = publicationRepository.findById(id);
             if (optionalPublication.isPresent()) {
                 Publications publication = optionalPublication.get();
