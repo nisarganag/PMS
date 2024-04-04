@@ -51,6 +51,9 @@ public class Users implements UserDetails{
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Publications> publications;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Notifications> notifications;
     @Enumerated(EnumType.STRING)
     private Role role;
 

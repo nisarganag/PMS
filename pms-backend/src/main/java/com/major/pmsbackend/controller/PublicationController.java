@@ -1,6 +1,8 @@
 package com.major.pmsbackend.controller;
 
+import java.util.Date;
 import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +20,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.major.pmsbackend.dto.PublicationDTO;
 import com.major.pmsbackend.dto.ViewEachPublicationDTO;
+import com.major.pmsbackend.entity.Notifications;
 import com.major.pmsbackend.entity.Publications;
+import com.major.pmsbackend.repository.NotificationRepository;
 import com.major.pmsbackend.service.PdfService;
 import com.major.pmsbackend.service.PublicationService;
 
@@ -29,6 +33,8 @@ public class PublicationController {
     private PublicationService publicationService;
     @Autowired
     private PdfService pdfService;
+    @Autowired
+    private NotificationRepository notificationRepository;
 
     @Secured("USER")
     @PostMapping("/upload")
@@ -37,6 +43,12 @@ public class PublicationController {
         ObjectMapper objectMapper = new ObjectMapper();
         Publications publication = objectMapper.readValue(publicationJson, Publications.class);
         String uploadPublication = publicationService.uploadPublication(file, publication);
+        Notifications notification = new Notifications();
+        notification.setMessage("Publication '" + publication.getTitle() + "' saved");
+        notification.setUser(publication.getUser()); 
+        notification.setStatus(0);
+        notification.setCreatedDate(new Date());
+        notificationRepository.save(notification);
         return ResponseEntity.status(HttpStatus.OK).body(uploadPublication);
     }
 
@@ -52,13 +64,13 @@ public class PublicationController {
         return publicationService.getPublicationsByUserId(userId);
     }
 
-    @GetMapping(value="/view/image/{id}",produces=MediaType.IMAGE_PNG_VALUE)
+    @GetMapping(value = "/view/image/{id}", produces = MediaType.IMAGE_PNG_VALUE)
     public byte[] viewFirstPage(@PathVariable Long id) {
         byte[] pdfBytes = pdfService.getPdfBytesById(id); // Fetch PDF blob from database
         return pdfService.extractFirstPage(pdfBytes); // Extract and return first page as PNG
     }
-    
-    @GetMapping(value="/view/{title}")
+
+    @GetMapping(value = "/view/{title}")
     public List<ViewEachPublicationDTO> viewPublicationDetail(@PathVariable String title) {
         return publicationService.getPublicationsByTitle(title); // Extract and return first page as PNG
     }

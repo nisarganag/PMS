@@ -23,12 +23,12 @@ public class UserService {
     private UserRepo userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    @SuppressWarnings("null")
+    
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
 
-    @SuppressWarnings("null")
+    
     public void updateUser(Long id, Users updatedUser) {
         Users user = userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("User not found for id: " + id));
@@ -53,7 +53,7 @@ public class UserService {
     }
 
     public void updateUserPhoto(Long id, MultipartFile photo) throws Exception {
-        @SuppressWarnings("null")
+        
         Users user = userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("User not found for id: " + id));
         user.setPhoto(DataUtils.compressData(photo.getBytes()));
