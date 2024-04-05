@@ -3,7 +3,6 @@ package com.major.pmsbackend.controller;
 import java.util.Date;
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -35,7 +34,6 @@ public class PublicationController {
     private PdfService pdfService;
     @Autowired
     private NotificationRepository notificationRepository;
-
     @Secured("USER")
     @PostMapping("/upload")
     public ResponseEntity<?> uploadPublication(@RequestParam("data") MultipartFile file,
@@ -53,24 +51,24 @@ public class PublicationController {
     }
 
     @GetMapping("/download/{id}")
-    public ResponseEntity<?> downloadPublication(@PathVariable Long id) {
+    public ResponseEntity<?> downloadPublication(@PathVariable String id) {
         byte[] downloadPublication = publicationService.downloadPublication(id);
         return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.valueOf("application/pdf"))
                 .body(downloadPublication);
     }
 
     @GetMapping("/all/{userId}")
-    public List<PublicationDTO> getAllPublicationsByUserId(@PathVariable Long userId) {
+    public List<PublicationDTO> getAllPublicationsByUserId(@PathVariable String userId) {
         return publicationService.getPublicationsByUserId(userId);
     }
 
-    @GetMapping(value = "/view/image/{id}", produces = MediaType.IMAGE_PNG_VALUE)
-    public byte[] viewFirstPage(@PathVariable Long id) {
+    @GetMapping(value="/view/image/{id}",produces=MediaType.IMAGE_PNG_VALUE)
+    public byte[] viewFirstPage(@PathVariable String id) {
         byte[] pdfBytes = pdfService.getPdfBytesById(id); // Fetch PDF blob from database
         return pdfService.extractFirstPage(pdfBytes); // Extract and return first page as PNG
     }
-
-    @GetMapping(value = "/view/{title}")
+    
+    @GetMapping(value="/view/{title}")
     public List<ViewEachPublicationDTO> viewPublicationDetail(@PathVariable String title) {
         return publicationService.getPublicationsByTitle(title); // Extract and return first page as PNG
     }

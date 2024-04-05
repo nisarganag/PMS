@@ -12,8 +12,8 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PublicationDTO {
-    private Long id;
-    private Long userId;
+    private String id;
+    private String userId;
     private String title;
     private String description;
     private String category;

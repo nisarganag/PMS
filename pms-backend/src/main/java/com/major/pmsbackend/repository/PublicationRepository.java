@@ -1,12 +1,14 @@
 package com.major.pmsbackend.repository;
+
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.major.pmsbackend.entity.Publications;
 import com.major.pmsbackend.entity.Users;
-public interface PublicationRepository extends JpaRepository<Publications, Long>{
+
+public interface PublicationRepository extends MongoRepository<Publications, String>{
     List<Publications> findByUser(Users user);
     List<Publications> findByTitle(String title);
     List<Publications> findByCategory(String category);
@@ -33,7 +35,7 @@ public interface PublicationRepository extends JpaRepository<Publications, Long>
     List<Publications> findByUserAndLanguageAndCountry(Users user, String language, String country);
     List<Publications> findByUserAndLanguageAndSource(Users user, String language, String source);
     List<Publications> findByUserAndLanguageAndAuthor(Users user, String language, String author);
-    List<Publications> findByUserId(Long userId);
+    List<Publications> findByUserId(String userId);
     List<Publications> findByTitleStartingWithIgnoreCase(String title);
     List<Publications> findByAuthorStartingWithIgnoreCase(String category);
     List<Publications> findByTitleContainingIgnoreCase(String title);

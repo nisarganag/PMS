@@ -1,19 +1,14 @@
 package com.major.pmsbackend.repository;
 
 import java.util.Optional;
-
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.lang.NonNull;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 import com.major.pmsbackend.entity.Users;
 
 
 @Repository
-public interface UserRepo extends CrudRepository<Users, Long>{
+public interface UserRepo extends MongoRepository<Users, String>{
     
-    @Override
-    @NonNull
-    <S extends Users> S save(@NonNull S entity);
     Optional<Users> findByEmail(String email);
 }

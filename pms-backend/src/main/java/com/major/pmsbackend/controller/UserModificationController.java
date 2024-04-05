@@ -27,9 +27,10 @@ public class UserModificationController {
     private UserRepo userRepository;
 
     @DeleteMapping("/delete/{userId}")
-    public ResponseEntity<?> deleteUser(@PathVariable Long userId) {
+    public ResponseEntity<?> deleteUser(@PathVariable String userId) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String loggedInUsername = auth.getName();
+
         Users user = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("User not found for id: " + userId));
         if (user != null && user.getEmail().equals(loggedInUsername)) {
@@ -41,9 +42,10 @@ public class UserModificationController {
     }
 
     @PutMapping("/update/{userId}")
-    public ResponseEntity<?> updatePublication(@PathVariable Long userId, @RequestBody Users updatedUser) {
+    public ResponseEntity<?> updatePublication(@PathVariable String userId, @RequestBody Users updatedUser) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String loggedInUsername = auth.getName();
+
         Users user = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("User not found for id: " + userId));
         if (user.getEmail().equals(loggedInUsername)) {
@@ -53,9 +55,10 @@ public class UserModificationController {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body("You are not authorized to update this publication");
     }
     @PutMapping(value="/update/photo/{userId}")
-    public ResponseEntity<?> updatePublication(@PathVariable Long userId,@RequestParam ("photo") MultipartFile file) throws Exception{
+    public ResponseEntity<?> updatePublication(@PathVariable String userId,@RequestParam ("photo") MultipartFile file) throws Exception{
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String loggedInUsername = auth.getName();
+        
         Users user = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("User not found for id: " + userId));
         if (user.getEmail().equals(loggedInUsername)) {

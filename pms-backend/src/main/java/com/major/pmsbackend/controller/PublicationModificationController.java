@@ -3,6 +3,7 @@ package com.major.pmsbackend.controller;
 import java.util.Date;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,8 +36,9 @@ public class PublicationModificationController {
     @Autowired
     private NotificationRepository notificationRepository;
 
+    @SuppressWarnings("null")
     @DeleteMapping("/{userId}/delete/{id}")
-    public ResponseEntity<?> deletePublication(@PathVariable Long userId, @PathVariable Long id) {
+    public ResponseEntity<?> deletePublication(@PathVariable String userId, @PathVariable String id) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String loggedInUsername = auth.getName();
 
@@ -64,10 +66,6 @@ public class PublicationModificationController {
                     notificationRepository.save(notification);
                     return ResponseEntity.status(HttpStatus.OK).body("Publication deleted successfully");
                 } else {
-                    Notifications notification = new Notifications();
-                    notification.setUser(user);
-                    notification.setMessage("Failed to delete publication '" + publication.getTitle() + "'");
-                    notificationRepository.save(notification);
                     return ResponseEntity.status(HttpStatus.FORBIDDEN)
                             .body("You are not authorized to delete this publication");
                 }
@@ -81,16 +79,18 @@ public class PublicationModificationController {
     }
 
     @PutMapping("/{userId}/update/{id}")
-    public ResponseEntity<?> updatePublication(@PathVariable Long userId, @PathVariable Long id,
+    public ResponseEntity<?> updatePublication(@PathVariable String userId, @PathVariable String id,
             @RequestBody Publications updatedPublication) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String loggedInUsername = auth.getName();
+
         Users user = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("User not found for id: " + userId));
 
         // Check if the logged-in user is authorized to update the publication
         if (user.getEmail().equals(loggedInUsername)) {
             // Check if the publication belongs to the logged-in user
+
             Optional<Publications> optionalPublication = publicationRepository.findById(id);
             if (optionalPublication.isPresent()) {
                 Publications publication = optionalPublication.get();

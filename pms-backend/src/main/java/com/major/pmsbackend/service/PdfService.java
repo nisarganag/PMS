@@ -20,7 +20,7 @@ public class PdfService {
     @Autowired
     private PublicationRepository publicationRepository;
 
-    public byte[] getPdfBytesById(Long id) {
+    public byte[] getPdfBytesById(String id) {
         if(id == null) {
             throw new IllegalArgumentException("Publication ID cannot be null");
         }
