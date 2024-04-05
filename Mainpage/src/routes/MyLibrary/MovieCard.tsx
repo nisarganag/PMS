@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 interface MovieData {
   title: string;
   description: string;
@@ -8,6 +10,16 @@ interface MovieCardProps {
   myData: MovieData;
 }
 const MovieCard = ({myData}: MovieCardProps) => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const { title, description, author } = myData;
   return (
     <div className="library-card">
@@ -27,7 +39,10 @@ const MovieCard = ({myData}: MovieCardProps) => {
 
           <h2 className="library-card-author">{author}</h2>
         </div>
-        <p className="library-card-body">{description ? description.substr(0,150) : ''}</p>
+        {/* <div>
+          {isVisible && <p className="library-card-body">{description ? description.substr(0,150) : ''}</p>}
+        </div> */}
+        <p className="bodyL">{description ? description.substr(0,150) : ''}</p>
       </div>
     </div>
   );

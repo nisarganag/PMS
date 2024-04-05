@@ -22,8 +22,16 @@
 .dark-mode {
     --white-color: var(--dark-text-color);
     --highlight-color: #ffffff; 
-    .center{
-      filter:invert(92.9%) blur(2px);
+    /* .center{
+      filter: invert(92.9%) blur(2px);
+    } */
+
+    .container-library{
+      background: #1d1d1d;
+    }
+
+    .library-card{
+      box-shadow: rgba(211, 211, 211, 0.2) 0px 40px 40px -10px;
     }
 }
 
@@ -64,7 +72,7 @@ button:focus-visible {
 .container-library {
   
   margin: 0 auto;
-  background-color: #8e8e8e4e;
+  background-color: #e9e9e9;
   border-radius: 30px;
   overflow: auto;
   width: 150%;
@@ -85,7 +93,7 @@ button:focus-visible {
 
 .library-card {
   /* border: solid 1.5px; */
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 40px 40px -7px;
+  
   padding: 5px 5px 5px 5px;
   border-radius: 50px;
   height: 100px;
@@ -99,6 +107,8 @@ button:focus-visible {
   overflow: hidden;
   transition: 1s;
   backdrop-filter: blur(30px);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 40px 40px -10px;
+  
 }
 .library-card:hover{
   height: 40vh;
@@ -116,10 +126,29 @@ button:focus-visible {
   
 }
 
-.library-card-body{
+.bodyL{
   padding: 15px 50px 0px 50px;
   text-align: center;
   color: #000;
+  position: absolute;
+  opacity: 0; /* Initially hide the div */
+  transition: opacity 0.5s 1s;
+  
+}
+
+.library-card:hover .bodyL{
+  opacity: 1;
+}
+
+.library-card:not(:hover) .bodyL{
+  transition-delay: 0.1s; /* Add a delay after hovering stops */
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  100% {
+    opacity: 1; /* Make the paragraph fully visible at the end of animation */
+  }
 }
 
 .library-card-header{
@@ -332,11 +361,12 @@ to {background-position: -100px 0px;background-size:2750px;}
 
 .center
 {
-  /* background-image: url('./open-book-outline-vector-symbol-icon-design-beautiful-illustration-K75EAJ-removebg-preview.png'); */
+  /* background-image: url('./library-book-svgrepo-com.png'); */
   background-size:cover;
-        
+  
   border-radius: 30px;
-  background-position: top; background-size:200vh;
+  background-position: top; 
+  background-size:80vh;
   filter: blur(2px);
   display: flex;
   align-items: center;
@@ -374,7 +404,7 @@ to {background-position: -100px 0px;background-size:2750px;}
   transform-origin: left center;
   transition: transform 1s ease-in-out, box-shadow .35s ease-in-out;
   left: 64vh;
-  top: 31vh;
+  top: 32vh;
   filter: blur(2px);
 }
 
