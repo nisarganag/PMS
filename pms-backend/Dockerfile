@@ -1,11 +1,5 @@
-FROM maven:latest AS build
+FROM sensedia/openjdk21-base
 WORKDIR /app
-COPY pom.xml .
-COPY src ./src
-RUN mvn clean package -DskipTests
-
-FROM openjdk:21-jdk
-WORKDIR /app
-COPY --from=build /app/target/pms-backend-0.0.1-SNAPSHOT.jar ./app.jar
+COPY . /app/
 EXPOSE 8080
-CMD ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "target/pms-backend-0.0.1.jar"]
