@@ -22,7 +22,7 @@ const Home = () => {
   const getCardData = async () => {
     setLoading(true);
     const userEmail = localStorage.getItem("emailId");
-    let res = await fetch(`http://localhost:8080/api/v1/auth/view?email=${userEmail}`, {
+    let res = await fetch(`http://13.232.83.87:8080/api/v1/auth/view?email=${userEmail}`, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
@@ -30,7 +30,7 @@ const Home = () => {
   const userData = await res.json();
   const userId = userData.id;
     res = await fetch(
-      `http://localhost:8080/api/v1/publications/all/${userId}`,
+      `http://13.232.83.87:8080/api/v1/publications/all/${userId}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,

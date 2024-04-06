@@ -36,7 +36,6 @@ public class PublicationModificationController {
     @Autowired
     private NotificationRepository notificationRepository;
 
-    @SuppressWarnings("null")
     @DeleteMapping("/{userId}/delete/{id}")
     public ResponseEntity<?> deletePublication(@PathVariable String userId, @PathVariable String id) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

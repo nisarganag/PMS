@@ -46,7 +46,6 @@ public class PublicationService {
         publication.setUser(user);
 
         // Save the publication
-        @SuppressWarnings("null")
         Publications savedPublication = publicationRepository.save(Publications.builder().title(publication.getTitle())
                 .description(publication.getDescription())
                 .category(publication.getCategory())
@@ -64,7 +63,6 @@ public class PublicationService {
     }
 
     public byte[] downloadPublication(String id) {
-        @SuppressWarnings("null")
         Publications publication = publicationRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Publication not found for id: " + id));
         return DataUtils.decompressData(publication.getData());
@@ -99,12 +97,10 @@ public class PublicationService {
         return dto;
     }
 
-    @SuppressWarnings("null")
     public void deletePublication(String id) {
         publicationRepository.deleteById(id);
     }
 
-    @SuppressWarnings("null")
     public void updatePublication(String id, Publications updatedPublication) {
         Optional<Publications> optionalPublication = publicationRepository.findById(id);
         if (optionalPublication.isPresent()) {
