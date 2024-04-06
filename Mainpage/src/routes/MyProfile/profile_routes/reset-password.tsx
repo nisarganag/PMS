@@ -9,7 +9,7 @@ const ResetPassword = () => {
     const [message, setMessage] = useState('');
 
     useEffect(() => {
-        axios.get('http://localhost:5000/user/password')
+        axios.get('') // Add the API endpoint
             .then(response => setPassword(response.data))
             .catch(error => console.log(error));
     }, []);
@@ -31,7 +31,7 @@ const ResetPassword = () => {
                 const salt = bcrypt.genSaltSync(10);
                 const hash = bcrypt.hashSync(newPassword, salt);
 
-                axios.put('http://localhost:5000/user/password', { password: hash })
+                axios.put('', { password: hash }) // Add the API endpoint
                     .then(response => setMessage('Password changed successfully'))
                     .catch(error => console.log(error));
             }

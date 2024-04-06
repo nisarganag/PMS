@@ -12,7 +12,7 @@ const Detail = () => {
     const [isEditing, setIsEditing] = useState(false);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/user')
+        axios.get('') // Add the API endpoint
             .then(response => setUserProfile(response.data))
             .catch(error => console.log(error));
     }, []);
@@ -26,7 +26,7 @@ const Detail = () => {
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
-        axios.put('http://localhost:5000/user', userProfile)
+        axios.put('', userProfile) // Add the API endpoint
             .then(response => console.log(response))
             .catch(error => console.log(error));
         setIsEditing(false);
