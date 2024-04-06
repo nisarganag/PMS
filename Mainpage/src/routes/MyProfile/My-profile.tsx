@@ -1,9 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { FaSave } from "react-icons/fa";
 import { useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import "./My-profile.css";
+import Detail from "./profile_routes/detail";
 // import photo from "./0f166c6cdf3643e7b8179432a1ddf709.png"
+
+
 
 function My_profile() {
 
@@ -232,6 +235,12 @@ function My_profile() {
     fileInput.current?.click();
   };
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const handleMenuToggle = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <div className="container-profile-photo">
       <h2 className="profile-text">Personal Info: </h2>
@@ -266,26 +275,31 @@ function My_profile() {
               />
 
         </div>
-
-        <div className="profile-navbar">
-          <div >
-            <nav id='menu'>
-              {/* <input type='checkbox' id='responsive-menu' onClick='updatemenu()'/><label></label> */}
-              <ul className="tab-container">
-                <div className="nav-tab">
-                  <li><a href='http://'>Profile</a></li>
-                  <li><a href='http://'>Edit Profile</a></li>
-                </div>
-                <div className="nav-tab">
-                  <li><a href='http://'>Reset Password</a></li>
-                  <li><a href='http://'>Recents</a></li>
-                </div>
-              </ul>
-            </nav>
-            <div className="profile-routes">
-              
-            </div>
-          </div>
+        
+        <nav id='menu'>
+          <input
+            type="checkbox"
+            id="responsive-menu"
+            checked={isMenuOpen}
+            onChange={handleMenuToggle}
+          /><label></label>
+          <ul>
+            <li>
+              <a href='http://'>Profile</a>
+            </li>
+            <li>
+              <a href='http://'>Edit profile</a>
+            </li>
+            <li>
+              <a href='http://'>Reset Password</a>
+            </li>
+            <li>
+              <a href='http://'>Recents</a>
+            </li>
+          </ul>
+        </nav>
+        <div className="profile-routes">
+          <Detail />
         </div>
       </div>
         
