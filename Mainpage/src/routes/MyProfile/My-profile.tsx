@@ -4,6 +4,9 @@ import { useCallback } from "react";
 import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import "./My-profile.css";
 import Detail from "./profile_routes/detail";
+import Edit_detail from "./profile_routes/edit-detail";
+import Recents from "./profile_routes/recents";
+import Reset_password from "./profile_routes/reset-password";
 // import photo from "./0f166c6cdf3643e7b8179432a1ddf709.png"
 
 
@@ -25,10 +28,10 @@ function My_profile() {
     photo: "",
   });
 
-  const [editedFirstName, setEditedFirstName] = useState("");
+  
   const [editedLastName, setEditedLastName] = useState("");
   const [, setEditedPhoto] = useState<File | null>(null);
-  const [editedPhone, setEditedPhone] = useState("");
+  ;
 
   // Define getLoggedInUserEmail here if it's not defined elsewhere
   const getLoggedInUserEmail = () => {
@@ -61,83 +64,6 @@ function My_profile() {
     fetchUserProfile();
   }, [fetchUserProfile]);
 
-  const handleEditFirstName = () => {
-    setEditedFirstName(userData.firstName);
-  };
-
-  const handleSaveFirstName = async () => {
-    try {
-      const userEmail = getLoggedInUserEmail();
-      const encodedEmail = encodeURIComponent(userEmail);
-      const res = await fetch(
-        `http://52.66.213.10:8080/api/v1/auth/view?email=${encodedEmail}`,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
-      const userDataFromApi = await res.json();
-      const userId = userDataFromApi.id;
-      const response = await fetch(
-        `http://52.66.213.10:8080/api/v1/users/update/${userId}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          body: JSON.stringify({ firstName: editedFirstName }),
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Failed to save First Name");
-      }
-      setUserData({ ...userData, firstName: editedFirstName });
-      setEditedFirstName("");
-    } catch (error) {
-      console.error("Error saving First Name:", error);
-    }
-  };
-
-  const handleEditLastName = () => {
-    setEditedLastName(userData.lastName);
-  };
-
-  const handleSaveLastName = async () => {
-    try {
-      const userEmail = getLoggedInUserEmail();
-      const encodedEmail = encodeURIComponent(userEmail);
-      const res = await fetch(
-        `http://52.66.213.10:8080/api/v1/auth/view?email=${encodedEmail}`,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
-      const userDataFromApi = await res.json();
-      const userId = userDataFromApi.id;
-      const response = await fetch(
-        `http://52.66.213.10:8080/api/v1/users/update/${userId}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          body: JSON.stringify({ lastName: editedLastName }),
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Failed to save Last Name");
-      }
-      setUserData({ ...userData, lastName: editedLastName });
-      setEditedLastName("");
-    } catch (error) {
-      console.error("Error saving Last Name:", error);
-    }
-  };
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0] as File;
@@ -190,44 +116,6 @@ function My_profile() {
     }
   };
 
-  const handleEditPhone = () => {
-    setEditedPhone(userData.phone);
-  };
-
-  const handleSavePhone = async () => {
-    try {
-      const userEmail = getLoggedInUserEmail();
-      const encodedEmail = encodeURIComponent(userEmail);
-      const res = await fetch(
-        `http://52.66.213.10:8080/api/v1/auth/view?email=${encodedEmail}`,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
-      const userDataFromApi = await res.json();
-      const userId = userDataFromApi.id;
-      const response = await fetch(
-        `http://52.66.213.10:8080/api/v1/users/update/${userId}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          body: JSON.stringify({ phone: editedPhone }),
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Failed to save Phone Number");
-      }
-      setUserData({ ...userData, phone: editedPhone });
-      setEditedPhone("");
-    } catch (error) {
-      console.error("Error saving Phone Number:", error);
-    }
-  };
   const fileInput = useRef<HTMLInputElement>(null);
 
   const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -240,6 +128,8 @@ function My_profile() {
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  const [activeTab, setActiveTab] = useState('profile');
 
   return (
     <div className="container-profile-photo">
@@ -283,23 +173,27 @@ function My_profile() {
             checked={isMenuOpen}
             onChange={handleMenuToggle}
           /><label></label>
-          <ul>
+          <ul id="myTab">
             <li>
-              <a href='http://'>Profile</a>
+              <a href='#profile' onClick={() => setActiveTab('profile')}>Profile</a>
             </li>
             <li>
-              <a href='http://'>Edit profile</a>
+              <a href='#editProfile' onClick={() => setActiveTab('editProfile')}>Edit profile</a>
             </li>
             <li>
-              <a href='http://'>Reset Password</a>
+              <a href='#resetPassword' onClick={() => setActiveTab('resetPassword')}>Reset Password</a>
             </li>
             <li>
-              <a href='http://'>Recents</a>
+              <a href='#recents' onClick={() => setActiveTab('recents')}>Recents</a>
             </li>
           </ul>
         </nav>
-        <div className="profile-routes">
-          <Detail />
+
+        <div >
+          {activeTab === 'profile' && <Detail />}
+          {activeTab === 'editProfile' && <Edit_detail />}
+          {activeTab === 'resetPassword' && <Reset_password />}
+          {activeTab === 'recents' && <Recents />}
         </div>
       </div>
         
