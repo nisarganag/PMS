@@ -40,7 +40,7 @@ function My_profile() {
       const userEmail = getLoggedInUserEmail();
       const encodedEmail = encodeURIComponent(userEmail);
       const response = await fetch(
-        `http://13.232.83.87:8080/api/v1/auth/view?email=${encodedEmail}`,
+        `http://52.66.213.10:8080/api/v1/auth/view?email=${encodedEmail}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -70,7 +70,7 @@ function My_profile() {
       const userEmail = getLoggedInUserEmail();
       const encodedEmail = encodeURIComponent(userEmail);
       const res = await fetch(
-        `http://13.232.83.87:8080/api/v1/auth/view?email=${encodedEmail}`,
+        `http://52.66.213.10:8080/api/v1/auth/view?email=${encodedEmail}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -80,7 +80,7 @@ function My_profile() {
       const userDataFromApi = await res.json();
       const userId = userDataFromApi.id;
       const response = await fetch(
-        `http://13.232.83.87:8080/api/v1/users/update/${userId}`,
+        `http://52.66.213.10:8080/api/v1/users/update/${userId}`,
         {
           method: "PUT",
           headers: {
@@ -109,7 +109,7 @@ function My_profile() {
       const userEmail = getLoggedInUserEmail();
       const encodedEmail = encodeURIComponent(userEmail);
       const res = await fetch(
-        `http://13.232.83.87:8080/api/v1/auth/view?email=${encodedEmail}`,
+        `http://52.66.213.10:8080/api/v1/auth/view?email=${encodedEmail}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -119,7 +119,7 @@ function My_profile() {
       const userDataFromApi = await res.json();
       const userId = userDataFromApi.id;
       const response = await fetch(
-        `http://13.232.83.87:8080/api/v1/users/update/${userId}`,
+        `http://52.66.213.10:8080/api/v1/users/update/${userId}`,
         {
           method: "PUT",
           headers: {
@@ -148,7 +148,7 @@ function My_profile() {
         const userEmail = getLoggedInUserEmail();
         const encodedEmail = encodeURIComponent(userEmail);
         const res = await fetch(
-          `http://13.232.83.87:8080/api/v1/auth/view?email=${encodedEmail}`,
+          `http://52.66.213.10:8080/api/v1/auth/view?email=${encodedEmail}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -167,7 +167,7 @@ function My_profile() {
           formData.append('photo', file);
   
           const response = await fetch(
-            `http://13.232.83.87:8080/api/v1/users/update/photo/${userId}`,
+            `http://52.66.213.10:8080/api/v1/users/update/photo/${userId}`,
             {
               method: 'PUT',
               headers: {
@@ -199,7 +199,7 @@ function My_profile() {
       const userEmail = getLoggedInUserEmail();
       const encodedEmail = encodeURIComponent(userEmail);
       const res = await fetch(
-        `http://13.232.83.87:8080/api/v1/auth/view?email=${encodedEmail}`,
+        `http://52.66.213.10:8080/api/v1/auth/view?email=${encodedEmail}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -209,7 +209,7 @@ function My_profile() {
       const userDataFromApi = await res.json();
       const userId = userDataFromApi.id;
       const response = await fetch(
-        `http://13.232.83.87:8080/api/v1/users/update/${userId}`,
+        `http://52.66.213.10:8080/api/v1/users/update/${userId}`,
         {
           method: "PUT",
           headers: {

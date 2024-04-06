@@ -12,7 +12,7 @@ const Login = ({ onToggle }: { onToggle: () => void }) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://13.232.83.87:8080/api/v1/auth/authenticate",
+        "http://52.66.213.10:8080/api/v1/auth/authenticate",
         {
           email,
           password,
@@ -87,7 +87,7 @@ const SignupPage = ({ onToggle }: { onToggle: () => void }) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://13.232.83.87:8080/api/v1/auth/register",
+        "http://52.66.213.10:8080/api/v1/auth/register",
         {
           firstName,
           lastName,

@@ -21,7 +21,7 @@ const Searchbar = () => {
         setSearchResult([]);
         return;
     }
-        const response = await fetch(`http://13.232.83.87:8080/api/v1/publications/search?query=${query}`);
+        const response = await fetch(`http://52.66.213.10:8080/api/v1/publications/search?query=${query}`);
         const data = await response.json();
         setSearchResult(data);
     };
