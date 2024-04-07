@@ -89,7 +89,7 @@ const UserProfile = () => {
       if (!response.ok) {
         throw new Error("Failed to save First Name");
       }
-      setUserData({ ...userData, firstName: editedFirstName });
+      setUserData((prevUserData) => ({ ...prevUserData, firstName: editedFirstName }));
       setEditedFirstName("");
     } catch (error) {
       console.error("Error saving First Name:", error);
