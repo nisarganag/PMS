@@ -148,7 +148,7 @@ function My_profile() {
 
             <button className="upload-photo-button" onClick={handleButtonClick}>
               <svg xmlns="http://www.w3.org/2000/svg" width="70" viewBox="0 0 20 20" height="70" fill="none" className="svg-icon">
-                <g stroke-width="1.5" stroke-linecap="round" stroke="#de8a2a">
+                <g strokeWidth="1.5" strokeLinecap="round" stroke="#de8a2a">
                   <circle r="7.5" cy="10" cx="10"></circle>
                   <path d="m9.99998 7.5v5"></path>
                   <path d="m7.5 9.99998h5"></path>

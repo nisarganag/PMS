@@ -49,6 +49,8 @@ const Detail = () => {
     });
   };
 
+// TODO: put request to update user profile
+
   const handleSubmit = async(event: React.FormEvent) => {
     const userEmail = getLoggedInUserEmail();
     const encodedEmail = encodeURIComponent(userEmail);
@@ -76,7 +78,7 @@ const Detail = () => {
       )
       .then((response) => {
         console.log(response);
-        // If the update was successful, you might want to update the userProfile state with the response data
+        // If the update was successful, you might want to update the userProfile state with the response data 
         if (response.data) {
           setUserProfile(response.data);
         }
