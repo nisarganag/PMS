@@ -70,7 +70,7 @@ const Detail = () => {
       .then((response) => {
         console.log('Response data:', response.data);
         // If the update was successful, fetch the updated user profile
-        if (response.data === 'Publication updated successfully') {
+        if (response.data === 'User updated successfully') {
           const userEmail = getLoggedInUserEmail();
           const encodedEmail = encodeURIComponent(userEmail);
           axios

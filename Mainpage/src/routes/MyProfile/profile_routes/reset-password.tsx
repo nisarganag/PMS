@@ -68,7 +68,7 @@ const ResetPassword = () => {
           });
       })
       .then((response) => {
-        if (response.data === 'Publication updated successfully') {
+        if (response.data === 'User updated successfully') {
           setMessage('Password updated successfully');
           setPassword(newPassword);
         } else {
