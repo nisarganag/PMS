@@ -3,6 +3,7 @@ import axios from "axios";
 
 const Detail = () => {
   const [userProfile, setUserProfile] = useState({
+    id:"",
     firstName: "",
     lastName: "",
     gender: "",
@@ -29,14 +30,17 @@ const Detail = () => {
           throw new Error("Failed to fetch user profile data");
         }
         const userDataFromApi = await response.json();
-        setUserProfile(userDataFromApi);
+        setUserProfile({
+          ...userDataFromApi,
+          id: userDataFromApi.id, // Add the user's ID to the userProfile state
+        });
       } catch (error) {
         console.error("Error fetching user profile data:", error);
       }
     };
-
+  
     fetchData();
-  }, []); // Add dependencies if any
+  }, []); // Add dependencies if any // Add dependencies if any
 
   const handleChange = (
     event: React.ChangeEvent<
@@ -52,19 +56,14 @@ const Detail = () => {
 // TODO: put request to update user profile
 
   const handleSubmit = async(event: React.FormEvent) => {
-    const userEmail = getLoggedInUserEmail();
-    const encodedEmail = encodeURIComponent(userEmail);
-    const res = await fetch(
-      `http://52.66.213.10:8080/api/v1/auth/view?email=${encodedEmail}`,
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      }
-    );
-    const userDataFromApi = await res.json();
-    const userId = userDataFromApi.id;
     event.preventDefault();
+    const userConfirmed = window.confirm('Are you sure you want to save the changes?');
+
+  // If the user clicked Cancel, stop here and don't save the changes
+  if (!userConfirmed) {
+    return;
+  }
+    const userId = userProfile.id; // Assuming the userProfile state includes the user's id
     const token = localStorage.getItem("token");
     axios
       .put(
@@ -77,13 +76,28 @@ const Detail = () => {
         }
       )
       .then((response) => {
-        console.log(response);
-        // If the update was successful, you might want to update the userProfile state with the response data 
-        if (response.data) {
-          setUserProfile(response.data);
+        console.log('Response data:', response.data);
+        // If the update was successful, fetch the updated user profile
+        if (response.data === 'User updated successfully') {
+          const userEmail = getLoggedInUserEmail();
+          const encodedEmail = encodeURIComponent(userEmail);
+          axios
+            .get(
+              `http://52.66.213.10:8080/api/v1/auth/view?email=${encodedEmail}`,
+              {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              }
+            )
+            .then((response) => {
+              const updatedUserProfile = response.data; // Replace this with the correct path to the updated user profile in the response data
+              setUserProfile(updatedUserProfile);
+            })
+            .catch((error) => console.log("Error fetching updated user profile:", error));
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log('Error updating user profile:', error));
     setIsEditing(false);
   };
 
@@ -127,12 +141,13 @@ const Detail = () => {
             <label>Phone Number:</label>
             <input
               type="text"
-              name="phoneNumber"
+              name="phone"
               value={userProfile.phone}
               onChange={handleChange}
             />
           </div>
           <button type="submit">Save</button>
+          <button type="button" onClick={() => setIsEditing(false)}>Cancel</button>
         </form>
       ) : (
         <div className="detail-profile">

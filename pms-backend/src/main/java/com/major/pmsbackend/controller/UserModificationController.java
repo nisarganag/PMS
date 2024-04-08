@@ -50,9 +50,9 @@ public class UserModificationController {
                 .orElseThrow(() -> new IllegalArgumentException("User not found for id: " + userId));
         if (user.getEmail().equals(loggedInUsername)) {
             userService.updateUser(userId, updatedUser);
-            return ResponseEntity.status(HttpStatus.OK).body("Publication updated successfully");
+            return ResponseEntity.status(HttpStatus.OK).body("User updated successfully");
         }
-        return ResponseEntity.status(HttpStatus.FORBIDDEN).body("You are not authorized to update this publication");
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body("You are not authorized to update this user");
     }
     @PutMapping(value="/update/photo/{userId}")
     public ResponseEntity<?> updatePublication(@PathVariable String userId,@RequestParam ("photo") MultipartFile file) throws Exception{
@@ -63,8 +63,8 @@ public class UserModificationController {
                 .orElseThrow(() -> new IllegalArgumentException("User not found for id: " + userId));
         if (user.getEmail().equals(loggedInUsername)) {
             userService.updateUserPhoto(userId,file);
-            return ResponseEntity.status(HttpStatus.OK).body("Publication updated successfully");
+            return ResponseEntity.status(HttpStatus.OK).body("User updated successfully");
         }
-        return ResponseEntity.status(HttpStatus.FORBIDDEN).body("You are not authorized to update this publication");
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body("You are not authorized to update this user");
     }
 }

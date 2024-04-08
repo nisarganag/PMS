@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import { FaSave } from "react-icons/fa";
 import { useCallback } from "react";
-import { Link, Route, Routes, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./My-profile.css";
 import Detail from "./profile_routes/detail";
 import Edit_detail from "./profile_routes/edit-detail";
@@ -31,7 +30,6 @@ function My_profile() {
   
   const [editedLastName, setEditedLastName] = useState("");
   const [, setEditedPhoto] = useState<File | null>(null);
-  ;
 
   // Define getLoggedInUserEmail here if it's not defined elsewhere
   const getLoggedInUserEmail = () => {
