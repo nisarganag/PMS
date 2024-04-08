@@ -95,12 +95,7 @@
   display: flex;
 }
 
-label {
-  display: block;
-  font-weight: bold;
-  margin-left: 5px;
-  text-align: left;
-}
+
 
 input[type="firstname"],
 input[type="lastname"],
@@ -153,7 +148,7 @@ input[type="email"]{
 
 #menu {
 	background: #64d8ff;
-	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 24px 35px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 	height: 51px;
 	border-radius: 20px;
   position: absolute;
@@ -178,8 +173,8 @@ input[type="email"]{
 #menu li {
 	display: inline-block;
 	position: relative;
-  margin-left: 5%;
-  margin-right: 5%;
+  margin-left: 7%;
+  margin-right: 7%;
 }
 
 #menu a {
@@ -259,7 +254,7 @@ input[type="email"]{
 	color: #444444;
 }
 
-@media screen and (max-width: 1040px){
+@media screen and (max-width: 760px){
 	#menu {position:absolute}
 	#menu ul {background:#444444;position:absolute;top:100%;right:0;left:0;z-index:3;height:auto;display:none;text-align:left;}
 	#menu ul.sub-menus {width:100%;position:static;}
@@ -276,17 +271,185 @@ input[type="email"]{
 .details-div{
   box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
   margin-top: -70px;
-  height: 60vh;
+  height: 58vh;
   padding: 30px;
+  overflow: auto;
 }
 
 /* detail page css */
 
 
-.detail-profile{
+.details-profile{
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  overflow: auto;
+}
+
+
+
+.detail-left, .detail-right{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
+  width: 80%;
 }
+
+.detail-left p, 
+.detail-right p,
+.detail-right input,
+.detail-right select{
+  /* border: solid #1e1e1e; */
+  border: none;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  font-size: large;
+  font-family: 'Franklin Gothic Medium', Verdana, Arial, Helvetica, sans-serif;
+  width: 80%;
+  color: var(--white-color);
+  height: 40px;
+}
+
+
+.detail-right input,
+.detail-right select{
+ 
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.detail-buttons{
+  display: flex;
+  flex-direction: row;
+}
+
+@media only screen and (min-width: 768px) {
+  .detail-buttons {
+    flex-direction: row;
+  }
+  .detail-save{
+    transform: translateX(-50%);
+    left:30%;
+  }
+
+
+}
+
+/* For large devices (desktops, 1024px and up) */
+@media only screen and (min-width: 1024px) {
+  .detail-buttons {
+    flex-direction: row;
+    gap:9%; /* Adjust as needed */
+  }
+  .detail-save{
+    
+    left:49%;
+  }
+}
+
+.detail-edit {
+  position: relative;
+  margin: 10px;
+   
+  left: 49%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  width: 100px;
+  height: 40px;
+  border: none;
+  padding: 0px 20px;
+  background-color: rgb(165, 165, 165);
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 5px 5px 0px rgb(82, 82, 82);
+  transition-duration: .3s;
+}
+
+
+.detail-save{
+  position: relative;
+  margin: 10px;
+  
+  left: 40%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  width: 100px;
+  height: 40px;
+  border: none;
+  padding: 0px 20px;
+  background-color: rgb(165, 165, 165);
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 5px 5px 0px rgb(82, 82, 82);
+  transition-duration: .3s;
+}
+
+
+
+.detail-svg {
+  width: 13px;
+  position: absolute;
+  right: 0;
+  margin-right: 20px;
+  fill: white;
+  transition-duration: .3s;
+}
+
+.detail-edit:hover, .detail-save:hover {
+  color: transparent;
+}
+
+.detail-edit:hover svg , .detail-save:hover svg {
+  right: 43%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  transition-duration: .3s;
+}
+
+.detail-edit:active, .detail-save:active {
+  transform: translate(3px , 3px);
+  transition-duration: .3s;
+  box-shadow: 2px 2px 0px rgb(140, 32, 212);
+}
+/* .detail-edit{
+  position: absolute;
+  
+  top: 75%;
+  margin-top: 20px;
+  margin-right: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #1e1e1e;
+  color: #ffffff;
+  cursor: pointer;
+
+} */
+
+.detail-clr{
+  background: #cecececd;
+}
+
+
+
+/* .detail-right input,
+.detail-right select
+{
+  
+  color: var(--white-color);
+  border: none;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  font-size: large;
+  align-items: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+} */

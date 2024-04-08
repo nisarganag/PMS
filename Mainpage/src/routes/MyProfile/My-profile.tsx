@@ -176,9 +176,6 @@ function My_profile() {
               <a href='#profile' onClick={() => setActiveTab('profile')}>Profile</a>
             </li>
             <li>
-              <a href='#editProfile' onClick={() => setActiveTab('editProfile')}>Edit profile</a>
-            </li>
-            <li>
               <a href='#resetPassword' onClick={() => setActiveTab('resetPassword')}>Reset Password</a>
             </li>
             <li>
