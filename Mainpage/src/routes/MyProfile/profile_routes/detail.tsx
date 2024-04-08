@@ -55,6 +55,12 @@ const Detail = () => {
 
   const handleSubmit = async(event: React.FormEvent) => {
     event.preventDefault();
+    const userConfirmed = window.confirm('Are you sure you want to save the changes?');
+
+  // If the user clicked Cancel, stop here and don't save the changes
+  if (!userConfirmed) {
+    return;
+  }
     const userId = userProfile.id; // Assuming the userProfile state includes the user's id
     const token = localStorage.getItem("token");
     axios
@@ -139,6 +145,7 @@ const Detail = () => {
             />
           </div>
           <button type="submit">Save</button>
+          <button type="button" onClick={() => setIsEditing(false)}>Cancel</button>
         </form>
       ) : (
         <div className="detail-profile">

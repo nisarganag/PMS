@@ -102,7 +102,7 @@ const ResetPassword = () => {
           />
         </div>
         <div>
-          <label>Confirm Password:</label>
+          <label>Confirm New Password:</label>
           <input
             type="password"
             value={confirmPassword}
