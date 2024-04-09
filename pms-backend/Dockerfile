@@ -11,8 +11,9 @@ COPY . /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Start from the base image with Java installed
-FROM openjdk:11-jdk-slim-buster
+FROM openjdk:17-jdk-slim-buster
 
+RUN apt-get update && apt-get install -y python3 && ln -s /usr/bin/python3 /usr/bin/python
 # Set the working directory in the container
 WORKDIR /app
 
