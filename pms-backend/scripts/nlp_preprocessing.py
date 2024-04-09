@@ -1,15 +1,14 @@
 import sys
 import json
 import nltk
+import spacy
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import PorterStemmer
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import linear_kernel
 
 nltk.download('punkt')
 nltk.download('stopwords')
-
+nlp = spacy.load('en_core_web_md')
 def preprocess_text(text):
     stop_words = set(stopwords.words('english'))
     stemmer = PorterStemmer()
@@ -18,8 +17,11 @@ def preprocess_text(text):
     filtered_tokens = [token for token in tokens if not token in stop_words]
     stemmed_tokens = [stemmer.stem(token) for token in filtered_tokens]
 
-    return ' '.join(stemmed_tokens)
-
+    return stemmed_tokens
+def compute_similarity(text1, text2):
+    doc1 = nlp(" ".join(text1))
+    doc2 = nlp(" ".join(text2))
+    return doc1.similarity(doc2)
 def main():
     # Read the file paths from the command line arguments
     publications_path = sys.argv[1]
@@ -49,9 +51,9 @@ def main():
         if description is not None:
             preprocessed_description = preprocess_text(description)
         else:
-            preprocessed_description = ''
+            preprocessed_description = []
 
-        all_texts.append(preprocessed_title + ' ' + preprocessed_description)
+        all_texts.append(" ".join(preprocessed_title + preprocessed_description))
 
     user_texts = []
     for publication in user_publications:
@@ -62,28 +64,23 @@ def main():
         if description is not None:
             preprocessed_description = preprocess_text(description)
         else:
-            preprocessed_description = ''
+            preprocessed_description = []
 
-        user_texts.append(preprocessed_title + ' ' + preprocessed_description)
+        user_texts.append(" ".join(preprocessed_title + preprocessed_description))
 
-    # Create a TF-IDF matrix for the texts
-    vectorizer = TfidfVectorizer()
-    tfidf_matrix = vectorizer.fit_transform(all_texts + user_texts)
-
-    # Compute the cosine similarity between the user's publications and all publications
-    cosine_similarities = linear_kernel(tfidf_matrix[-len(user_texts):], tfidf_matrix[:-len(user_texts)])
-
-    # Get the indices of the top 5 most similar publications for each of the user's publications
-    top_indices = cosine_similarities.argsort()[:, -5:]
+    # Train a Word2Vec model
+    for user_text in user_texts:
+        similarities = [(i, compute_similarity(user_text, text)) for i, text in enumerate(all_texts)]
+        top_similarities = sorted(similarities, key=lambda x: x[1], reverse=True)[:5]
 
     # Print the IDs of the recommended publications
     printed_ids = set()
-    for indices in top_indices:
-        for index in indices:
-            id = all_publications[index]['id']
-            if id not in printed_ids:
-                print(id)
-                printed_ids.add(id)
+    for similarity in top_similarities:
+        index = similarity[0]
+        id = all_publications[index]['id']
+        if id not in printed_ids:
+            print(id)
+            printed_ids.add(id)
 
 if __name__ == "__main__":
     main()
