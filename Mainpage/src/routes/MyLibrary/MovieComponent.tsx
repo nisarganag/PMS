@@ -92,6 +92,16 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
               </div>
               <input id="file" type="file" />
             </label>
+            {/* <div className="container-upload-btn">
+              <div className="upload-btn" data-button>
+                <span className="upload-btn-text">
+                  <i className="fa fa-upload"></i> Upload
+                </span>
+                <span className="upload-btn-success">
+                  <i className="fa fa-check"></i>
+                </span>
+              </div>
+            </div> */}
             <input type="submit" value="Upload" />
           </form>
 
