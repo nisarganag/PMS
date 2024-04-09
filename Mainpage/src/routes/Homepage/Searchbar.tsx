@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { FaSearch } from "react-icons/fa";
 import './Searchbar.css';
+import { BASE_URL } from '../config/config.tsx';
 
 const Searchbar = () => {
     const [input, setInput] = useState("");
@@ -21,7 +21,7 @@ const Searchbar = () => {
         setSearchResult([]);
         return;
     }
-        const response = await fetch(`http://52.66.213.10:8080/api/v1/publications/search?query=${query}`);
+        const response = await fetch(`${BASE_URL}/api/v1/publications/search?query=${query}`);
         const data = await response.json();
         setSearchResult(data);
     };

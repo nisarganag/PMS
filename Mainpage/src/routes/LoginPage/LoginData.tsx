@@ -3,6 +3,7 @@ import axios from "axios"; // Import Axios library
 import {useEffect } from 'react';
 import "./LoginData.css";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from '../config/config.tsx';
 
 const Login = ({ onToggle }: { onToggle: () => void }) => {
   const [email, setEmail] = useState("");
@@ -13,7 +14,7 @@ const Login = ({ onToggle }: { onToggle: () => void }) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://52.66.213.10:8080/api/v1/auth/authenticate",
+        `${BASE_URL}/api/v1/auth/authenticate`,
         {
           email,
           password,
@@ -109,7 +110,7 @@ const SignupPage = ({ onToggle }: { onToggle: () => void }) => {
         
     try {
       const response = await axios.post(
-        "http://52.66.213.10:8080/api/v1/auth/register",
+        `${BASE_URL}/api/v1/auth/register`,
         {
           firstName,
           lastName,

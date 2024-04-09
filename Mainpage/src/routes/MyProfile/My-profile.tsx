@@ -6,6 +6,7 @@ import Detail from "./profile_routes/detail";
 import Edit_detail from "./profile_routes/edit-detail";
 import Recents from "./profile_routes/recents";
 import Reset_password from "./profile_routes/reset-password";
+import { BASE_URL } from '../config/config.tsx';
 // import photo from "./0f166c6cdf3643e7b8179432a1ddf709.png"
 
 
@@ -41,7 +42,7 @@ function My_profile() {
       const userEmail = getLoggedInUserEmail();
       const encodedEmail = encodeURIComponent(userEmail);
       const response = await fetch(
-        `http://52.66.213.10:8080/api/v1/auth/view?email=${encodedEmail}`,
+        `${BASE_URL}/api/v1/auth/view?email=${encodedEmail}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -72,7 +73,7 @@ function My_profile() {
         const userEmail = getLoggedInUserEmail();
         const encodedEmail = encodeURIComponent(userEmail);
         const res = await fetch(
-          `http://52.66.213.10:8080/api/v1/auth/view?email=${encodedEmail}`,
+          `${BASE_URL}/api/v1/auth/view?email=${encodedEmail}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -91,7 +92,7 @@ function My_profile() {
           formData.append('photo', file);
   
           const response = await fetch(
-            `http://52.66.213.10:8080/api/v1/users/update/photo/${userId}`,
+            `${BASE_URL}/api/v1/users/update/photo/${userId}`,
             {
               method: 'PUT',
               headers: {

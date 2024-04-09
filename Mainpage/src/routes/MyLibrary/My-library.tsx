@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Loading from "./Loading";
 import MovieComponent from "./MovieComponent";
+import { BASE_URL } from '../config/config.tsx';
 import "./My-library.css";
 interface CardData {
   title: string;
@@ -22,7 +23,7 @@ const Home = () => {
   const getCardData = async () => {
     setLoading(true);
     const userEmail = localStorage.getItem("emailId");
-    let res = await fetch(`http://52.66.213.10:8080/api/v1/auth/view?email=${userEmail}`, {
+    let res = await fetch(`${BASE_URL}/api/v1/auth/view?email=${userEmail}`, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
@@ -30,7 +31,7 @@ const Home = () => {
   const userData = await res.json();
   const userId = userData.id;
     res = await fetch(
-      `http://52.66.213.10:8080/api/v1/publications/all/${userId}`,
+      `${BASE_URL}/api/v1/publications/all/${userId}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,

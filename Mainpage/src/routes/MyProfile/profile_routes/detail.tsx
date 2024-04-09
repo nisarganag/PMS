@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { BASE_URL } from '../../config/config.tsx';
 
 const Detail = () => {
   const [userProfile, setUserProfile] = useState({
@@ -19,7 +20,7 @@ const Detail = () => {
         const userEmail = getLoggedInUserEmail();
         const encodedEmail = encodeURIComponent(userEmail);
         const response = await fetch(
-          `http://52.66.213.10:8080/api/v1/auth/view?email=${encodedEmail}`,
+          `${BASE_URL}/api/v1/auth/view?email=${encodedEmail}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -67,7 +68,7 @@ const Detail = () => {
     const token = localStorage.getItem("token");
     axios
       .put(
-        `http://52.66.213.10:8080/api/v1/users/update/${userId}`,
+        `${BASE_URL}/api/v1/users/update/${userId}`,
         userProfile,
         {
           headers: {
@@ -83,7 +84,7 @@ const Detail = () => {
           const encodedEmail = encodeURIComponent(userEmail);
           axios
             .get(
-              `http://52.66.213.10:8080/api/v1/auth/view?email=${encodedEmail}`,
+              `${BASE_URL}/api/v1/auth/view?email=${encodedEmail}`,
               {
                 headers: {
                   Authorization: `Bearer ${token}`,

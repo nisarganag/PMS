@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { FaSave } from "react-icons/fa";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from '../config/config.tsx';
 import "./My-profile.css";
 // import photo from "./0f166c6cdf3643e7b8179432a1ddf709.png"
 
@@ -36,7 +37,7 @@ const UserProfile = () => {
       const userEmail = getLoggedInUserEmail();
       const encodedEmail = encodeURIComponent(userEmail);
       const response = await fetch(
-        `http://52.66.213.10:8080/api/v1/auth/view?email=${encodedEmail}`,
+        `${BASE_URL}/api/v1/auth/view?email=${encodedEmail}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -66,7 +67,7 @@ const UserProfile = () => {
       const userEmail = getLoggedInUserEmail();
       const encodedEmail = encodeURIComponent(userEmail);
       const res = await fetch(
-        `http://52.66.213.10:8080/api/v1/auth/view?email=${encodedEmail}`,
+        `${BASE_URL}/api/v1/auth/view?email=${encodedEmail}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -76,7 +77,7 @@ const UserProfile = () => {
       const userDataFromApi = await res.json();
       const userId = userDataFromApi.id;
       const response = await fetch(
-        `http://52.66.213.10:8080/api/v1/users/update/${userId}`,
+        `${BASE_URL}/api/v1/users/update/${userId}`,
         {
           method: "PUT",
           headers: {
@@ -105,7 +106,7 @@ const UserProfile = () => {
       const userEmail = getLoggedInUserEmail();
       const encodedEmail = encodeURIComponent(userEmail);
       const res = await fetch(
-        `http://52.66.213.10:8080/api/v1/auth/view?email=${encodedEmail}`,
+        `${BASE_URL}/api/v1/auth/view?email=${encodedEmail}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -115,7 +116,7 @@ const UserProfile = () => {
       const userDataFromApi = await res.json();
       const userId = userDataFromApi.id;
       const response = await fetch(
-        `http://52.66.213.10:8080/api/v1/users/update/${userId}`,
+        `${BASE_URL}/api/v1/users/update/${userId}`,
         {
           method: "PUT",
           headers: {
@@ -144,7 +145,7 @@ const UserProfile = () => {
         const userEmail = getLoggedInUserEmail();
         const encodedEmail = encodeURIComponent(userEmail);
         const res = await fetch(
-          `http://52.66.213.10:8080/api/v1/auth/view?email=${encodedEmail}`,
+          `${BASE_URL}/api/v1/auth/view?email=${encodedEmail}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -163,7 +164,7 @@ const UserProfile = () => {
           formData.append('photo', file);
   
           const response = await fetch(
-            `http://52.66.213.10:8080/api/v1/users/update/photo/${userId}`,
+            `${BASE_URL}/api/v1/users/update/photo/${userId}`,
             {
               method: 'PUT',
               headers: {
@@ -195,7 +196,7 @@ const UserProfile = () => {
       const userEmail = getLoggedInUserEmail();
       const encodedEmail = encodeURIComponent(userEmail);
       const res = await fetch(
-        `http://52.66.213.10:8080/api/v1/auth/view?email=${encodedEmail}`,
+        `${BASE_URL}/api/v1/auth/view?email=${encodedEmail}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -205,7 +206,7 @@ const UserProfile = () => {
       const userDataFromApi = await res.json();
       const userId = userDataFromApi.id;
       const response = await fetch(
-        `http://52.66.213.10:8080/api/v1/users/update/${userId}`,
+        `${BASE_URL}/api/v1/users/update/${userId}`,
         {
           method: "PUT",
           headers: {

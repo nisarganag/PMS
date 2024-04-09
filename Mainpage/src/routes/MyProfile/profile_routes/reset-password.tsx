@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { BASE_URL } from '../../config/config.tsx';
 
 const ResetPassword = () => {
   const [, setPassword] = useState("");
@@ -14,7 +15,7 @@ const ResetPassword = () => {
     const token = localStorage.getItem("token");
   
     axios
-      .get(`http://52.66.213.10:8080/api/v1/auth/view?email=${encodedEmail}`, {
+      .get(`${BASE_URL}/api/v1/auth/view?email=${encodedEmail}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -40,7 +41,7 @@ const ResetPassword = () => {
     const token = localStorage.getItem("token");
   
     axios
-      .get(`http://52.66.213.10:8080/api/v1/auth/view?email=${encodedEmail}`, {
+      .get(`${BASE_URL}/api/v1/auth/view?email=${encodedEmail}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -50,14 +51,14 @@ const ResetPassword = () => {
   
         return axios
           .post(
-            `http://52.66.213.10:8080/api/v1/auth/authenticate`,
+            `${BASE_URL}/api/v1/auth/authenticate`,
             { email: userEmail, password: oldPassword }
           )
           .then((response) => {
             const token = response.data.token;
   
             return axios.put(
-              `http://52.66.213.10:8080/api/v1/users/update/${userId}`,
+              `${BASE_URL}/api/v1/users/update/${userId}`,
               { password: newPassword },
               {
                 headers: {
