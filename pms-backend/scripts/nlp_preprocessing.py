@@ -73,13 +73,16 @@ def main():
         similarities = [(i, compute_similarity(user_text, text)) for i, text in enumerate(all_texts)]
         top_similarities = sorted(similarities, key=lambda x: x[1], reverse=True)[:5]
 
-    # Print the IDs of the recommended publications
+# Print the IDs of the recommended publications
     printed_ids = set()
+    user_ids = {pub['id'] for pub in user_publications}  # Create a set of user publication IDs
+
     for similarity in top_similarities:
         index = similarity[0]
         id = all_publications[index]['id']
-        if id not in printed_ids:
-            print(id)
+        title = all_publications[index]['title']
+        if id not in printed_ids and id not in user_ids:  # Check if the publication is not the user's own
+            print(f"ID: {id}, Title: {title}")
             printed_ids.add(id)
 
 if __name__ == "__main__":
