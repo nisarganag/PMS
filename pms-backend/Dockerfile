@@ -11,10 +11,7 @@ COPY . /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Start from the base image with Java installed
-FROM sensedia/openjdk21-base
-
-# Install Python
-RUN pacman -Syu --noconfirm python
+FROM openjdk:11-jdk-slim-buster
 
 # Set the working directory in the container
 WORKDIR /app
