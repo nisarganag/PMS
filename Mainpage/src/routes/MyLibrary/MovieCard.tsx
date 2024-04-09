@@ -10,7 +10,7 @@ interface MovieCardProps {
   myData: MovieData;
 }
 const MovieCard = ({myData}: MovieCardProps) => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [, setIsVisible] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
