@@ -1,5 +1,10 @@
 package com.major.pmsbackend.service;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Base64;
 import java.util.HashSet;
 import java.util.List;
@@ -14,6 +19,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.major.pmsbackend.dto.PublicationDTO;
 import com.major.pmsbackend.dto.SearchDTO;
 import com.major.pmsbackend.dto.ViewEachPublicationDTO;
@@ -179,5 +185,49 @@ Set<Publications> results2 = new HashSet<>(publicationRepository.findByAuthorCon
         dto.setSource(publication.getSource());
         dto.setTitle(publication.getTitle());
         return dto;
+    }
+    public List<PublicationDTO> getAllPublications() {
+        List<Publications> publications = publicationRepository.findAll();
+        return publications.stream().map(this::convertToDTO).collect(Collectors.toList());
+    }
+    public String preprocessPublications(String userId) {
+        StringBuilder output = new StringBuilder();
+        StringBuilder errors = new StringBuilder();
+        try {
+            // Fetch the list of publications
+            List<PublicationDTO> publications = this.getAllPublications();
+            List<PublicationDTO> userPublications = this.getPublicationsByUserId(userId);
+            // Convert the list of publications to a JSON string
+            ObjectMapper mapper = new ObjectMapper();
+            String jsonPublications = mapper.writeValueAsString(publications);
+            String jsonUserPublications = mapper.writeValueAsString(userPublications);
+    
+            // Write the JSON strings to files
+            Path publicationsPath = Files.write(Paths.get("publications.json"), jsonPublications.getBytes());
+            Path userPublicationsPath = Files.write(Paths.get("user_publications.json"), jsonUserPublications.getBytes());
+    
+            // Call the Python script and pass the file paths as arguments
+            ProcessBuilder processBuilder = new ProcessBuilder("python", "scripts/nlp_preprocessing.py", publicationsPath.toString(), userPublicationsPath.toString());
+            Process process = processBuilder.start();
+    
+            BufferedReader outputReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            BufferedReader errorReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+            String line;
+            while ((line = outputReader.readLine()) != null) {
+                output.append(line);
+                output.append('\n');
+            }
+            while ((line = errorReader.readLine()) != null) {
+                errors.append(line);
+                errors.append('\n');
+            }
+    
+            int exitCode = process.waitFor();
+            System.out.println("\nExited with error code : " + exitCode);
+            System.out.println("\nErrors: " + errors.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return output.toString();
     }
 }
