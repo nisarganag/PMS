@@ -37,7 +37,7 @@ const MovieCard = ({myData}: MovieCardProps) => {
             <div className="front"></div>
           </div>
 
-          <h2 className="library-card-author">{author}</h2>
+          <h2 className="library-card-author">By: {author}</h2>
         </div>
         {/* <div>
           {isVisible && <p className="library-card-body">{description ? description.substr(0,150) : ''}</p>}

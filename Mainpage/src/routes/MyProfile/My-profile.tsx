@@ -131,7 +131,7 @@ function My_profile() {
 
   return (
     <div className="container-profile-photo">
-      <h2 className="profile-text">Personal Info: </h2>
+      {/* <h2 className="profile-text">Personal Info: </h2> */}
 
       <div className="background-picture-profile">
         <div className="profile-picture">

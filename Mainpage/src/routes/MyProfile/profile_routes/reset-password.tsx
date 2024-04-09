@@ -85,7 +85,7 @@ const ResetPassword = () => {
     <div className="details-div">
       <h1>Password Change</h1>
       <form onSubmit={handleChangePassword}>
-      <div>
+        <div>
           <label>Old Password:</label>
           <input
             type="password"

@@ -103,7 +103,7 @@ const Detail = () => {
 
   return (
     <div className="details-div">
-      <h1>Detail</h1>
+      <h1 className="profile-text">Profile Info:</h1>
       {isEditing ? (
         <form onSubmit={handleSubmit} >
           <div className="details-profile">
