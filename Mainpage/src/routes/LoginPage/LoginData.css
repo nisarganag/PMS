@@ -235,4 +235,9 @@
       background-color: var(--first-color);
     }
     
+  }
+  .error {
+    color: red; /* Change the text color to red */
+    font-family: Arial, sans-serif; /* Change the font to Arial */
+    font-size: 14px; /* Change the font size to 14px */
   } 
