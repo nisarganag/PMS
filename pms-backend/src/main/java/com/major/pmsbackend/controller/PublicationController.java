@@ -72,4 +72,13 @@ public class PublicationController {
     public List<ViewEachPublicationDTO> viewPublicationDetail(@PathVariable String title) {
         return publicationService.getPublicationsByTitle(title); // Extract and return first page as PNG
     }
+    @GetMapping("/all")
+    public List<PublicationDTO> getAllPublications() {
+        return publicationService.getAllPublications();
+    }
+    @PostMapping("/preprocessPublications/{userId}")
+    public ResponseEntity<String> preprocessPublications(@PathVariable String userId) {
+        String output = publicationService.preprocessPublications(userId);
+        return ResponseEntity.ok(output);
+    }
 }
