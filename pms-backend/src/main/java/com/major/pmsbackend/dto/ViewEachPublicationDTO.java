@@ -19,6 +19,12 @@ public class ViewEachPublicationDTO {
     private String description;
     private String language;
     private Date published_date;
-    private String source;
     private String title;
+    private String coAuthor;
+    private String pageNo;
+    private String volumeNo;
+    private String issueNo;
+    private String chapterNo;
+    private String isbn;
+    private String publisher;    
 }

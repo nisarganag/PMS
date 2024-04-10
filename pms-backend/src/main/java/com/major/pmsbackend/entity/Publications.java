@@ -20,11 +20,17 @@ public class Publications {
     @Id
     private String id;
     private String title;
+    private String coAuthor;
+    private String pageNo;
+    private String volumeNo;
+    private String issueNo;
+    private String chapterNo;
+    private String isbn;
+    private String publisher;    
     private String description;
     private String category;
     private String language;
     private String country;
-    private String source;
     private String author;
     private Date publishedDate;
     private byte[] data;
