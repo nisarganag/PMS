@@ -528,7 +528,7 @@ to {background-position: -100px 0px;background-size:2750px;}
 
 .cssbuttons-io-button {
   display: flex;
-  position: fixed;
+  position: relative;
   align-items: center;
   font-family: inherit;
   font-weight: 500;
@@ -541,12 +541,12 @@ to {background-position: -100px 0px;background-size:2750px;}
   cursor: pointer;
   letter-spacing: 0.05em;
   border-radius: 20em;
-  top: 6vh;
-  left: calc(90vw - 150px); /* Adjust as needed */
+  top: -35vh;
+  left: calc(90vw - 100px); 
 }
 
 .cssbuttons-io-button svg {
-  margin-right: 8px;
+  margin-right: 0px;
 }
 
 .cssbuttons-io-button:hover {
@@ -793,7 +793,7 @@ to {background-position: -100px 0px;background-size:2750px;}
 }
 
 .modal__header {
-  padding: 1rem 1.5rem;
+  padding: 0.5rem 1.5rem;
   border-bottom: 1px solid #ddd;
   display: flex;
   align-items: center;
@@ -861,7 +861,7 @@ to {background-position: -100px 0px;background-size:2750px;}
 
 .input__label {
   font-weight: 700;
-  font-size: 0.875rem;
+  font-size: 0.8rem;
 }
 
 .input__field {
@@ -869,7 +869,7 @@ to {background-position: -100px 0px;background-size:2750px;}
   margin-top: 0.5rem;
   border: 1px solid #DDD;
   border-radius: 0.25rem;
-  padding: 0.75rem 0.75rem;
+  padding: 0.4rem 0.5rem;
   transition: 0.15s ease;
 }
 
