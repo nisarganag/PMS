@@ -78,7 +78,7 @@ def main():
         # Print the IDs of the recommended publications
         
         user_ids = {pub['id'] for pub in user_publications}  # Create a set of user publication IDs
-
+        #print only items that are not in user_ids or printed_ids
         for similarity in top_similarities:
             index = similarity[0]
             id = all_publications[index]['id']
