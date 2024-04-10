@@ -62,18 +62,36 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
 
         {isClicked && (
           <form id="upload-form" action="/upload" method="post" encType="multipart/form-data" className="file-upload-form" onSubmit={onFormSubmit}>
-            <div className="file-upload-info">
-              <div className="upload-detail-left">
-                <label htmlFor="title">Title:</label>
-                <label htmlFor="author">Author's Name:</label>
-                <label style={{
-                  height: "10vh",
-                }} htmlFor="description">Description:</label>
-              </div>
-              <div className="upload-detail-right">
-                <input id="title" type="text" name="title" required />
-                <input id="author" type="text" name="author" required />
-                <textarea id="description" name="description" required></textarea>
+            <div className="upload-form-container">
+              <div className="modal">
+                <div className="modal__header">
+                  <span className="modal__title">New Upload</span><button className="upload-form-button upload-form-button--icon"><svg width="24" viewBox="0 0 24 24" height="24" xmlns="http://www.w3.org/2000/svg">
+                      <path fill="none" d="M0 0h24v24H0V0z"></path>
+                      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg></button>
+                </div>
+                <div className="modal__body">
+                  <div className="upload-form-input1">
+                    <div>
+                      <label className="input__label">File title</label>
+                      <input className="input__field" type="text"/> 
+                      
+                    </div>
+                    <div>
+                      <label className="input__label">Author's Name</label>
+                      <input className="input__field" type="text"/> 
+                      
+                      </div>
+                    
+                  </div>
+                  <div className="upload-form-input2">
+                    <label className="input__label">Description</label>
+                    <textarea className="input__field input__field--textarea"></textarea>
+                    <p className="input__description">Give your file a good description so everyone know what's it for</p>
+                  </div>
+                </div>
+                  {/* <div className="modal__footer">
+                    <button className="upload-button upload-button--primary">Create project</button>
+                  </div> */}
               </div>
             </div>
             
@@ -91,18 +109,15 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
                 <span className="browse-button">Browse file</span>
               </div>
               <input id="file" type="file" />
+              <button className="upload-button">
+                <span>Submit</span>
+                <svg width="34" height="34" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="37" cy="37" r="35.5" stroke="black" stroke-width="3"></circle>
+                    <path d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z" fill="black"></path>
+                </svg>
+              </button>
             </label>
-            {/* <div className="container-upload-btn">
-              <div className="upload-btn" data-button>
-                <span className="upload-btn-text">
-                  <i className="fa fa-upload"></i> Upload
-                </span>
-                <span className="upload-btn-success">
-                  <i className="fa fa-check"></i>
-                </span>
-              </div>
-            </div> */}
-            <input type="submit" value="Upload" />
+            {/* <input type="submit" value="Upload" /> */}
           </form>
 
           // <form id="upload-form" action="/upload" method="post" encType="multipart/form-data">
