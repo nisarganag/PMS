@@ -57,7 +57,13 @@ public class PublicationService {
                 .category(publication.getCategory())
                 .language(publication.getLanguage())
                 .country(publication.getCountry())
-                .source(publication.getSource())
+                .chapterNo(publication.getChapterNo())
+                .coAuthor(publication.getCoAuthor())
+                .isbn(publication.getIsbn())
+                .publisher(publication.getPublisher())
+                .pageNo(publication.getPageNo())
+                .volumeNo(publication.getVolumeNo())
+                .issueNo(publication.getIssueNo())
                 .author(publication.getAuthor())
                 .publishedDate(publication.getPublishedDate())
                 .user(publication.getUser())
@@ -91,7 +97,13 @@ public class PublicationService {
         dto.setCategory(publication.getCategory());
         dto.setLanguage(publication.getLanguage());
         dto.setCountry(publication.getCountry());
-        dto.setSource(publication.getSource());
+        dto.setChapterNo(publication.getChapterNo());
+        dto.setCoAuthor(publication.getCoAuthor());
+        dto.setIsbn(publication.getIsbn());
+        dto.setPublisher(publication.getPublisher());
+        dto.setPageNo(publication.getPageNo());
+        dto.setVolumeNo(publication.getVolumeNo());
+        dto.setIssueNo(publication.getIssueNo());
         dto.setAuthor(publication.getAuthor());
         dto.setPublishedDate(publication.getPublishedDate());
         // if (publication.getData() != null) {
@@ -133,9 +145,28 @@ public class PublicationService {
             if (updatedPublication.getPublishedDate() != null) {
                 publication.setPublishedDate(updatedPublication.getPublishedDate());
             }
-            if (updatedPublication.getSource() != null) {
-                publication.setSource(updatedPublication.getSource());
+            if (updatedPublication.getChapterNo() != null) {
+                publication.setChapterNo(updatedPublication.getChapterNo());
             }
+            if (updatedPublication.getCoAuthor() != null) {
+                publication.setCoAuthor(updatedPublication.getCoAuthor());
+            }
+            if (updatedPublication.getIsbn() != null) {
+                publication.setIsbn(updatedPublication.getIsbn());
+            }
+            if (updatedPublication.getPublisher() != null) {
+                publication.setPublisher(updatedPublication.getPublisher());
+            }
+            if (updatedPublication.getPageNo() != null) {
+                publication.setPageNo(updatedPublication.getPageNo());
+            }
+            if (updatedPublication.getVolumeNo() != null) {
+                publication.setVolumeNo(updatedPublication.getVolumeNo());
+            }
+            if (updatedPublication.getIssueNo() != null) {
+                publication.setIssueNo(updatedPublication.getIssueNo());
+            }
+            
     
             publicationRepository.save(publication);
         } else {
@@ -182,8 +213,16 @@ Set<Publications> results2 = new HashSet<>(publicationRepository.findByAuthorCon
         dto.setDescription(publication.getDescription());
         dto.setLanguage(publication.getLanguage());
         dto.setPublished_date(publication.getPublishedDate());
-        dto.setSource(publication.getSource());
         dto.setTitle(publication.getTitle());
+        dto.setIssueNo(publication.getIssueNo());
+        dto.setVolumeNo(publication.getVolumeNo());
+        dto.setPageNo(publication.getPageNo());
+        dto.setCoAuthor(publication.getCoAuthor());
+        dto.setIsbn(publication.getIsbn());
+        dto.setPublisher(publication.getPublisher());
+        dto.setChapterNo(publication.getChapterNo());
+
+
         return dto;
     }
     public List<PublicationDTO> getAllPublications() {

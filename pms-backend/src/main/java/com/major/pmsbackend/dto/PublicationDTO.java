@@ -19,9 +19,15 @@ public class PublicationDTO {
     private String category;
     private String language;
     private String country;
-    private String source;
     private String author;
     private Date publishedDate;
+    private String coAuthor;
+    private String pageNo;
+    private String volumeNo;
+    private String issueNo;
+    private String chapterNo;
+    private String isbn;
+    private String publisher;    
     // private byte[] data;
     // private byte[] thumbnail;
     
