@@ -3,3 +3,5 @@ pms-backend/target/pms-backend-0.0.1-SNAPSHOT.jar
 pms-backend/target/pms-backend-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 /target/
 *.jar
+publications.json
+user_publications.json
