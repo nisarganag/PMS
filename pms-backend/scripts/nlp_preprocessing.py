@@ -1,14 +1,14 @@
 import sys
 import json
 import nltk
-import spacy
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import PorterStemmer
+from nltk.metrics import edit_distance
 
 nltk.download('punkt')
 nltk.download('stopwords')
-nlp = spacy.load('en_core_web_md')
+
 def preprocess_text(text):
     stop_words = set(stopwords.words('english'))
     stemmer = PorterStemmer()
@@ -18,10 +18,11 @@ def preprocess_text(text):
     stemmed_tokens = [stemmer.stem(token) for token in filtered_tokens]
 
     return stemmed_tokens
+
 def compute_similarity(text1, text2):
-    doc1 = nlp(" ".join(text1))
-    doc2 = nlp(" ".join(text2))
-    return doc1.similarity(doc2)
+    # Use edit distance as a simple measure of similarity
+    return 1 - edit_distance(text1, text2) / max(len(text1), len(text2))
+
 def main():
     # Read the file paths from the command line arguments
     publications_path = sys.argv[1]
@@ -53,7 +54,7 @@ def main():
         else:
             preprocessed_description = []
 
-        all_texts.append(" ".join(preprocessed_title + preprocessed_description))
+        all_texts.append(preprocessed_title + preprocessed_description)
 
     user_texts = []
     for publication in user_publications:
@@ -66,24 +67,25 @@ def main():
         else:
             preprocessed_description = []
 
-        user_texts.append(" ".join(preprocessed_title + preprocessed_description))
+        user_texts.append(preprocessed_title + preprocessed_description)
 
-    # Train a Word2Vec model
+    # Compute similarity and recommend publications
+    printed_ids = set()
     for user_text in user_texts:
         similarities = [(i, compute_similarity(user_text, text)) for i, text in enumerate(all_texts)]
         top_similarities = sorted(similarities, key=lambda x: x[1], reverse=True)[:5]
 
-# Print the IDs of the recommended publications
-    printed_ids = set()
-    user_ids = {pub['id'] for pub in user_publications}  # Create a set of user publication IDs
+        # Print the IDs of the recommended publications
+        
+        user_ids = {pub['id'] for pub in user_publications}  # Create a set of user publication IDs
 
-    for similarity in top_similarities:
-        index = similarity[0]
-        id = all_publications[index]['id']
-        title = all_publications[index]['title']
-        if id not in printed_ids and id not in user_ids:  # Check if the publication is not the user's own
-            print(f"ID: {id}, Title: {title}")
-            printed_ids.add(id)
+        for similarity in top_similarities:
+            index = similarity[0]
+            id = all_publications[index]['id']
+            title = all_publications[index]['title']
+            if id not in printed_ids and id not in user_ids:
+                print(f"ID: {id}, Title: {title}")
+                printed_ids.add(id)
 
 if __name__ == "__main__":
     main()
