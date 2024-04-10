@@ -25,7 +25,7 @@ const MovieCard = ({myData}: MovieCardProps) => {
     <div className="library-card">
       <div className="library-card-info">
         <div className="library-card-header">
-          <h2 className="library-card-title">{title.substr(0, 20)}</h2>
+          <h2 className="library-card-title">{title.length > 20 ? `${title.substr(0, 20)}...` : title}</h2>
           <div className="book">
             <div className="back"></div>
             <div className="page6"></div>

@@ -28,11 +28,11 @@
     } */
 
     .container-library{
-      background: #1d1d1d;
+      background: #c5c5c5;
     }
 
     .library-card{
-      box-shadow: rgba(211, 211, 211, 0.2) 0px 40px 40px -10px;
+      background: black;
     }
 
     .upload-detail-right input{
@@ -98,7 +98,7 @@ button:focus-visible {
 
 .library-card {
   /* border: solid 1.5px; */
-  
+  background: white;
   padding: 5px 5px 5px 5px;
   border-radius: 50px;
   height: 14vh; 
@@ -604,47 +604,46 @@ to {background-position: -100px 0px;background-size:2750px;}
 }
 
 
-.file-upload-info label{
-  margin: 5px;
-  width:max-content;
 
-}
 
 
 .file-upload-form {
   background-color: var(--first-color);
-  width: 150vh;
+  width: fit-content;
+  min-width: 60vh;
   height: auto;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   position: fixed;
-  left: calc(20vw - 200px); /* Adjust as needed */
+  left: calc(25vw - 200px); /* Adjust as needed */
   top: 14vh;
   border-radius: 40px;
   border: 2px dashed rgb(82, 82, 82);
   box-shadow: 0px 0px 200px -50px rgba(0, 0, 0, 0.719);
   z-index: 10;
 }
+
 .file-upload-label input {
   display: none;
 }
+
 .file-upload-label svg {
   height: 100px;
   fill: rgb(82, 82, 82);
   margin-bottom: 20px;
 }
 .file-upload-label {
+  display: flex;
+  flex-direction: column;
+  width: 30vw;
+  height: 50vh;
   cursor: pointer;
   background-color: var(--first-color);
-  width: 40vw;
-  gap: 10vw;
-  padding: 30px 70px;
+  margin: 20px;
   border-radius: 10px;
-  /* border: 2px dashed rgb(82, 82, 82); */
   box-shadow: 0 15px 30px 0 rgba(0, 125, 171, 0.425);
-  margin: 50px;
 }
 .file-upload-design {
   display: flex;
@@ -785,8 +784,9 @@ to {background-position: -100px 0px;background-size:2750px;}
 .modal {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  max-width: 500px;
+  width: 40vw;
+
+  /* max-width: 500px; */
   background-color: var(--first-color);
   box-shadow: 0 15px 30px 0 rgba(0, 125, 171, 0.425);
   border-radius: 10px;
@@ -847,7 +847,7 @@ to {background-position: -100px 0px;background-size:2750px;}
 .upload-form-input1 {
   display: flex;
   flex-direction: row;
-  gap: 6.7vw;
+  gap: 18%;
 }
 
 .upload-form-input2 {
@@ -869,7 +869,19 @@ to {background-position: -100px 0px;background-size:2750px;}
   margin-top: 0.5rem;
   border: 1px solid #DDD;
   border-radius: 0.25rem;
-  padding: 0.4rem 0.5rem;
+  /* padding: 0.4rem 0.5rem; */
+  height: 3.5vh;
+  width: 15vw;
+  transition: 0.15s ease;
+}
+
+.input__field2 {
+  display: block;
+  margin-top: 0.5rem;
+  border: 1px solid #DDD;
+  border-radius: 0.25rem;
+  height: 3.5vh;
+  width: 36.7vw;
   transition: 0.15s ease;
 }
 
@@ -880,12 +892,57 @@ to {background-position: -100px 0px;background-size:2750px;}
 }
 
 .input__field--textarea {
-  min-height: 100px;
-  max-width: 100%;
+  height: auto;
+  width: 36.7vw;
+  margin-top: 0.5rem;
+  min-height: 40px; /* Or whatever minimum height you want */
+  overflow: hidden;
+  resize: none;
 }
 
 .input__description {
   font-size: 0.875rem;
   margin-top: 0.5rem;
   color: #8d8d8d;
+}
+
+.upload-custom-select {
+	position: relative;
+  width: 11vw;
+  top: -35vh;
+  left: calc(80vw - 100px); 
+}
+
+.upload-custom-select select {
+	appearance: none;
+	-webkit-appearance: none;
+	width: 100%;
+	font-size: 14px;
+	padding: 5px 10px 5px 10px;
+	background-color: #DBDBDB;
+	border: 2px solid #C4D1EB;
+	border-radius: 9px;
+	color: #000000;
+	cursor: pointer;
+	outline: none;
+	box-shadow: 3px 3px 3px 0px #E2E2E2;
+}
+
+.upload-custom-select select:focus {
+	background: #F2F2F2;
+	border: 2px solid #5A7EC7;
+	border-radius: 5px;
+}
+
+.upload-custom-select::after {
+	content: "";
+	position: absolute;
+	pointer-events: none;
+	top: 50%;
+	right: 10px;
+	transform: translate(0, -50%);
+	width: 12px;
+	height: 12px;
+	background-color: #000000;
+	clip-path: polygon(8% 17%, 0% 25%, 50% 84%, 100% 25%, 92% 17%, 50% 65%);
 }
