@@ -71,6 +71,7 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
   const [description, setDescription] = useState('');
   const [issueNumber, setIssueNumber] = useState('');
   const [pageNumber, setPageNumber] = useState('');
+  const [language, setLanguage] = useState('');
 
   const handleNextClick = () => {
     setCurrentPage(currentPage + 1);
@@ -137,7 +138,6 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
               <option value='publications'>Publications</option>
             </select>
           </div>
-          
         )}
 
         {selectedOption === 'publications' && (
@@ -206,18 +206,30 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
                         </div>
                       </div>
 
-                      <div className="upload-form-input2">
-                        <label className="input__label">Description</label>
-                        <input value={description} onChange={e => setDescription(e.target.value)} className="input__field "></input>
-                        <p className="input__description">Give your file a good description so everyone know what's it for</p>
+                      <div>
+                          <label className="input__label">Language</label>
+                          <input value={language} onChange={e => setLanguage(e.target.value)} className="input__field" type="text"/>
                       </div>
+
+                      <div className="upload-form-input2">
+                    <label className="input__label">Description</label>
+                    <textarea value={description} onChange={e => setDescription(e.target.value)} className="input__field--textarea"></textarea>
+                    <p className="input__description">Give your file a good description so everyone know what's it for</p>
+                  </div>
                     </div>
                       {/* <div className="modal__footer">
                         <button className="upload-button upload-button--primary">Create project</button>
                       </div> */}
                   </div>
+                  <button onClick={handleNextClick} className="upload-next-Btn">
+                    Next
+                    <svg viewBox="0 0 320 512" className="upload-next-svg">
+                      <path
+                        d="M52.5 440.6c-9.5 7.9-22.8 9.7-34.1 4.4S0 428.4 0 416V96C0 83.6 7.2 72.3 18.4 67s24.5-3.6 34.1 4.4l192 160L256 241V96c0-17.7 14.3-32 32-32s32 14.3 32 32V416c0 17.7-14.3 32-32 32s-32-14.3-32-32V271l-11.5 9.6-192 160z"
+                      ></path>
+                    </svg>
+                  </button>
                   
-                  <button onClick={handleNextClick}>Next</button>
                 </div>
               </div>
               
@@ -237,14 +249,28 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
                     <span className="browse-button">Browse file</span>
                   </div>
                   <input id="file" type="file" onChange={handleFileChange} />
-                  <button onClick={handleBackClick}>Back</button>
-                  <button onClick={handleSubmitClick} className="upload-button">
-                    <span>Submit</span>
-                    <svg width="34" height="34" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="37" cy="37" r="35.5" stroke="black" stroke-width="3"></circle>
-                        <path d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z" fill="black"></path>
-                    </svg>
-                  </button>
+                  <div className="upload-form-btns">
+                    <button onClick={handleBackClick} className="upload-prev-Btn">
+                      Prev
+                      <svg viewBox="0 0 320 512" className="upload-prev-svg" style={{ transform: "scaleX(-1)" }}>
+                        <path
+                          d="M52.5 440.6c-9.5 7.9-22.8 9.7-34.1 4.4S0 428.4 0 416V96C0 83.6 7.2 72.3 18.4 67s24.5-3.6 34.1 4.4l192 160L256 241V96c0-17.7 14.3-32 32-32s32 14.3 32 32V416c0 17.7-14.3 32-32 32s-32-14.3-32-32V271l-11.5 9.6-192 160z"
+                        ></path>
+                      </svg>
+                      
+                    </button>
+
+                    <button onClick={handleSubmitClick} className="upload-submit-Btn">
+                        Submit
+                        <svg viewBox="0 0 512 512" className="upload-submit-svg">
+                            <path
+                                d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-10.002 9.997-26.212 9.997-36.204-.001z"
+                            ></path>
+                        </svg>
+                    </button>
+                    
+                  </div>
+                  
                 </label>
               </div>
             )}
@@ -252,64 +278,80 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
         )}
 
         {selectedOption === 'journals' && (
+          
           <form id="upload-form" action="/upload" method="post" encType="multipart/form-data" className="file-upload-form" onSubmit={onFormSubmit}>
-            <div className="upload-form-container">
-              <div className="modal">
-                <div className="modal__header">
-                  <span className="modal__title">New Upload</span>
-                  <button className="upload-form-button upload-form-button--icon"><svg width="24" viewBox="0 0 24 24" height="24" xmlns="http://www.w3.org/2000/svg" onClick={handleResetClick}>
-                    <path fill="none" d="M0 0h24v24H0V0z"></path>
-                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg>
+            {currentPage === 1 && (
+              <div className="upload-form-container">
+                <div className="modal">
+                  <div className="modal__header">
+                    <span className="modal__title">New Upload</span>
+                    <button className="upload-form-button upload-form-button--icon"><svg width="24" viewBox="0 0 24 24" height="24" xmlns="http://www.w3.org/2000/svg" onClick={handleResetClick}>
+                      <path fill="none" d="M0 0h24v24H0V0z"></path>
+                      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg>
+                    </button>
+                  </div>
+                  <div className="modal__body">
+                    <div className="upload-form-input1">
+                      <div>
+                        <label className="input__label">Title</label>
+                        <input value={title} onChange={e => setTitle(e.target.value)} className="input__field" type="text"/> 
+                      </div>
+                      <div>
+                        <label className="input__label">Corrosponding Author</label>
+                        <input value={correspondingAuthor} onChange={e => setCorrespondingAuthor(e.target.value)} className="input__field" type="text"/>
+                      </div>
+                    </div>
+                    <div className="upload-form-input1">
+                      <div>
+                        <label className="input__label">Co-authors</label>
+                        <input value={coAuthors} onChange={e => setCoAuthors(e.target.value)} className="input__field" type="text"/> 
+                      </div>
+                      <div>
+                        <label className="input__label">Page Number</label>
+                        <input value={pageNumber} onChange={e => setPageNumber(e.target.value)} className="input__field" type="text"/>
+                      </div>
+                    </div>
+                    <div className="upload-form-input1">
+                      <div>
+                        <label className="input__label">Volume NUmber</label>
+                        <input value={volumeNumber} onChange={e => setVolumeNumber(e.target.value)} className="input__field" type="text"/> 
+                      </div>
+                      
+                      <div>
+                        <label className="input__label">Date (YYYY-MM-DD)</label>
+                        <input value={date} onChange={e => setDate(e.target.value)} className="input__field" type="text"/>
+                      </div>
+                    </div>
+                    <div className="upload-form-input1">
+                      <div>
+                        <label className="input__label">Issue Number</label>
+                        <input value={issueNumber} onChange={e => setIssueNumber(e.target.value)} className="input__field" type="text"/>
+                      </div>
+                      <div>
+                          <label className="input__label">Language</label>
+                          <input value={language} onChange={e => setLanguage(e.target.value)} className="input__field" type="text"/>
+                      </div>
+                    </div>
+                    <div className="upload-form-input2">
+                      <label className="input__label">Description</label>
+                      <textarea value={description} onChange={e => setDescription(e.target.value)} className="input__field--textarea"></textarea>
+                      <p className="input__description">Give your file a good description so everyone know what's it for</p>
+                    </div>
+                  </div>
+                </div>
+                <button onClick={handleNextClick} className="upload-next-Btn">
+                    Next
+                    <svg viewBox="0 0 320 512" className="upload-next-svg">
+                      <path
+                        d="M52.5 440.6c-9.5 7.9-22.8 9.7-34.1 4.4S0 428.4 0 416V96C0 83.6 7.2 72.3 18.4 67s24.5-3.6 34.1 4.4l192 160L256 241V96c0-17.7 14.3-32 32-32s32 14.3 32 32V416c0 17.7-14.3 32-32 32s-32-14.3-32-32V271l-11.5 9.6-192 160z"
+                      ></path>
+                    </svg>
                   </button>
-                </div>
-                <div className="modal__body">
-                  <div className="upload-form-input1">
-                    <div>
-                      <label className="input__label">Title</label>
-                      <input value={title} onChange={e => setTitle(e.target.value)} className="input__field" type="text"/> 
-                    </div>
-                    <div>
-                      <label className="input__label">Corrosponding Author</label>
-                      <input value={correspondingAuthor} onChange={e => setCorrespondingAuthor(e.target.value)} className="input__field" type="text"/>
-                    </div>
-                  </div>
-                  <div className="upload-form-input1">
-                    <div>
-                      <label className="input__label">Co-authors</label>
-                      <input value={coAuthors} onChange={e => setCoAuthors(e.target.value)} className="input__field" type="text"/> 
-                    </div>
-                    <div>
-                      <label className="input__label">Page Number</label>
-                      <input value={pageNumber} onChange={e => setPageNumber(e.target.value)} className="input__field" type="text"/>
-                    </div>
-                  </div>
-                  <div className="upload-form-input1">
-                    <div>
-                      <label className="input__label">Volume NUmber</label>
-                      <input value={volumeNumber} onChange={e => setVolumeNumber(e.target.value)} className="input__field" type="text"/> 
-                    </div>
-                    <div>
-                      <label className="input__label">Date (YYYY-MM-DD)</label>
-                      <input value={date} onChange={e => setDate(e.target.value)} className="input__field" type="text"/>
-                    </div>
-                  </div>
-                  <div className="upload-form-input1">
-                    <div>
-                      <label className="input__label">Issue Number</label>
-                      <input value={issueNumber} onChange={e => setIssueNumber(e.target.value)} className="input__field" type="text"/>
-                    </div>
-                  </div>
-                  <div className="upload-form-input2">
-                    <label className="input__label">Description</label>
-                    <textarea value={description} onChange={e => setDescription(e.target.value)} className="input__field--textarea"></textarea>
-                    <p className="input__description">Give your file a good description so everyone know what's it for</p>
-                  </div>
-                </div>
               </div>
-            </div>
+            )}
             
             
-            
+            {currentPage === 2 && (
             <label htmlFor="file" className="file-upload-label">
               <div className="file-upload-design">
                 <svg viewBox="0 0 640 512" height="1em">
@@ -322,19 +364,34 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
                 <span className="browse-button">Browse file</span>
               </div>
               <input id="file" type="file" onChange={handleFileChange} />
-              <button className="upload-button">
-                <span>Submit</span>
-                <svg width="34" height="34" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="37" cy="37" r="35.5" stroke="black" stroke-width="3"></circle>
-                  <path d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z" fill="black"></path>
-                </svg>
-              </button>
-            </label>
+              <div className="upload-form-btns">
+                    <button onClick={handleBackClick} className="upload-prev-Btn">
+                      Prev
+                      <svg viewBox="0 0 320 512" className="upload-prev-svg" style={{ transform: "scaleX(-1)" }}>
+                        <path
+                          d="M52.5 440.6c-9.5 7.9-22.8 9.7-34.1 4.4S0 428.4 0 416V96C0 83.6 7.2 72.3 18.4 67s24.5-3.6 34.1 4.4l192 160L256 241V96c0-17.7 14.3-32 32-32s32 14.3 32 32V416c0 17.7-14.3 32-32 32s-32-14.3-32-32V271l-11.5 9.6-192 160z"
+                        ></path>
+                      </svg>
+                      
+                    </button>
+
+                    <button onClick={handleSubmitClick} className="upload-submit-Btn">
+                        Submit
+                        <svg viewBox="0 0 512 512" className="upload-submit-svg">
+                            <path
+                                d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-10.002 9.997-26.212 9.997-36.204-.001z"
+                            ></path>
+                        </svg>
+                    </button>
+                    
+                  </div>
+            </label>)}
           </form>
         )}
 
         {selectedOption === 'conferences' && (
           <form id="upload-form" action="/upload" method="post" encType="multipart/form-data" className="file-upload-form" onSubmit={onFormSubmit}>
+            {currentPage === 1 && (
             <div className="upload-form-container">
               <div className="modal">
                 <div className="modal__header">
@@ -375,6 +432,11 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
                       <input value={date} onChange={e => setDate(e.target.value)} className="input__field" type="text"/>
                     </div>
                   </div>
+
+                  <div>
+                    <label className="input__label">Language</label>
+                    <input value={language} onChange={e => setLanguage(e.target.value)} className="input__field" type="text"/>
+                  </div>
                   
                   <div className="upload-form-input2">
                     <label className="input__label">Description</label>
@@ -383,10 +445,18 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
                   </div>
                 </div>
               </div>
+              <button onClick={handleNextClick} className="upload-next-Btn">
+                    Next
+                    <svg viewBox="0 0 320 512" className="upload-next-svg">
+                      <path
+                        d="M52.5 440.6c-9.5 7.9-22.8 9.7-34.1 4.4S0 428.4 0 416V96C0 83.6 7.2 72.3 18.4 67s24.5-3.6 34.1 4.4l192 160L256 241V96c0-17.7 14.3-32 32-32s32 14.3 32 32V416c0 17.7-14.3 32-32 32s-32-14.3-32-32V271l-11.5 9.6-192 160z"
+                      ></path>
+                    </svg>
+                  </button>
             </div>
+            )}
             
-            
-            
+            {currentPage === 2 && (
             <label htmlFor="file" className="file-upload-label">
               <div className="file-upload-design">
                 <svg viewBox="0 0 640 512" height="1em">
@@ -399,19 +469,34 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
                 <span className="browse-button">Browse file</span>
               </div>
               <input id="file" type="file" onChange={handleFileChange}/>
-              <button className="upload-button">
-                <span>Submit</span>
-                <svg width="34" height="34" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="37" cy="37" r="35.5" stroke="black" stroke-width="3"></circle>
-                  <path d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z" fill="black"></path>
-                </svg>
-              </button>
-            </label>
+              <div className="upload-form-btns">
+                    <button onClick={handleBackClick} className="upload-prev-Btn">
+                      Prev
+                      <svg viewBox="0 0 320 512" className="upload-prev-svg" style={{ transform: "scaleX(-1)" }}>
+                        <path
+                          d="M52.5 440.6c-9.5 7.9-22.8 9.7-34.1 4.4S0 428.4 0 416V96C0 83.6 7.2 72.3 18.4 67s24.5-3.6 34.1 4.4l192 160L256 241V96c0-17.7 14.3-32 32-32s32 14.3 32 32V416c0 17.7-14.3 32-32 32s-32-14.3-32-32V271l-11.5 9.6-192 160z"
+                        ></path>
+                      </svg>
+                      
+                    </button>
+
+                    <button onClick={handleSubmitClick} className="upload-submit-Btn">
+                        Submit
+                        <svg viewBox="0 0 512 512" className="upload-submit-svg">
+                            <path
+                                d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-10.002 9.997-26.212 9.997-36.204-.001z"
+                            ></path>
+                        </svg>
+                    </button>
+                    
+                  </div>
+            </label>)}
           </form>
         )}
 
         {selectedOption === 'books' && (
           <form id="upload-form" action="/upload" method="post" encType="multipart/form-data" className="file-upload-form" onSubmit={onFormSubmit}>
+            {currentPage === 1 && (
             <div className="upload-form-container">
               <div className="modal">
                 <div className="modal__header">
@@ -452,6 +537,11 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
                       <input value={date} onChange={e => setDate(e.target.value)} className="input__field" type="text"/>
                     </div>
                   </div>
+
+                  <div>
+                    <label className="input__label">Language</label>
+                    <input value={language} onChange={e => setLanguage(e.target.value)} className="input__field" type="text"/>
+                  </div>
                   
                   <div className="upload-form-input2">
                     <label className="input__label">Description</label>
@@ -460,10 +550,18 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
                   </div>
                 </div>
               </div>
+              <button onClick={handleNextClick} className="upload-next-Btn">
+                    Next
+                    <svg viewBox="0 0 320 512" className="upload-next-svg">
+                      <path
+                        d="M52.5 440.6c-9.5 7.9-22.8 9.7-34.1 4.4S0 428.4 0 416V96C0 83.6 7.2 72.3 18.4 67s24.5-3.6 34.1 4.4l192 160L256 241V96c0-17.7 14.3-32 32-32s32 14.3 32 32V416c0 17.7-14.3 32-32 32s-32-14.3-32-32V271l-11.5 9.6-192 160z"
+                      ></path>
+                    </svg>
+                  </button>
             </div>
+            )}
             
-            
-            
+            {currentPage === 2 && (
             <label htmlFor="file" className="file-upload-label">
               <div className="file-upload-design">
                 <svg viewBox="0 0 640 512" height="1em">
@@ -476,19 +574,34 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
                 <span className="browse-button">Browse file</span>
               </div>
               <input id="file" type="file" onChange={handleFileChange} />
-              <button className="upload-button">
-                <span>Submit</span>
-                <svg width="34" height="34" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="37" cy="37" r="35.5" stroke="black" stroke-width="3"></circle>
-                  <path d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z" fill="black"></path>
-                </svg>
-              </button>
-            </label>
+              <div className="upload-form-btns">
+                    <button onClick={handleBackClick} className="upload-prev-Btn">
+                      Prev
+                      <svg viewBox="0 0 320 512" className="upload-prev-svg" style={{ transform: "scaleX(-1)" }}>
+                        <path
+                          d="M52.5 440.6c-9.5 7.9-22.8 9.7-34.1 4.4S0 428.4 0 416V96C0 83.6 7.2 72.3 18.4 67s24.5-3.6 34.1 4.4l192 160L256 241V96c0-17.7 14.3-32 32-32s32 14.3 32 32V416c0 17.7-14.3 32-32 32s-32-14.3-32-32V271l-11.5 9.6-192 160z"
+                        ></path>
+                      </svg>
+                      
+                    </button>
+
+                    <button onClick={handleSubmitClick} className="upload-submit-Btn">
+                        Submit
+                        <svg viewBox="0 0 512 512" className="upload-submit-svg">
+                            <path
+                                d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-10.002 9.997-26.212 9.997-36.204-.001z"
+                            ></path>
+                        </svg>
+                    </button>
+                    
+                  </div>
+            </label>)}
           </form>
         )}
 
         {selectedOption === 'book chapters' && (
           <form id="upload-form" action="/upload" method="post" encType="multipart/form-data" className="file-upload-form" onSubmit={onFormSubmit}>
+            {currentPage === 1 && (
             <div className="upload-form-container">
               <div className="modal">
                 <div className="modal__header">
@@ -535,6 +648,11 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
                       <label className="input__label">Date (YYYY-MM-DD)</label>
                       <input value={date} onChange={e => setDate(e.target.value)} className="input__field" type="text"/> 
                     </div>
+
+                    <div>
+                      <label className="input__label">Language</label>
+                      <input value={language} onChange={e => setLanguage(e.target.value)} className="input__field" type="text"/>
+                    </div>
                   </div>
                   
                   <div className="upload-form-input2">
@@ -544,10 +662,18 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
                   </div>
                 </div>
               </div>
+              <button onClick={handleNextClick} className="upload-next-Btn">
+                    Next
+                    <svg viewBox="0 0 320 512" className="upload-next-svg">
+                      <path
+                        d="M52.5 440.6c-9.5 7.9-22.8 9.7-34.1 4.4S0 428.4 0 416V96C0 83.6 7.2 72.3 18.4 67s24.5-3.6 34.1 4.4l192 160L256 241V96c0-17.7 14.3-32 32-32s32 14.3 32 32V416c0 17.7-14.3 32-32 32s-32-14.3-32-32V271l-11.5 9.6-192 160z"
+                      ></path>
+                    </svg>
+                  </button>
             </div>
+            )}
             
-            
-            
+            {currentPage === 2 && (
             <label htmlFor="file" className="file-upload-label">
               <div className="file-upload-design">
                 <svg viewBox="0 0 640 512" height="1em">
@@ -560,14 +686,28 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
                 <span className="browse-button">Browse file</span>
               </div>
               <input id="file" type="file" onChange={handleFileChange} />
-              <button className="upload-button">
-                <span>Submit</span>
-                <svg width="34" height="34" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="37" cy="37" r="35.5" stroke="black" stroke-width="3"></circle>
-                  <path d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z" fill="black"></path>
-                </svg>
-              </button>
-            </label>
+              <div className="upload-form-btns">
+                    <button onClick={handleBackClick} className="upload-prev-Btn">
+                      Prev
+                      <svg viewBox="0 0 320 512" className="upload-prev-svg" style={{ transform: "scaleX(-1)" }}>
+                        <path
+                          d="M52.5 440.6c-9.5 7.9-22.8 9.7-34.1 4.4S0 428.4 0 416V96C0 83.6 7.2 72.3 18.4 67s24.5-3.6 34.1 4.4l192 160L256 241V96c0-17.7 14.3-32 32-32s32 14.3 32 32V416c0 17.7-14.3 32-32 32s-32-14.3-32-32V271l-11.5 9.6-192 160z"
+                        ></path>
+                      </svg>
+                      
+                    </button>
+
+                    <button onClick={handleSubmitClick} className="upload-submit-Btn">
+                        Submit
+                        <svg viewBox="0 0 512 512" className="upload-submit-svg">
+                            <path
+                                d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-10.002 9.997-26.212 9.997-36.204-.001z"
+                            ></path>
+                        </svg>
+                    </button>
+                    
+                  </div>
+            </label>)}
           </form>
         )}
       </div>
