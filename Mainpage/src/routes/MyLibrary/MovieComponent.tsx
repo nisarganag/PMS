@@ -57,7 +57,7 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
   };
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue,] = useState('');
   const [title, setTitle] = useState('');
   const [correspondingAuthor, setCorrespondingAuthor] = useState('');
   const [coAuthors, setCoAuthors] = useState('');
@@ -80,10 +80,6 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
   const handleBackClick = () => {
     setCurrentPage(currentPage - 1);
   };
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
-  };
   
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFile(event.target.files ? event.target.files[0] : null);
@@ -96,7 +92,7 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
       formData.append('file', file);
     }
   
-    
+    //TODO - Add the rest of the form data to the formData object
     const response = await fetch('', {
       method: 'POST',
       body: formData,
