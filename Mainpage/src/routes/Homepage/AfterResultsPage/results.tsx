@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { BASE_URL } from '../../config/config.tsx';
 
 interface SearchResult {
     title: string;
@@ -17,7 +18,7 @@ const ResultsPage: React.FC<ResultsProps> = ({ searchResults: initialSearchResul
   const searchTerm = searchParams.get('q');
 
   useEffect(() => {
-    fetch(`/api/search?query=${searchTerm}`)
+    fetch(`${BASE_URL}/api/v1/publications/search?query=${searchTerm}`)
       .then(response => response.json())
       .then(data => setSearchResults(data))
       .catch(error => console.error(error));
