@@ -64,17 +64,36 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
           await response.text()
         );
       }
+      handleResetClick();
     } catch (error) {
       console.error("Error:", error);
     }
   };
   
-
+  const resetFormData = () => {
+    setTitle("");
+    setAuthor("");
+    setCoAuthor("");
+    setVolumeNo("");
+    setChapterNo("");
+    setIsbn("");
+    setCountry("");
+    setPublisher("");
+    setPublishedDate("");
+    setIssueNo("");
+    setPageNo("");
+    setLanguage("");
+    setDescription("");
+    setCategory("");
+    setFile(null);
+  };
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
 
   const handleUploadClick = () => {
     setDropdownOpen(!isDropdownOpen);
+    resetFormData();
+    setCurrentPage(1);
   };
 
   const handleOptionClick = (event: React.ChangeEvent<HTMLSelectElement>) => {
