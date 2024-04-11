@@ -161,7 +161,7 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
                           <input value={title} onChange={e => setTitle(e.target.value)} className="input__field" type="text"/> 
                         </div>
                         <div>
-                          <label className="input__label">Corrospondins Author</label>
+                          <label className="input__label">Corresponding Author</label>
                           <input value={correspondingAuthor} onChange={e => setCorrespondingAuthor(e.target.value)} className="input__field" type="text"/>
                         </div>
                       </div>
@@ -297,7 +297,7 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
                         <input value={title} onChange={e => setTitle(e.target.value)} className="input__field" type="text"/> 
                       </div>
                       <div>
-                        <label className="input__label">Corrosponding Author</label>
+                        <label className="input__label">Corresponding Author</label>
                         <input value={correspondingAuthor} onChange={e => setCorrespondingAuthor(e.target.value)} className="input__field" type="text"/>
                       </div>
                     </div>
@@ -408,7 +408,7 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
                       <input value={title} onChange={e => setTitle(e.target.value)} className="input__field" type="text"/> 
                     </div>
                     <div>
-                      <label className="input__label">Corrosponding Author</label>
+                      <label className="input__label">Corresponding Author</label>
                       <input value={correspondingAuthor} onChange={e => setCorrespondingAuthor(e.target.value)} className="input__field" type="text"/>
                     </div>
                   </div>
@@ -513,7 +513,7 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
                       <input value={title} onChange={e => setTitle(e.target.value)} className="input__field" type="text"/> 
                     </div>
                     <div>
-                      <label className="input__label">Corrosponding Author</label>
+                      <label className="input__label">Corresponding Author</label>
                       <input value={correspondingAuthor} onChange={e => setCorrespondingAuthor(e.target.value)} className="input__field" type="text"/>
                     </div>
                   </div>
@@ -618,7 +618,7 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
                       <input value={title} onChange={e => setTitle(e.target.value)} className="input__field" type="text"/> 
                     </div>
                     <div>
-                      <label className="input__label">Corrosponding Author</label>
+                      <label className="input__label">Corresponding Author</label>
                       <input value={correspondingAuthor} onChange={e => setCorrespondingAuthor(e.target.value)} className="input__field" type="text"/>
                     </div>
                   </div>
