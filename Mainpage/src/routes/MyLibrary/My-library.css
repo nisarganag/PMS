@@ -959,8 +959,6 @@ to {background-position: -100px 0px;background-size:2750px;}
 	clip-path: polygon(8% 17%, 0% 25%, 50% 84%, 100% 25%, 92% 17%, 50% 65%);
 }
 
-
-
 .upload-next-Btn {
   position: relative;
   display: flex;
@@ -1016,7 +1014,6 @@ to {background-position: -100px 0px;background-size:2750px;}
   height: 40px;
   border: none;
   padding: 0px 20px;
-  
   background: linear-gradient(to right, #275f5c, #b6e7f6);
   color: white;
   font-size: 16px;
@@ -1051,8 +1048,6 @@ to {background-position: -100px 0px;background-size:2750px;}
   transition-duration: 0.3s;
 }
 
-
-
 .upload-submit-Btn {
   position: relative;
   display: flex;
@@ -1079,7 +1074,6 @@ to {background-position: -100px 0px;background-size:2750px;}
   top: 10px;
   fill: white;
   transition-duration: 0.3s;
-  
 }
 
 .upload-submit-Btn:hover {

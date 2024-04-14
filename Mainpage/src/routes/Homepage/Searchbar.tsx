@@ -7,8 +7,7 @@ const Searchbar = () => {
     const [input, setInput] = useState("");
     type SearchResultItem = {
       title: string;
-      author: string;
-      // other properties...
+      author: string; 
   };
     const [searchResult, setSearchResult] = useState<Array<SearchResultItem>>([]);
 
@@ -28,17 +27,15 @@ const Searchbar = () => {
     };
 
     const navigate = useNavigate();
+    
 
     const handleSearchSubmit = (event: React.FormEvent) => {
       event.preventDefault();
       fetchData(input);
       
-      navigate(`/AfterResultsPage/results?q=${input}`);
+      navigate(`/results?q=${input}`);
     };
 
-    // const handleSearchClick = () => {
-    //     fetchData(input);
-    // };
 
     return (
       <div className='input-component'> 
@@ -51,7 +48,6 @@ const Searchbar = () => {
               </svg>
             </button>
             <input type="main-search" name="text" className="input__search" placeholder="What do you want to search?" value={input} onChange={handleChange} />
-        
         </form>
 
 
@@ -72,5 +68,4 @@ const Searchbar = () => {
       </div>
   );
 }
-
 export default Searchbar;
