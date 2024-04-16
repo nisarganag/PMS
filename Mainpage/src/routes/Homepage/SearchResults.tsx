@@ -9,7 +9,7 @@ import './SearchResults.css'
 // }
 
 
-const SearchResults = () => {
+const SearchSuggestion = () => {
   return (
     <div className='result-component'>
       {/* <div className='result-list'>
@@ -22,4 +22,4 @@ const SearchResults = () => {
   )
 }
 
-export default SearchResults
+export default SearchSuggestion;

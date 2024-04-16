@@ -42,3 +42,14 @@
     mix-blend-mode: darken;
     margin-left: -18px;
 }
+
+.search-result-page{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-result-page{
+    margin-top: 100px;
+}

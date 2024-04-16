@@ -15,6 +15,7 @@ import Alerts from './routes/Alerts';
 import Home from './routes/Homepage/Homepage';
 import Login from './routes/LoginPage/Login';
 import { FaMoon, FaSun } from 'react-icons/fa';
+import ResultsPage from './routes/Homepage/results';
 
 function App() {
   
@@ -38,6 +39,7 @@ function App() {
           <div className="routes ">
             <Routes>
               <Route path="/" element={<Home isDarkMode={isDarkMode} />} />
+              <Route path="/results" element={<ResultsPage />} />
               <Route path="/My_profile" element={<My_profile />} />
               <Route path="/Advanced_search" element={<Advanced_search />} />
               <Route path="/Metrices" element={<Metrices />} />

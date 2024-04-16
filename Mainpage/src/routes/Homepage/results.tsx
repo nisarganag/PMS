@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { BASE_URL } from '../config/config.tsx';
 
 interface SearchResult {
     title: string;
@@ -11,7 +12,6 @@ const ResultsPage: React.FC = () => {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const searchTerm = searchParams.get('q');
-    const BASE_URL = 'http://your-api-url.com'; // replace with your actual API URL
 
     useEffect(() => {
         fetch(`${BASE_URL}/api/v1/publications/search?query=${searchTerm}`)
@@ -26,12 +26,12 @@ const ResultsPage: React.FC = () => {
     }, [searchTerm, BASE_URL]);
 
     return (
-        <div>
-            <h1 style={{textAlign:'center'}}>Search Results</h1>
+        <div className='search-result-page'>
+            <h1>Search Results</h1>
             {searchResults.map((result, index) => (
-                <div key={result.title + index}>
+                <div key={index}>
                     <h2>{result.title}</h2>
-                    <p>{result.description}</p>
+                    <p>{result.description ? result.description.substr(0,150) : ''}</p>
                 </div>
             ))}
         </div>

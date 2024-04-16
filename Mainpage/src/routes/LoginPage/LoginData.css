@@ -225,16 +225,6 @@
     .auth-container {
       margin-left: -25%;
     }
-    .auth-form {
-      width: 350px;
-      border: 3px solid #959595;
-      border-radius: 8px;
-      background-color: none;
-      box-shadow: inset 2px 2px 10px rgba(0,0,0,1),
-      inset -1px -1px 5px rgba(255, 255, 255, 0.6);
-      background-color: var(--first-color);
-    }
-    
   }
   .error {
     color: red; /* Change the text color to red */
