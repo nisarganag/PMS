@@ -105,7 +105,6 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
   const handleResetClick = () => {
     setSelectedOption("");
   };
-
   const [currentPage, setCurrentPage] = useState(1);
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
@@ -136,16 +135,42 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
   };
   const token = localStorage.getItem("token");
 
+  const itemsPerPage = 10;
+  
+  const totalPages = Math.ceil(movieInfo.length / itemsPerPage);
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentItems = movieInfo.slice(startIndex, endIndex);
+
   return (
     <div className="wrapper-library">
       <div className="container-library">
         <h1 className="library-title">My Library</h1>
-        <div className="grid grid-three-column">
-          {movieInfo.map((curVal: MovieData, id: Key | null | undefined) => {
-            return <MovieCard key={id} myData={curVal} />;
-          })}
+        <div className="library-pages">
+          <div className="grid grid-three-column">
+            {currentItems.map((curVal: MovieData, id: Key | null | undefined) => {
+              return <MovieCard key={id} myData={curVal} />;
+            })}
+          </div>
+          <button onClick={handlePreviousPage}>Previous Page</button>
+          <button onClick={handleNextPage}>Next Page</button>
         </div>
-        <button
+        
+      </div>
+      <button
           className="cssbuttons-io-button"
           id="upload-button"
           onClick={handleUploadClick}
@@ -1051,7 +1076,6 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
             )}
           </form>
         )}
-      </div>
     </div>
   );
 };

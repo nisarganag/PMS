@@ -1099,3 +1099,8 @@ to {background-position: -100px 0px;background-size:2750px;}
   margin-top: 7vh;
   overflow: hidden;
 }
+
+.library-pages{
+  display: flex;
+  flex-direction: column;
+}
