@@ -29,6 +29,7 @@ public class Users implements UserDetails{
     private String lastName;
     private String phone;
     private String gender;
+    private boolean verified;
     private byte[] photo;
     
     @DBRef
