@@ -28,12 +28,15 @@ const ResultsPage: React.FC = () => {
     return (
         <div className='search-result-page'>
             <h1>Search Results</h1>
-            {searchResults.map((result, index) => (
-                <div key={index}>
-                    <h2>{result.title}</h2>
-                    <p>{result.description ? result.description.substr(0,150) : ''}</p>
-                </div>
-            ))}
+            <div className='result-container'>
+                {searchResults.map((result, index) => (
+                    <div key={index}>
+                        <h2>{result.title}</h2>
+                        <p>{result.description ? result.description.substr(0,150) : ''}</p>
+                    </div>
+                ))}
+            </div>
+            
         </div>
     );
 };

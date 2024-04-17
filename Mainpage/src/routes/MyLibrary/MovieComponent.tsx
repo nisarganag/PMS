@@ -93,7 +93,7 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
   const handleUploadClick = () => {
     setDropdownOpen(!isDropdownOpen);
     resetFormData();
-    setCurrentPage(1);
+    setCurrentFormPage(1);
   };
 
   const handleOptionClick = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -105,7 +105,7 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
   const handleResetClick = () => {
     setSelectedOption("");
   };
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentFormPage, setCurrentFormPage] = useState(1);
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [coAuthor, setCoAuthor] = useState("");
@@ -122,12 +122,21 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
   const [language, setLanguage] = useState("");
   const [category, setCategory] = useState("");
 
+  
   const handleNextClick = () => {
-    setCurrentPage(currentPage + 1);
+    if (!title || !author || !description) {
+      alert('Please fill in all required fields.');
+    } else {
+      setCurrentFormPage(currentFormPage + 1);
+    }
   };
+  
+  // const handleNextClick = () => {
+  //   setCurrentFormPage(currentFormPage + 1);
+  // };
 
   const handleBackClick = () => {
-    setCurrentPage(currentPage - 1);
+    setCurrentFormPage(currentFormPage - 1);
   };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -135,6 +144,8 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
   };
   const token = localStorage.getItem("token");
 
+
+  const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   
   const totalPages = Math.ceil(movieInfo.length / itemsPerPage);
@@ -207,7 +218,7 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
             className="file-upload-form"
             onSubmit={onFormSubmit}
           >
-            {currentPage === 1 && (
+            {currentFormPage === 1 && (
               <div>
                 <div className="upload-form-container">
                   <div className="modal">
@@ -235,6 +246,7 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
                             onChange={(e) => setTitle(e.target.value)}
                             className="input__field"
                             type="text"
+                            required
                           />
                         </div>
                         <div>
@@ -246,6 +258,7 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
                             onChange={(e) => setAuthor(e.target.value)}
                             className="input__field"
                             type="text"
+                            required
                           />
                         </div>
                       </div>
@@ -348,6 +361,7 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
                           value={description}
                           onChange={(e) => setDescription(e.target.value)}
                           className="input__field--textarea"
+                          required
                         ></textarea>
                         <p className="input__description">
                           Give your file a good description so everyone know
@@ -359,7 +373,11 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
                         <button className="upload-button upload-button--primary">Create project</button>
                       </div> */}
                   </div>
-                  <button onClick={handleNextClick} className="upload-next-Btn">
+                  <button 
+                    onClick={handleNextClick}
+                    className="upload-next-Btn"
+                    
+                  >
                     Next
                     <svg viewBox="0 0 320 512" className="upload-next-svg">
                       <path d="M52.5 440.6c-9.5 7.9-22.8 9.7-34.1 4.4S0 428.4 0 416V96C0 83.6 7.2 72.3 18.4 67s24.5-3.6 34.1 4.4l192 160L256 241V96c0-17.7 14.3-32 32-32s32 14.3 32 32V416c0 17.7-14.3 32-32 32s-32-14.3-32-32V271l-11.5 9.6-192 160z"></path>
@@ -369,7 +387,7 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
               </div>
             )}
 
-            {currentPage === 2 && (
+            {currentFormPage === 2 && (
               <div>
                 <label htmlFor="file" className="file-upload-label">
                   <div className="file-upload-design">
@@ -418,7 +436,7 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
             className="file-upload-form"
             onSubmit={onFormSubmit}
           >
-            {currentPage === 1 && (
+            {currentFormPage === 1 && (
               <div className="upload-form-container">
                 <div className="modal">
                   <div className="modal__header">
@@ -545,7 +563,7 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
               </div>
             )}
 
-            {currentPage === 2 && (
+            {currentFormPage === 2 && (
               <label htmlFor="file" className="file-upload-label">
                 <div className="file-upload-design">
                   <svg viewBox="0 0 640 512" height="1em">
@@ -589,7 +607,7 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
             className="file-upload-form"
             onSubmit={onFormSubmit}
           >
-            {currentPage === 1 && (
+            {currentFormPage === 1 && (
               <div className="upload-form-container">
                 <div className="modal">
                   <div className="modal__header">
@@ -706,7 +724,7 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
               </div>
             )}
 
-            {currentPage === 2 && (
+            {currentFormPage === 2 && (
               <label htmlFor="file" className="file-upload-label">
                 <div className="file-upload-design">
                   <svg viewBox="0 0 640 512" height="1em">
@@ -750,7 +768,7 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
             className="file-upload-form"
             onSubmit={onFormSubmit}
           >
-            {currentPage === 1 && (
+            {currentFormPage === 1 && (
               <div className="upload-form-container">
                 <div className="modal">
                   <div className="modal__header">
@@ -867,7 +885,7 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
               </div>
             )}
 
-            {currentPage === 2 && (
+            {currentFormPage === 2 && (
               <label htmlFor="file" className="file-upload-label">
                 <div className="file-upload-design">
                   <svg viewBox="0 0 640 512" height="1em">
@@ -911,7 +929,7 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
             className="file-upload-form"
             onSubmit={onFormSubmit}
           >
-            {currentPage === 1 && (
+            {currentFormPage === 1 && (
               <div className="upload-form-container">
                 <div className="modal">
                   <div className="modal__header">
@@ -1042,7 +1060,7 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
               </div>
             )}
 
-            {currentPage === 2 && (
+            {currentFormPage === 2 && (
               <label htmlFor="file" className="file-upload-label">
                 <div className="file-upload-design">
                   <svg viewBox="0 0 640 512" height="1em">
