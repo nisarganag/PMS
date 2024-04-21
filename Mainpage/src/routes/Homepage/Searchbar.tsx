@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Searchbar.css';
 import { BASE_URL } from '../config/config.tsx';
 import { useNavigate } from 'react-router-dom';
+
 
 type SearchSuggestionItem = {
     title: string;
@@ -9,7 +10,7 @@ type SearchSuggestionItem = {
 };
 
 const Searchbar = () => {
-    const [input, setInput] = useState("");
+    const [input, setInput] = useState(localStorage.getItem('search') || '');
     const [searchSuggestion, setSearchSuggestion] = useState<Array<SearchSuggestionItem>>([]);
     const navigate = useNavigate();
 
@@ -31,12 +32,15 @@ const Searchbar = () => {
 
     const handleSuggestionClick = (suggestion: SearchSuggestionItem) => {
         setInput(suggestion.title);
-        navigate(`/results?q=${suggestion.title}`);
+        
+        setSearchSuggestion([]);
     };
 
     const handleSubmit = (event: React.FormEvent) => {
-        event.preventDefault();
-        navigate(`/results?q=${input}`);
+      event.preventDefault();
+      localStorage.setItem('search', input);
+      navigate(`/results?q=${input}`);
+      setSearchSuggestion([]);
     };
 
     return (
@@ -53,13 +57,13 @@ const Searchbar = () => {
 
         {(searchSuggestion.length > 0) && (
           <div className={`search-results ${searchSuggestion.length > 0 ? 'with-results' : ''}`}>
-          {searchSuggestion.map((suggestion, index) => (
+            {searchSuggestion.map((suggestion, index) => (
               <div key={index} onClick={() => handleSuggestionClick(suggestion)}>
                 <li key={index} className="search-result-item">
-                  <p>{suggestion.title}</p> By <li>{suggestion.author}</li>
+                  <a>{suggestion.title}</a> By <a>{suggestion.author}</a>
                 </li>
               </div>
-          ))}
+            ))}
           </div>
         )}
       </div>

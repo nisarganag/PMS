@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { BASE_URL } from '../config/config.tsx';
+import Searchbar from './Searchbar.tsx';
 
 interface SearchResult {
     title: string;
@@ -27,6 +28,7 @@ const ResultsPage: React.FC = () => {
 
     return (
         <div className='search-result-page'>
+            <Searchbar />
             <h1>Search Results</h1>
             <div className='result-container'>
                 {searchResults.map((result, index) => (

@@ -147,6 +147,8 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+
+  
   
   const totalPages = Math.ceil(movieInfo.length / itemsPerPage);
 
@@ -176,8 +178,10 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
               return <MovieCard key={id} myData={curVal} />;
             })}
           </div>
-          <button onClick={handlePreviousPage}>Previous Page</button>
-          <button onClick={handleNextPage}>Next Page</button>
+          <a className="previous round" onClick={handlePreviousPage}>&#8249;</a>
+          <a className="next round" onClick={handleNextPage}>&#8250;</a>
+          {/* <button onClick={handlePreviousPage}>Previous Page</button>
+          <button onClick={handleNextPage}>Next Page</button> */}
         </div>
         
       </div>

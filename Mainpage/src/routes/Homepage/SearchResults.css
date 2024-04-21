@@ -8,7 +8,7 @@
     margin-top: 1rem;
     min-width: 400px;
     max-width: auto;
-    overflow-y: visible;
+    overflow-y: auto;
     padding: 10px;
     color: black;
 }
