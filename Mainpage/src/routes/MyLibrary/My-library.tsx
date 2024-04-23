@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Loading from "./Loading";
+import Loading from "../Loading/Loading.tsx";
 import MovieComponent from "./MovieComponent";
 import { BASE_URL } from '../config/config.tsx';
 import "./My-library.css";
@@ -13,7 +13,6 @@ interface Publication {
   title: string;
   author: string;
   description: string;
-  // include other properties as needed
 }
 const Home = () => {
   const [card, setCard] = useState<CardData[]>([]);

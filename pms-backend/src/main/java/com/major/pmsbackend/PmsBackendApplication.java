@@ -12,5 +12,4 @@ public class PmsBackendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PmsBackendApplication.class, args);
 	}
-
 }
