@@ -91,9 +91,10 @@ const Searchbar = () => {
 
         </form>
 
-        {(searchSuggestion.length > 0) && (
+        {(isInputFocused && searchSuggestion.length > 0) && (
+          
           <div className={`search-results ${searchSuggestion.length > 0 ? 'with-results' : ''}`}>
-            {isInputFocused && searchSuggestion.slice(0, 5).map((suggestion, index) => (
+            {searchSuggestion.slice(0, 5).map((suggestion, index) => (
               <div key={index} onClick={() => handleSuggestionClick(suggestion)}>
                 <li key={index} className="search-result-item">
                   <a>{suggestion.title}</a> By <a>{suggestion.author}</a>
