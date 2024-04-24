@@ -14,12 +14,25 @@ const Searchbar = () => {
     const [searchSuggestion, setSearchSuggestion] = useState<Array<SearchSuggestionItem>>([]);
     const navigate = useNavigate();
     const searchRef = useRef<HTMLDivElement>(null);
+    const [isInputFocused, setInputFocused] = useState(false);
+    const timeoutRef = useRef<number | null>(null);
+
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       const newValue = event.target.value;
       setInput(newValue);
       fetchData(newValue);
       sessionStorage.setItem('input', newValue);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+
+      setInput(event.target.value);
+
+      timeoutRef.current = setTimeout(() => {
+        // Fetch suggestions here
+        fetchData(event.target.value);
+      }, 300);
     };
 
     const fetchData = async (query: string) => {
@@ -74,13 +87,13 @@ const Searchbar = () => {
               <path d="M4 9a5 5 0 1110 0A5 5 0 014 9zm5-7a7 7 0 104.2 12.6.999.999 0 00.093.107l3 3a1 1 0 001.414-1.414l-3-3a.999.999 0 00-.107-.093A7 7 0 009 2z" fill-rule="evenodd" fill="#17202A"></path>
             </svg>
           </button>
-          <input type="search" name="main-search" className="input__search" placeholder="What do you want to search?" value={input} onChange={handleChange} />
+          <input type="search" name="main-search" className="input__search" placeholder="What do you want to search?" value={input} onChange={handleChange} onFocus={() => setInputFocused(true)} onBlur={() => setInputFocused(false)} />
 
         </form>
 
         {(searchSuggestion.length > 0) && (
           <div className={`search-results ${searchSuggestion.length > 0 ? 'with-results' : ''}`}>
-            {searchSuggestion.slice(0, 5).map((suggestion, index) => (
+            {isInputFocused && searchSuggestion.slice(0, 5).map((suggestion, index) => (
               <div key={index} onClick={() => handleSuggestionClick(suggestion)}>
                 <li key={index} className="search-result-item">
                   <a>{suggestion.title}</a> By <a>{suggestion.author}</a>
