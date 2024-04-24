@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,7 +46,7 @@ public class SearchController {
         return publicationService.searchPublicationsByCountry(query);
     }
     @GetMapping("/searchByPublishedDate")
-    public List<SearchDTO> searchPublicationsByPublishedDate(@RequestParam Date query) {
+    public List<SearchDTO> searchPublicationsByPublishedDate(@RequestParam @DateTimeFormat(pattern="EEE MMM dd HH:mm:ss zzz yyyy") Date query) {
         return publicationService.searchPublicationsByPublishedDate(query);
     }
 
