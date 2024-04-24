@@ -78,7 +78,13 @@
   }
   
 .after-result-container{
-    
-    -webkit-animation: scale-up-center 0.2s ease-in both;
-	        animation: scale-up-center 0.2s ease-in both;
+  
+  width: 100%;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-bottom: 1px solid #212121;
+  border-radius: 10px;
+  -webkit-animation: scale-up-center 0.2s ease-in both;
+  animation: scale-up-center 0.2s ease-in both;
 }
+
+

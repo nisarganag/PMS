@@ -38,18 +38,20 @@ const ResultsPage: React.FC = () => {
     return (
         <div className='search-result-page'>
             <Searchbar />
-            <h1>Search Results</h1>
+            
             {loading ? (
-              <Loading/>
-            ) : (
               <div>
-                {searchResults.map((result, index) => (
+                Please wait while we fetch the results.....
+              </div>
+            ) : (
+              
+                searchResults.map((result, index) => (
                   <div className="after-result-container" key={index}>
                     <h2>{result.title}</h2>
-                    <p>{result.description ? result.description.substr(0,150) : ''}</p>
+                    <p>{result.description ? result.description.substr(0,150) : 'No description available'}</p> 
                   </div>
-                ))}
-              </div>
+                ))
+              
             )}
         </div>
     );
