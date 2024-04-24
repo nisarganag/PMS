@@ -34,6 +34,12 @@ public class SecurityConfiguration extends SecurityConfigurerAdapter <DefaultSec
                         .requestMatchers("/api/v1/publications/download/**").permitAll()
                         .requestMatchers("/api/v1/publications/view/**").permitAll()
                         .requestMatchers("/api/v1/publications/search/**").permitAll()
+                        .requestMatchers("/api/v1/publications/searchByLanguage/**").permitAll()
+                        .requestMatchers("/api/v1/publications/searchByCoAuthor/**").permitAll()
+                        .requestMatchers("/api/v1/publications/searchByCategory/**").permitAll()
+                        .requestMatchers("/api/v1/publications/searchByPublisher/**").permitAll()
+                        .requestMatchers("/api/v1/publications/searchByCountry/**").permitAll()
+                        .requestMatchers("/api/v1/publications/searchByPublishedDate/**").permitAll()
                         .requestMatchers("verifyEmail**").permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(management -> management

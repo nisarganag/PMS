@@ -1,5 +1,6 @@
 package com.major.pmsbackend.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,30 @@ public class SearchController {
     @GetMapping("/search")
     public List<SearchDTO> searchPublications(@RequestParam String query) {
         return publicationService.searchPublications(query);
+    }
+    @GetMapping("/searchByCategory")
+    public List<SearchDTO> searchPublicationsByCategory(@RequestParam String query) {
+        return publicationService.searchPublicationsByCategory(query);
+    }
+    @GetMapping("/searchByCoAuthor")
+    public List<SearchDTO> searchPublicationsByCoAuthor(@RequestParam String query) {
+        return publicationService.searchPublicationsByCoAuthor(query);
+    }
+    @GetMapping("/searchByPublisher")
+    public List<SearchDTO> searchPublicationsByPublisher(@RequestParam String query) {
+        return publicationService.searchPublicationsByPublisher(query);
+    }
+    @GetMapping("/searchByLanguage")
+    public List<SearchDTO> searchPublicationsByLanguage(@RequestParam String query) {
+        return publicationService.searchPublicationsByLanguage(query);
+    }
+    @GetMapping("/searchByCountry")
+    public List<SearchDTO> searchPublicationsByCountry(@RequestParam String query) {
+        return publicationService.searchPublicationsByCountry(query);
+    }
+    @GetMapping("/searchByPublishedDate")
+    public List<SearchDTO> searchPublicationsByPublishedDate(@RequestParam Date query) {
+        return publicationService.searchPublicationsByPublishedDate(query);
     }
 
 }
