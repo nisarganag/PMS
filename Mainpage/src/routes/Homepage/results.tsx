@@ -7,6 +7,7 @@ import Loading from '../Loading/Loading.tsx';
 interface SearchResult {
     title: string;
     description: string;
+    author: string;
 }
 
 
@@ -47,7 +48,8 @@ const ResultsPage: React.FC = () => {
               
                 searchResults.map((result, index) => (
                   <div className="after-result-container" key={index}>
-                    <h2>{result.title}</h2>
+                    <h2>{result.title}</h2> 
+                    <h3>by {result.author}</h3>
                     <p>{result.description ? result.description.substr(0,150) : 'No description available'}</p> 
                   </div>
                 ))

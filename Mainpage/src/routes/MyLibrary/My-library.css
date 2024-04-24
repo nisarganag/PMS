@@ -235,7 +235,7 @@ p {
   line-height: 1.6rem;
   
 }
-h2 {
+.library-card-header h2 {
   padding: 1rem;
   text-align: left;
   font-family: "Cormorant Garamond", serif;

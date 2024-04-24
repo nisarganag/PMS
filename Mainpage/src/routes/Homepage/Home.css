@@ -87,4 +87,18 @@
   animation: scale-up-center 0.2s ease-in both;
 }
 
+.after-result-container h3{
+  font-size: medium;
+  margin-left:2vw ;
+  margin-bottom: 2vh;
+  font-weight: 5;
+}
 
+.after-result-container h2{
+  margin: 5px 0 2px 5px;
+  font-weight: 500;
+}
+
+.after-result-container p{
+  margin-left: 5px;
+}
