@@ -16,7 +16,7 @@ public class SearchDTO {
     // private String category;
     // private String country;
     // private byte[] data;
-    // private String description;
+    private String description;
     // private String language;
     // private Date published_date;
     // private String source;

@@ -5,7 +5,9 @@ import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -123,7 +125,7 @@ public class PublicationService {
         Optional<Publications> optionalPublication = publicationRepository.findById(id);
         if (optionalPublication.isPresent()) {
             Publications publication = optionalPublication.get();
-    
+
             if (updatedPublication.getTitle() != null) {
                 publication.setTitle(updatedPublication.getTitle());
             }
@@ -166,20 +168,81 @@ public class PublicationService {
             if (updatedPublication.getIssueNo() != null) {
                 publication.setIssueNo(updatedPublication.getIssueNo());
             }
-            
-    
+
             publicationRepository.save(publication);
         } else {
             throw new NoSuchElementException("No publication found with id " + id);
         }
     }
-    
 
     public List<SearchDTO> searchPublications(String partialTitle) {
+        if (partialTitle == null || partialTitle.trim().isEmpty()) {
+            return new ArrayList<>();
+        }
         Set<Publications> results = new HashSet<>(publicationRepository.findByTitleContainingIgnoreCase(partialTitle));
-results.addAll(publicationRepository.findByAuthorContainingIgnoreCase(partialTitle));
-Set<Publications> results2 = new HashSet<>(publicationRepository.findByAuthorContainingIgnoreCase(partialTitle));
+        results.addAll(publicationRepository.findByAuthorContainingIgnoreCase(partialTitle));
+        Set<Publications> results2 = new HashSet<>(
+                publicationRepository.findByAuthorContainingIgnoreCase(partialTitle));
         results.addAll(results2);
+        return results.stream().map(this::convertToSearchDTO).collect(Collectors.toList());
+    }
+
+    public List<SearchDTO> searchPublicationsByCategory(String category) {
+        if (category == null || category.trim().isEmpty()) {
+            return new ArrayList<>();
+        }
+        Set<Publications> results = new HashSet<>(
+                publicationRepository.findByCategoryContainingIgnoreCase(category));
+        results.addAll(publicationRepository.findByCategoryContainingIgnoreCase(category));
+        return results.stream().map(this::convertToSearchDTO).collect(Collectors.toList());
+    }
+
+    public List<SearchDTO> searchPublicationsByCountry(String country) {
+        if (country == null || country.trim().isEmpty()) {
+            return new ArrayList<>();
+        }
+        Set<Publications> results = new HashSet<>(
+                publicationRepository.findByCountryContainingIgnoreCase(country));
+        results.addAll(publicationRepository.findByCountryContainingIgnoreCase(country));
+        return results.stream().map(this::convertToSearchDTO).collect(Collectors.toList());
+    }
+
+    public List<SearchDTO> searchPublicationsByLanguage(String language) {
+        if (language == null || language.trim().isEmpty()) {
+            return new ArrayList<>();
+        }
+        Set<Publications> results = new HashSet<>(
+                publicationRepository.findByLanguageContainingIgnoreCase(language));
+        results.addAll(publicationRepository.findByLanguageContainingIgnoreCase(language));
+        return results.stream().map(this::convertToSearchDTO).collect(Collectors.toList());
+    }
+
+    public List<SearchDTO> searchPublicationsByPublisher(String publisher) {
+        if (publisher == null || publisher.trim().isEmpty()) {
+            return new ArrayList<>();
+        }
+        Set<Publications> results = new HashSet<>(
+                publicationRepository.findByPublisherContainingIgnoreCase(publisher));
+        results.addAll(publicationRepository.findByPublisherContainingIgnoreCase(publisher));
+        return results.stream().map(this::convertToSearchDTO).collect(Collectors.toList());
+    }
+
+    public List<SearchDTO> searchPublicationsByCoAuthor(String coAuthor) {
+        if (coAuthor == null ||coAuthor.trim().isEmpty()) {
+            return new ArrayList<>();
+        }
+        Set<Publications> results = new HashSet<>(
+                publicationRepository.findByCoAuthorContainingIgnoreCase(coAuthor));
+        results.addAll(publicationRepository.findByCoAuthorContainingIgnoreCase(coAuthor));
+        return results.stream().map(this::convertToSearchDTO).collect(Collectors.toList());
+    }
+
+    public List<SearchDTO> searchPublicationsByPublishedDate(Date date) {
+        if (date == null) {
+            return new ArrayList<>();
+        }
+        Set<Publications> results = new HashSet<>(publicationRepository.findByPublishedDateContainingIgnoreCase(date));
+        results.addAll(publicationRepository.findByPublishedDateContainingIgnoreCase(date));
         return results.stream().map(this::convertToSearchDTO).collect(Collectors.toList());
     }
 
@@ -189,7 +252,7 @@ Set<Publications> results2 = new HashSet<>(publicationRepository.findByAuthorCon
         // dto.setCategory(publication.getCategory());
         // dto.setCountry(publication.getCountry());
         // dto.setData(publication.getData());
-        // dto.setDescription(publication.getDescription());
+        dto.setDescription(publication.getDescription());
         // dto.setLanguage(publication.getLanguage());
         // dto.setPublished_date(publication.getPublishedDate());
         // dto.setSource(publication.getSource());
@@ -222,13 +285,14 @@ Set<Publications> results2 = new HashSet<>(publicationRepository.findByAuthorCon
         dto.setPublisher(publication.getPublisher());
         dto.setChapterNo(publication.getChapterNo());
 
-
         return dto;
     }
+
     public List<PublicationDTO> getAllPublications() {
         List<Publications> publications = publicationRepository.findAll();
         return publications.stream().map(this::convertToDTO).collect(Collectors.toList());
     }
+
     public String preprocessPublications(String userId) {
         StringBuilder output = new StringBuilder();
         StringBuilder errors = new StringBuilder();
@@ -240,15 +304,17 @@ Set<Publications> results2 = new HashSet<>(publicationRepository.findByAuthorCon
             ObjectMapper mapper = new ObjectMapper();
             String jsonPublications = mapper.writeValueAsString(publications);
             String jsonUserPublications = mapper.writeValueAsString(userPublications);
-    
+
             // Write the JSON strings to files
             Path publicationsPath = Files.write(Paths.get("publications.json"), jsonPublications.getBytes());
-            Path userPublicationsPath = Files.write(Paths.get("user_publications.json"), jsonUserPublications.getBytes());
-    
+            Path userPublicationsPath = Files.write(Paths.get("user_publications.json"),
+                    jsonUserPublications.getBytes());
+
             // Call the Python script and pass the file paths as arguments
-            ProcessBuilder processBuilder = new ProcessBuilder("python", "scripts/nlp_preprocessing.py", publicationsPath.toString(), userPublicationsPath.toString());
+            ProcessBuilder processBuilder = new ProcessBuilder("python", "scripts/nlp_preprocessing.py",
+                    publicationsPath.toString(), userPublicationsPath.toString());
             Process process = processBuilder.start();
-    
+
             BufferedReader outputReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             BufferedReader errorReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
             String line;
@@ -260,7 +326,7 @@ Set<Publications> results2 = new HashSet<>(publicationRepository.findByAuthorCon
                 errors.append(line);
                 errors.append('\n');
             }
-    
+
             int exitCode = process.waitFor();
             System.out.println("\nExited with error code : " + exitCode);
             System.out.println("\nErrors: " + errors.toString());
