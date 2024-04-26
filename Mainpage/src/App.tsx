@@ -7,7 +7,7 @@ import {
 import useLocalStorage from "use-local-storage";
 
 import My_profile from "./routes/MyProfile/My-profile"
-import Advanced_search from './routes/Advances-search';
+import Advanced_search from './routes/Advanced-search/Advances-search';
 import Metrices from './routes/metrices';
 import My_library from './routes/MyLibrary/My-library';
 import Settings from './routes/settings';
@@ -16,6 +16,7 @@ import Home from './routes/Homepage/Homepage';
 import Login from './routes/LoginPage/Login';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import ResultsPage from './routes/Homepage/results';
+import AdvancedSearchResult from './routes/Advanced-search/Advanced-search-result';
 
 function App() {
   
@@ -48,6 +49,7 @@ function App() {
               <Route path="/Alerts" element={<Alerts />} />
               <Route path="/Home" element={<Home isDarkMode={isDarkMode} />} />
               <Route path="/Login" element={<Login />} />
+              <Route path="/AdvancedSearchResult" element={<AdvancedSearchResult />} />
             </Routes>
           </div>
         </div>

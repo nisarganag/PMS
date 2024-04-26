@@ -17,6 +17,8 @@ const ResultsPage: React.FC = () => {
     const searchParams = new URLSearchParams(location.search);
     const searchTerm = searchParams.get('q');
     const [loading, setLoading] = useState(true);
+
+
     useEffect(() => {
         setLoading(true);
         fetch(`${BASE_URL}/api/v1/publications/search?query=${searchTerm}`)
@@ -34,7 +36,9 @@ const ResultsPage: React.FC = () => {
             console.error('Error:', error);
             setLoading(false);
           });
-      }, [searchTerm, BASE_URL]);
+      }, [location.search, searchTerm, BASE_URL]);
+
+      
     return (
         <div className='search-result-page'>
             <Searchbar />
