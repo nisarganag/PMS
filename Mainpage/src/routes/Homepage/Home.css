@@ -80,7 +80,7 @@
 .after-result-container{
   
   width: 100%;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  box-shadow: rgb(38, 57, 77) 0px 20px 20px -10px;
   border-bottom: 1px solid #212121;
   border-radius: 10px;
   -webkit-animation: scale-up-center 0.2s ease-in both;
@@ -89,16 +89,16 @@
 
 .after-result-container h3{
   font-size: medium;
-  margin-left:2vw ;
+  margin-left:4vw ;
   margin-bottom: 2vh;
   font-weight: 5;
 }
 
 .after-result-container h2{
-  margin: 5px 0 2px 5px;
+  margin: 5px 0 2px 2vw;
   font-weight: 500;
 }
 
 .after-result-container p{
-  margin-left: 5px;
+  margin: 5px 0 10px 2vw;
 }

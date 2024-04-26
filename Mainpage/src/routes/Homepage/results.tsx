@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { BASE_URL } from '../config/config.tsx';
 import Searchbar from './Searchbar.tsx';
-import Loading from '../Loading/Loading.tsx';
 
 interface SearchResult {
     title: string;
