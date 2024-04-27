@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Advanced-search.css';
 
 function Advanced_search() {
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
@@ -30,7 +31,7 @@ function Advanced_search() {
     <div style={{ textAlign: 'center', marginTop: '50px' }}>
       <div className="search-area">
         <form id="search-form" onSubmit={handleSearch}>
-          <input type="text" placeholder="search" onChange={e => setSearchTerm(e.target.value)} />
+          <input type="text" placeholder="Write here..." className="Adv-search-bar" onChange={e => setSearchTerm(e.target.value)}></input>
           <button type="submit">Search</button>
         </form>
 

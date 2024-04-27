@@ -6,7 +6,7 @@ interface SearchResult {
   id: number;
   title: string;
   description: string;
-  author: string;
+  author: string; 
 }
 
 function SearchResults() {
@@ -17,7 +17,9 @@ function SearchResults() {
   useEffect(() => {
     const fetchResults = async () => {
       setIsLoading(true);
-      const response = await fetch(`${BASE_URL}/api/v1/publications/search${location.search}`);
+      const searchParams = new URLSearchParams(location.search);
+      const filterParams = Array.from(searchParams.entries()).map(([key, value]) => `${key}=${value}`).join('&');
+      const response = await fetch(`${BASE_URL}/api/v1/publications/search?${filterParams}`);
       const data = await response.json();
       setResults(data);
       setIsLoading(false);
