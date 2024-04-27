@@ -50,5 +50,6 @@ function Alerts() {
     </div>
   );
 }
+}
 
 export default Alerts;
