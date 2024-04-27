@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { BASE_URL } from '../config/config';
 
 interface SearchResult {
   id: number;
   title: string;
   description: string;
-  author: string; 
+  author: string;
 }
 
 function SearchResults() {
@@ -17,14 +16,15 @@ function SearchResults() {
   useEffect(() => {
     const fetchResults = async () => {
       setIsLoading(true);
-      const searchParams = new URLSearchParams(location.search);
-      const filterParams = Array.from(searchParams.entries()).map(([key, value]) => `${key}=${value}`).join('&');
-      const response = await fetch(`${BASE_URL}/api/v1/publications/search?${filterParams}`);
-      const data = await response.json();
-      setResults(data);
+      const apiURL = new URLSearchParams(location.search).get('apiURL');
+      if (apiURL) {
+        const response = await fetch(apiURL);
+        const data = await response.json();
+        setResults(data);
+      }
       setIsLoading(false);
     };
-
+  
     fetchResults();
   }, [location.search]);
 

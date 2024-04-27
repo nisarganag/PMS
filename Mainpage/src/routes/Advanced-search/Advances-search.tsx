@@ -18,13 +18,29 @@ function Advanced_search() {
       "By Co-Author": "coAuthor",
       "By Country": "country",
     };
-    const filterParams = selectedFilters.map(filter => `${filterKeys[filter]}=${searchTerm}`).join('&');
-    navigate(`/AdvancedSearchResult?${filterParams}`);
+
+    const filterAPIs: { [key: string]: string } = {
+      "By Language": "${BASE_URL}/api/v1/publications/searchByLanguage?query",
+      "By Category": "${BASE_URL}/api/v1/publications/searchByCategory?query",
+      "By Publisher": "${BASE_URL}/api/v1/publications/searchByPublisher?query",
+      "By Date": "${BASE_URL}/api/v1/publications/searchByDate?query",
+      "By Co-Author": "${BASE_URL}/api/v1/publications/searchByCoAuthor?query",
+      "By Country": "${BASE_URL}/api/v1/publications/searchByCountry?query",
+    };
+
+    const selectedFilter = selectedFilters[0]; // Assuming only one filter can be selected at a time
+    const filterParam = `${filterKeys[selectedFilter]}=${searchTerm}`;
+    const apiURL = `${filterAPIs[selectedFilter]}?${filterParam}`;
+    navigate(`/AdvancedSearchResult?apiURL=${encodeURIComponent(apiURL)}`);
   };
 
   const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = event.target;
-    setSelectedFilters(prevFilters => checked ? [...prevFilters, value] : prevFilters.filter(filter => filter !== value));
+    if (checked) {
+      setSelectedFilters([value]);
+    } else {
+      setSelectedFilters([]);
+    }
   };
 
   return (
