@@ -28,14 +28,14 @@ function Alerts() {
         }
     );
 
-  useEffect(() => {
-    const fetchPublications = async () => {
-      const response = await fetch('{BASE_URL}/api/v1/notifications/all/660fa2a06464f1683714cbf3');
-      const data = await response.json();
-      setPublications(data);
-    };
+    useEffect(() => {
+      const fetchPublications = async () => {
+        const response = await fetch('{BASE_URL}/api/v1/notifications/all/660fa2a06464f1683714cbf3');
+        const data = await response.json();
+        setPublications(data);
+      };
 
-    fetchPublications();
+      fetchPublications();
   }, []);
 
   return (
