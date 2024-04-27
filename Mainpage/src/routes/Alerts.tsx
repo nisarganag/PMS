@@ -1,55 +1,48 @@
-import { useState, useEffect } from 'react';
-import { BASE_URL } from './config/config';
+import { useState, useEffect } from "react";
+import { BASE_URL } from "./config/config";
 
-interface Publication {
-  id: number;
-  title: string;
-  description: string;
+interface Alert {
+  id: string;
+  message: string;
   // Add other properties here based on the structure of your publications
 }
 
 function Alerts() {
-  const [publications, setPublications] = useState<Publication[]>([]);
-  const getCardData = async () => {
-    const userEmail = localStorage.getItem("emailId");
-    let res = await fetch(`${BASE_URL}/api/v1/auth/view?email=${userEmail}`, {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-    },
-  });
-  const userData = await res.json();
-  const userId = userData.id;
-    res = await fetch(
-      `${BASE_URL}/api/v1/publications/all/${userId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-    );
+  const [alerts, setAlerts] = useState<Alert[]>([]);
 
   useEffect(() => {
-    const fetchPublications = async () => {
-      const response = await fetch('{BASE_URL}/api/v1/notifications/all/660fa2a06464f1683714cbf3');
-      const data = await response.json();
-      setPublications(data);
+    const fetchAlerts = async () => {
+      const userEmail = localStorage.getItem("emailId");
+      let res = await fetch(`${BASE_URL}/api/v1/auth/view?email=${userEmail}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      const userData = await res.json();
+      const userId = userData.id;
+      res = await fetch(`${BASE_URL}/api/v1/notifications/all/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      let data = await res.json();
+      data = data.filter((alert: { status: number }) => alert.status !== 1);
+      setAlerts(data);
     };
 
-    fetchPublications();
+    fetchAlerts();
   }, []);
 
   return (
-    <div style={{ textAlign: 'center', marginTop: '50px' }}>
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
       <h1>Alerts</h1>
-      {publications.map((publication) => (
-        <div key={publication.id}>
-          <h2>{publication.title}</h2>
-          <p>{publication.description}</p>
+      {alerts.map((alert) => (
+        <div key={alert.id}>
+          <p style={{ textAlign: "center" }}>{alert.message}</p>
         </div>
       ))}
     </div>
   );
-}
 }
 
 export default Alerts;

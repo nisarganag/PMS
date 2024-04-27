@@ -16,7 +16,7 @@ interface Publication {
 }
 const Home = () => {
   const [card, setCard] = useState<CardData[]>([]);
-  const [page, setPage] = useState(1);
+  const [page,] = useState(1);
   const [loading, setLoading] = useState(true);
 
   const getCardData = async () => {
