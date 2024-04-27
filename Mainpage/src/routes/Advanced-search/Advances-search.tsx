@@ -11,12 +11,12 @@ function Advanced_search() {
   const handleSearch = (event: React.FormEvent) => {
     event.preventDefault();
     const filterKeys: { [key: string]: string } = {
-      "By Author": "author",
-      "By Title": "title",
+      "By Language": "language",
+      "By Category": "category",
       "By Publisher": "publisher",
       "By Date": "date",
-      "By Issue Number": "issueNumber",
-      "By Location": "location",
+      "By Co-Author": "coAuthor",
+      "By Country": "country",
     };
     const filterParams = selectedFilters.map(filter => `${filterKeys[filter]}=${searchTerm}`).join('&');
     navigate(`/AdvancedSearchResult?${filterParams}`);
@@ -44,12 +44,12 @@ function Advanced_search() {
         <div id="advanced-options">
           <div className="adv-opt-container">
             <ul>
-              <li><label><input type="checkbox" value="By Author" onChange={handleFilterChange} /> By Author</label></li>
-              <li><label><input type="checkbox" value="By Title" onChange={handleFilterChange} /> By Title</label></li>
+              <li><label><input type="checkbox" value="By Language" onChange={handleFilterChange} /> By Language</label></li>
+              <li><label><input type="checkbox" value="By Category" onChange={handleFilterChange} /> By Category</label></li>
               <li><label><input type="checkbox" value="By Publisher" onChange={handleFilterChange} /> By Publisher</label></li>
               <li><label><input type="checkbox" value="By Date" onChange={handleFilterChange} /> By Date</label></li>
-              <li><label><input type="checkbox" value="By Issue Number" onChange={handleFilterChange} /> By Issue Number</label></li>
-              <li><label><input type="checkbox" value="By Location" onChange={handleFilterChange} /> By Location</label></li>
+              <li><label><input type="checkbox" value="By Co-Author" onChange={handleFilterChange} /> By Co-Author</label></li>
+              <li><label><input type="checkbox" value="By Country" onChange={handleFilterChange} /> By Country</label></li>
             </ul>
           </div>
         </div>
