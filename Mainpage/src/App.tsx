@@ -11,7 +11,7 @@ import Advanced_search from './routes/Advanced-search/Advances-search';
 import Metrices from './routes/metrices';
 import My_library from './routes/MyLibrary/My-library';
 import Settings from './routes/settings';
-import Alerts from './routes/Alerts';
+import Alerts from './routes/Alerts/Alerts';
 import Home from './routes/Homepage/Homepage';
 import Login from './routes/LoginPage/Login';
 import { FaMoon, FaSun } from 'react-icons/fa';

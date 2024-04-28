@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { FaBars } from "react-icons/fa";
 import { FaGraduationCap } from "react-icons/fa";
 import { IoIosStar } from "react-icons/io";
-import { IoMail } from "react-icons/io5";
-import { ImStatsBars2 } from "react-icons/im";
 import { GrSearchAdvanced } from "react-icons/gr";
 import { IoMdSettings } from "react-icons/io";
 import { FaHome } from "react-icons/fa";
@@ -12,7 +10,11 @@ import { FaRegUser } from "react-icons/fa";
 import { IoMdHelp } from "react-icons/io";
 import { RiAccountPinCircleLine } from "react-icons/ri";
 import { IoLogOut } from "react-icons/io5";
+
 import './Sidebar.css'; 
+import Notification from '../routes/Alerts/Alerts';
+
+
 const DropDownProfile = () => {
     const [showDropdown, setShowDropdown] = useState(false);
 
@@ -38,11 +40,11 @@ const DropDownProfile = () => {
                 </Link>
             </button>
             {showDropdown && (
-                <div className="input ">
+                <div className="input">
                     
                     <a href={isLoggedIn() ? "/My_profile" : "/login"} className="value" >
                     <RiAccountPinCircleLine className='drop-logo-icon' />
-                        Account           
+                        Account            
                     </a>
                     <a className="value">
                         <IoMdHelp className='drop-logo-icon'/>
@@ -75,9 +77,13 @@ const Sidebar = () => {
                 <div className="header-toggle" onClick={() => setShow(!show)}>
                     <FaBars />
                 </div>
-                <DropDownProfile/>
+                <div className="header-toggle-right">
+                    <Notification />
+                    <DropDownProfile />
+                </div>
+                
             
-
+            
             </header>
 
         
@@ -110,24 +116,6 @@ const Sidebar = () => {
                         >
                             <IoIosStar className='nav-logo-icon' />
                             <span className="nav-logo-name">My Library</span>
-                        </Link>
-
-                        <Link 
-                            to="Alerts" 
-                            className={`nav-link ${activeLink === 'Alerts' ? 'active' : ''}`} 
-                            onClick={() => handleLinkClick('Alerts')}
-                        >
-                            <IoMail className='nav-logo-icon'/>
-                            <span className="nav-logo-name">Alerts</span>
-                        </Link>
-
-                        <Link 
-                            to="Metrices" 
-                            className={`nav-link ${activeLink === 'Metrices' ? 'active' : ''}`} 
-                            onClick={() => handleLinkClick('Metrices')}
-                        >
-                            <ImStatsBars2 className='nav-logo-icon'/>
-                            <span className="nav-logo-name">Metrices</span>
                         </Link>
 
                         <Link 

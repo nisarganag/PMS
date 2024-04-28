@@ -30,7 +30,6 @@ const Searchbar = () => {
       setInput(event.target.value);
 
       timeoutRef.current = setTimeout(() => {
-        // Fetch suggestions here
         fetchData(event.target.value);
       }, 300);
     };
