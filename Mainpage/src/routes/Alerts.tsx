@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { BASE_URL } from "./config/config";
-import React from "react";
 
 interface Alert {
   id: string;
