@@ -47,11 +47,11 @@ public interface PublicationRepository extends MongoRepository<Publications, Str
     List<Publications> findByTitleStartingWithIgnoreCase(String title);
     List<Publications> findByAuthorStartingWithIgnoreCase(String category);
     List<Publications> findByTitleContainingIgnoreCase(String title);
-    List<Publications> findByCategoryContainingIgnoreCase(String category);
-    List<Publications> findByLanguageContainingIgnoreCase(String language);
-    List<Publications> findByCountryContainingIgnoreCase(String country);
-    List<Publications> findByPublisherContainingIgnoreCase(String publisher);
-    List<Publications> findByCoAuthorContainingIgnoreCase(String coAuthor);
+    List<Publications> findByCategoryStartingWithIgnoreCase(String category);
+    List<Publications> findByLanguageStartingWithIgnoreCase(String language);
+    List<Publications> findByCountryStartingWithIgnoreCase(String country);
+    List<Publications> findByPublisherStartingWithIgnoreCase(String publisher);
+    List<Publications> findByCoAuthorStartingWithIgnoreCase(String coAuthor);
     List<Publications> findByPublishedDateContainingIgnoreCase(Date date);
     List<Publications> findByAuthorContainingIgnoreCase(String author);
 }

@@ -179,10 +179,10 @@ public class PublicationService {
         if (partialTitle == null || partialTitle.trim().isEmpty()) {
             return new ArrayList<>();
         }
-        Set<Publications> results = new HashSet<>(publicationRepository.findByTitleContainingIgnoreCase(partialTitle));
-        results.addAll(publicationRepository.findByAuthorContainingIgnoreCase(partialTitle));
+        Set<Publications> results = new HashSet<>(publicationRepository.findByTitleStartingWithIgnoreCase(partialTitle));
+        results.addAll(publicationRepository.findByAuthorStartingWithIgnoreCase(partialTitle));
         Set<Publications> results2 = new HashSet<>(
-                publicationRepository.findByAuthorContainingIgnoreCase(partialTitle));
+                publicationRepository.findByAuthorStartingWithIgnoreCase(partialTitle));
         results.addAll(results2);
         return results.stream().map(this::convertToSearchDTO).collect(Collectors.toList());
     }
@@ -192,8 +192,8 @@ public class PublicationService {
             return new ArrayList<>();
         }
         Set<Publications> results = new HashSet<>(
-                publicationRepository.findByCategoryContainingIgnoreCase(category));
-        results.addAll(publicationRepository.findByCategoryContainingIgnoreCase(category));
+                publicationRepository.findByCategoryStartingWithIgnoreCase(category));
+        results.addAll(publicationRepository.findByCategoryStartingWithIgnoreCase(category));
         return results.stream().map(this::convertToSearchDTO).collect(Collectors.toList());
     }
 
@@ -202,8 +202,8 @@ public class PublicationService {
             return new ArrayList<>();
         }
         Set<Publications> results = new HashSet<>(
-                publicationRepository.findByCountryContainingIgnoreCase(country));
-        results.addAll(publicationRepository.findByCountryContainingIgnoreCase(country));
+                publicationRepository.findByCountryStartingWithIgnoreCase(country));
+        results.addAll(publicationRepository.findByCountryStartingWithIgnoreCase(country));
         return results.stream().map(this::convertToSearchDTO).collect(Collectors.toList());
     }
 
@@ -212,8 +212,8 @@ public class PublicationService {
             return new ArrayList<>();
         }
         Set<Publications> results = new HashSet<>(
-                publicationRepository.findByLanguageContainingIgnoreCase(language));
-        results.addAll(publicationRepository.findByLanguageContainingIgnoreCase(language));
+                publicationRepository.findByLanguageStartingWithIgnoreCase(language));
+        results.addAll(publicationRepository.findByLanguageStartingWithIgnoreCase(language));
         return results.stream().map(this::convertToSearchDTO).collect(Collectors.toList());
     }
 
@@ -222,8 +222,8 @@ public class PublicationService {
             return new ArrayList<>();
         }
         Set<Publications> results = new HashSet<>(
-                publicationRepository.findByPublisherContainingIgnoreCase(publisher));
-        results.addAll(publicationRepository.findByPublisherContainingIgnoreCase(publisher));
+                publicationRepository.findByPublisherStartingWithIgnoreCase(publisher));
+        results.addAll(publicationRepository.findByPublisherStartingWithIgnoreCase(publisher));
         return results.stream().map(this::convertToSearchDTO).collect(Collectors.toList());
     }
 
@@ -232,8 +232,8 @@ public class PublicationService {
             return new ArrayList<>();
         }
         Set<Publications> results = new HashSet<>(
-                publicationRepository.findByCoAuthorContainingIgnoreCase(coAuthor));
-        results.addAll(publicationRepository.findByCoAuthorContainingIgnoreCase(coAuthor));
+                publicationRepository.findByCoAuthorStartingWithIgnoreCase(coAuthor));
+        results.addAll(publicationRepository.findByCoAuthorStartingWithIgnoreCase(coAuthor));
         return results.stream().map(this::convertToSearchDTO).collect(Collectors.toList());
     }
 
