@@ -17,6 +17,7 @@ import Login from './routes/LoginPage/Login';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import ResultsPage from './routes/Homepage/results';
 import AdvancedSearchResult from './routes/Advanced-search/Advanced-search-result';
+import ResultsDetail from './routes/ResultsDetail';
 
 function App() {
   
@@ -50,6 +51,7 @@ function App() {
               <Route path="/Home" element={<Home isDarkMode={isDarkMode} />} />
               <Route path="/Login" element={<Login />} />
               <Route path="/AdvancedSearchResult" element={<AdvancedSearchResult />} />
+              <Route path="/ResultsDetail/:title" element={<ResultsDetail />} />
             </Routes>
           </div>
         </div>

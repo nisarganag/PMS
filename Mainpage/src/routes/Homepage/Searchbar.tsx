@@ -46,7 +46,6 @@ const Searchbar = () => {
 
     const handleSuggestionClick = (suggestion: SearchSuggestionItem) => {
         setInput(suggestion.title);
-        
         setSearchSuggestion([]);
     };
 
@@ -78,6 +77,11 @@ const Searchbar = () => {
       
     }, []);
 
+
+    const handleBlur = () => {
+      setTimeout(() => setInputFocused(false), 200);
+    };
+
     return (
       <div className='input-component' ref={searchRef}>
         <form className="input__container" onSubmit={handleSubmit}>      
@@ -86,7 +90,7 @@ const Searchbar = () => {
               <path d="M4 9a5 5 0 1110 0A5 5 0 014 9zm5-7a7 7 0 104.2 12.6.999.999 0 00.093.107l3 3a1 1 0 001.414-1.414l-3-3a.999.999 0 00-.107-.093A7 7 0 009 2z" fill-rule="evenodd" fill="#17202A"></path>
             </svg>
           </button>
-          <input type="search" name="main-search" className="input__search" placeholder="What do you want to search?" value={input} onChange={handleChange} onFocus={() => setInputFocused(true)} onBlur={() => setInputFocused(false)} />
+          <input type="search" name="main-search" className="input__search" placeholder="What do you want to search?" value={input} onChange={handleChange} onFocus={() => setInputFocused(true)}  onBlur={handleBlur} />
 
         </form>
 
@@ -94,8 +98,8 @@ const Searchbar = () => {
           
           <div className={`search-results ${searchSuggestion.length > 0 ? 'with-results' : ''}`}>
             {searchSuggestion.slice(0, 5).map((suggestion, index) => (
-              <div key={index} onClick={() => handleSuggestionClick(suggestion)}>
-                <li key={index} className="search-result-item">
+              <div key={index} >
+                <li key={index} className="search-result-item" onClick={() => handleSuggestionClick(suggestion)}>
                   <a>{suggestion.title}</a> By <a>{suggestion.author}</a>
                 </li>
               </div>

@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { BASE_URL } from '../config/config.tsx';
 import Searchbar from './Searchbar.tsx';
+import { Link } from 'react-router-dom';
 
 interface SearchResult {
+    id: string;
     title: string;
     description: string;
     author: string;
@@ -49,13 +51,17 @@ const ResultsPage: React.FC = () => {
               </div>
             ) : (
               
-                searchResults.map((result, index) => (
-                  <div className="after-result-container" key={index}>
-                    <h2>{result.title}</h2> 
-                    <h3>by {result.author}</h3>
-                    <p>{result.description ? result.description.substr(0,150) : 'No description available'}</p> 
-                  </div>
-                ))
+              searchResults.map((result) => (
+                <React.Fragment key={result.id}>
+                  <Link to={`/ResultsDetail/${encodeURIComponent(result.title)}`} key={result.id}>
+                    <div className="after-result-container">
+                      <h2>{result.title}</h2> 
+                      <h3>by {result.author}</h3>
+                      <p>{result.description ? result.description.substr(0,150) : 'No description available'}</p> 
+                    </div>
+                  </Link>
+                </React.Fragment>
+              ))
               
             )}
         </div>
