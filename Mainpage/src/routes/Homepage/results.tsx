@@ -53,8 +53,8 @@ const ResultsPage: React.FC = () => {
               
               searchResults.map((result) => (
                 <React.Fragment key={result.id}>
-                  <Link to={`/ResultsDetail/${encodeURIComponent(result.title)}`} key={result.id}>
-                    <div className="after-result-container">
+                  <Link to={`/ResultsDetail/${encodeURIComponent(result.title)}`} key={result.id} className="after-result-container">
+                    <div >
                       <h2>{result.title}</h2> 
                       <h3>by {result.author}</h3>
                       <p>{result.description ? result.description.substr(0,150) : 'No description available'}</p> 

@@ -79,12 +79,13 @@
   
 .after-result-container{
   
-  width: 100%;
+  width: 87vw;
   box-shadow: rgb(38, 57, 77) 0px 20px 20px -10px;
   border-bottom: 1px solid #212121;
   border-radius: 10px;
   -webkit-animation: scale-up-center 0.2s ease-in both;
   animation: scale-up-center 0.2s ease-in both;
+  text-decoration: none;
 }
 
 .after-result-container h3{

@@ -54,18 +54,22 @@ function NotificationsDropdown() {
   }, []);
 
   return (
-    <div className={"dropdown"}   >
+    <div className={"dropdown"}>
       <button className="dropbtn-alert" onClick={toggleDropdown}>
         <MdNotificationsNone className="drop-alert-logo"/>
       </button>
-
       {showDropdown && (
         <div className="dropdown-alert" ref={dropdownRef}>
-          {alerts.map((alert) => (
-            <div key={alert.id}>
-              <p>{alert.message}</p>
-            </div>
-          ))}
+          {alerts.length > 0 ? (
+            alerts.map((alert) => (
+              <div key={alert.id}>
+                <h1>Notification:</h1>
+                <h3>{alert.message}</h3>
+              </div>
+            ))
+          ) : (
+            <p>No new message</p>
+          )}
         </div>
       )}
     </div>
