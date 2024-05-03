@@ -8,7 +8,6 @@ import useLocalStorage from "use-local-storage";
 
 import My_profile from "./routes/MyProfile/My-profile"
 import Advanced_search from './routes/Advanced-search/Advances-search';
-import Metrices from './routes/metrices';
 import My_library from './routes/MyLibrary/My-library';
 import Settings from './routes/settings';
 import Alerts from './routes/Alerts/Alerts';
@@ -44,7 +43,6 @@ function App() {
               <Route path="/results" element={<ResultsPage />} />
               <Route path="/My_profile" element={<My_profile />} />
               <Route path="/Advanced_search" element={<Advanced_search />} />
-              <Route path="/Metrices" element={<Metrices />} />
               <Route path="/My_library" element={<My_library />} />
               <Route path="/Settings" element={<Settings />} />
               <Route path="/Alerts" element={<Alerts />} />

@@ -1,2 +1,1 @@
-add advanced search
-coAuthor, publisher, category, language, country, publishedDate
+add the clear button finctionality of the notification

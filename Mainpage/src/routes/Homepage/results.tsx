@@ -11,15 +11,12 @@ interface SearchResult {
     author: string;
 }
 
-
-
 const ResultsPage: React.FC = () => {
     const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const searchTerm = searchParams.get('q');
     const [loading, setLoading] = useState(true);
-
 
     useEffect(() => {
         setLoading(true);
@@ -40,7 +37,6 @@ const ResultsPage: React.FC = () => {
           });
       }, [location.search, searchTerm, BASE_URL]);
 
-      
     return (
         <div className='search-result-page'>
             <Searchbar />
@@ -56,13 +52,12 @@ const ResultsPage: React.FC = () => {
                   <Link to={`/ResultsDetail/${encodeURIComponent(result.title)}`} key={result.id} className="after-result-container">
                     <div >
                       <h2>{result.title}</h2> 
-                      <h3>by {result.author}</h3>
+                      <h3>By {result.author}</h3>
                       <p>{result.description ? result.description.substr(0,150) : 'No description available'}</p> 
                     </div>
                   </Link>
                 </React.Fragment>
               ))
-              
             )}
         </div>
     );

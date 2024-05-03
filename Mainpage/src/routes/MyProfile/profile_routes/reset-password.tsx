@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { BASE_URL } from '../../config/config.tsx';
+import { MdErrorOutline } from "react-icons/md";
 
 const ResetPassword = () => {
   const [, setPassword] = useState("");
@@ -85,34 +86,46 @@ const ResetPassword = () => {
   return (
     <div className="details-div">
       <h1>Password Change</h1>
-      <form onSubmit={handleChangePassword}>
-        <div>
-          <label>Old Password:</label>
-          <input
-            type="password"
-            value={oldPassword}
-            onChange={(e) => setOldPassword(e.target.value)}
-          />
+      <form onSubmit={handleChangePassword} >
+        <div className="details-profile">
+          <div className="detail-left">
+            <p className="detail-clr">Old Password:</p>
+            <p>New Password:</p>
+            <p className="detail-clr">Confirm New Password:</p>
+          </div>
+          <div className="detail-right">
+            <input
+              type="password"
+              value={oldPassword}
+              onChange={(e) => setOldPassword(e.target.value)}
+              className="detail-clr"
+            />
+            <input
+              type="password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              style={{background: 'var(--first-color'}}
+            />
+            <input
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              className="detail-clr"
+            />
+          </div>
         </div>
-        <div>
-          <label>New Password:</label>
-          <input
-            type="password"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Confirm New Password:</label>
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-        </div>
-        <button type="submit">Change Password</button>
+        <button type="submit" className="pass-save" >
+              Save
+              <svg className="detail-svg" viewBox="0 0 448 512">
+                <path d="M0 464c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V176H0v288zm320-236c0-6.627 5.373-12 12-12h40c6.627 0 12 5.373 12 12v40c0 6.627-5.373 12-12 12h-40c-6.627 0-12-5.373-12-12v-40zm80 88v128H48V316c0-6.627 5.373-12 12-12h328c6.627 0 12 5.373 12 12zm-304-28V0h-80c-26.51 0-48 21.49-48 48v240h128zm128 0V0h-80v240h80zm128 0V0h-80v240h80z"></path>
+              </svg>
+        </button> 
       </form>
-      {message && <p>{message}</p>}
+      {message && 
+      <p>
+        <MdErrorOutline style={{color:"red", fontSize:"20px", }} />
+        {message}
+      </p>}
     </div>
   );
 };

@@ -178,12 +178,9 @@ const MovieComponent = ({ movieInfo }: MovieComponentProps) => {
               return <MovieCard key={id} myData={curVal} />;
             })}
           </div>
-          <a className="previous round" onClick={handlePreviousPage}>&#8249;</a>
-          <a className="next round" onClick={handleNextPage}>&#8250;</a>
-          {/* <button onClick={handlePreviousPage}>Previous Page</button>
-          <button onClick={handleNextPage}>Next Page</button> */}
         </div>
-        
+        <a className="previous round" onClick={handlePreviousPage}>&#8249;</a>
+        <a className="next round" onClick={handleNextPage}>&#8250;</a>
       </div>
       <button
           className="cssbuttons-io-button"

@@ -3,9 +3,9 @@
     flex-direction: column;
     position: absolute;
     min-width: 160px;
-    width: 30vh;
+    width: 40vh;
     background-color: var(--white-color);
-    left: -200px;
+    left: -300px;
     border-radius: 5px;
     z-index: 100;
     color: var(--first-color);
@@ -19,9 +19,75 @@
     cursor: pointer;
 }
 
-.drop-alert-logo{
+.alert-logo{
     font-size: 1.6rem;
     cursor: pointer;
     color: var(--white-color);
     margin-top: 5px;
 }
+
+.drop-alert-logo{
+    font-size: 1.35rem;
+    cursor: pointer;
+    margin: 0px 5px 0px 5px;
+    top: 5px;
+}
+
+.notify-top{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 5px 10px 5px;
+    border-bottom: 2px solid var(--first-color);
+}
+
+.notify-bottom{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 5px 10px 5px;
+}
+
+.notify-button {
+    position: relative;
+    width: 2em;
+    height: 2em;
+    border: none;
+    background: rgba(180, 83, 107, 0.11);
+    border-radius: 5px;
+    transition: background 0.5s;
+    margin: 0px 5px 10px 5px;
+  }
+  
+  .notify-X {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2em;
+    height: 1.5px;
+    background-color: var(--first-color);
+    transform: translateX(-50%) rotate(45deg);
+  }
+  
+  .notify-Y {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2em;
+    height: 1.5px;
+    background-color: var(--first-color);
+    transform: translateX(-50%) rotate(-45deg);
+  }
+  
+  
+  .notify-button:hover {
+    background-color: rgb(211, 21, 21);
+  }
+  
+  .notify-button:active {
+    background-color: rgb(130, 0, 0);
+  }
+  
+  
+
+  

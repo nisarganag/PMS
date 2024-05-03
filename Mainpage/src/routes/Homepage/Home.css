@@ -10,7 +10,6 @@
     }
   }
 
- 
 .homePage{
     background-color: none;
     align-items: left;
@@ -28,7 +27,6 @@
     align-items: center;
     min-width: 200px;
 }
-
 
 .page-logo{
     display: inline-block;
@@ -52,39 +50,38 @@
     gap: 20px;
 }
 
-
-
-
-
-@-webkit-keyframes scale-up-center {
-    0% {
-      -webkit-transform: scale(0.5);
-            transform: scale(0.5);
-    }
-    100% {
-      -webkit-transform: scale(1);
-            transform: scale(1);
-    }
+@-webkit-keyframes scale-in-ver-center {
+  0% {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+    opacity: 1;
   }
-@keyframes scale-up-center {
-    0% {
-      -webkit-transform: scale(0.5);
-              transform: scale(0.5);
-    }
-    100% {
-      -webkit-transform: scale(1);
-              transform: scale(1);
-    }
+  100% {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+    opacity: 1;
   }
-  
+}
+@keyframes scale-in-ver-center {
+  0% {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
 .after-result-container{
-  
   width: 87vw;
   box-shadow: rgb(38, 57, 77) 0px 20px 20px -10px;
   border-bottom: 1px solid #212121;
   border-radius: 10px;
-  -webkit-animation: scale-up-center 0.2s ease-in both;
-  animation: scale-up-center 0.2s ease-in both;
+  -webkit-animation: scale-in-ver-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	animation: scale-in-ver-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
   text-decoration: none;
 }
 
@@ -102,4 +99,5 @@
 
 .after-result-container p{
   margin: 5px 0 10px 2vw;
+  font-size: 20px; 
 }

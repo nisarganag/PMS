@@ -3,7 +3,6 @@ import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import "./My-profile.css";
 import Detail from "./profile_routes/detail";
-import Edit_detail from "./profile_routes/edit-detail";
 import Recents from "./profile_routes/recents";
 import Reset_password from "./profile_routes/reset-password";
 import { BASE_URL } from '../config/config.tsx';
@@ -187,7 +186,6 @@ function My_profile() {
 
         <div >
           {activeTab === 'profile' && <Detail />}
-          {activeTab === 'editProfile' && <Edit_detail />}
           {activeTab === 'resetPassword' && <Reset_password />}
           {activeTab === 'recents' && <Recents />}
         </div>

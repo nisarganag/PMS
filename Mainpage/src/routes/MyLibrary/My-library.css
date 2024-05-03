@@ -228,7 +228,7 @@ button:focus-visible {
   font-size: 1.6rem;
 }
 
-p {
+.library-card-info p {
   text-align: justify;
   font-family: "Cormorant Garamond", serif;
   font-size: 1.4rem;
@@ -1049,32 +1049,33 @@ to {background-position: -100px 0px;background-size:2750px;}
   overflow: hidden;
 }
 
-.library-pages{
-  display: flex;
-  flex-direction: column;
-}
-
-.library-pages a {
+.container-library a {
   text-decoration: none;
   display: inline-block;
-  padding: 8px 16px;
+  padding: 0px 16px;
+  height: 20vh;
+  font-size: 15vh;
+  position: fixed;
+
 }
 
-.library-pages a:hover {
-  background-color: #ddd;
+.container-library a:hover {
+  background-color: #dddddd;
   color: black;
 }
 
 .previous {
-  background-color: #f1f1f1;
-  color: black;
+  color: var(--white-color);
+  height: 20vh;
+  left: 2vw;
 }
 
 .next {
-  background-color: #04AA6D;
-  color: white;
+  color: var(--white-color);
+  right: 2vw;
 }
 
 .round {
   border-radius: 50%;
+  
 }
