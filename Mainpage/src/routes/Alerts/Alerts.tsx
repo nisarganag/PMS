@@ -62,23 +62,24 @@ function NotificationsDropdown() {
       {showDropdown && (
         <div className="dropdown-alert" ref={dropdownRef}>
           <div className="notify-top">
-            <h2 >
-              <MdNotificationsNone className="drop-alert-logo" />
-              Notification:
-            </h2>
-            <button className="notify-button" onClick={toggleDropdown}>
-              <span className="notify-X"></span>
-              <span className="notify-Y"></span>
-            </button>
-          </div>
+              <h2 >
+                <MdNotificationsNone className="drop-alert-logo" />
+                Notification:
+              </h2>
+              <button className="notify-button" onClick={toggleDropdown}>
+                <span className="notify-X"></span>
+                <span className="notify-Y"></span>
+              </button>
+            </div>
           {alerts.length > 0 ? (
+            
             alerts.map((alert) => (
               <div key={alert.id}>
                 <h3 className="notify-bottom">{alert.message}</h3>
               </div>
             ))
           ) : (
-            <p>No new Notification</p>
+            <p className="notify-bottom">No new message</p>
           )}
         </div>
       )}
