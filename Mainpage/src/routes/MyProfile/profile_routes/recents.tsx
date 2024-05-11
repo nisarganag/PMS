@@ -43,7 +43,7 @@ function NotificationsDropdown() {
               </div>
             ))
           ) : (
-            <h1>No new message</h1>
+            <h1>No new Activity</h1>
           )}
           <div>
           <button
