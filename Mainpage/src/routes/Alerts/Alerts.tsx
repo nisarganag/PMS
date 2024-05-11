@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { BASE_URL } from "../config/config";
 import { MdNotificationsNone } from "react-icons/md";
 import './Alerts.css'
@@ -15,6 +15,7 @@ function NotificationsDropdown() {
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
+    fetchAlerts();
   };
 
   useEffect(() => {
@@ -30,28 +31,28 @@ function NotificationsDropdown() {
     };
   }, []);
 
-  useEffect(() => {
-    const fetchAlerts = async () => {
-      const userEmail = localStorage.getItem("emailId");
-      let res = await fetch(`${BASE_URL}/api/v1/auth/view?email=${userEmail}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
-      const userData = await res.json();
-      const userId = userData.id;
-      res = await fetch(`${BASE_URL}/api/v1/notifications/all/${userId}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
-      let data = await res.json();
-      data = data.filter((alert: { status: number }) => alert.status !== 1);
-      setAlerts(data);
-    };
-
-    fetchAlerts();
+  const fetchAlerts = useCallback(async () => {
+    const userEmail = localStorage.getItem("emailId");
+    let res = await fetch(`${BASE_URL}/api/v1/auth/view?email=${userEmail}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    const userData = await res.json();
+    const userId = userData.id;
+    res = await fetch(`${BASE_URL}/api/v1/notifications/all/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    let data = await res.json();
+    data = data.filter((alert: { status: number }) => alert.status !== 1);
+    setAlerts(data);
   }, []);
+  
+  useEffect(() => {
+    fetchAlerts();
+  }, [fetchAlerts]);
 
   return (
     <div className={"dropdown"}>
