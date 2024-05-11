@@ -12,7 +12,7 @@ import { RiAccountPinCircleLine } from "react-icons/ri";
 import { IoLogOut } from "react-icons/io5";
 
 import './Sidebar.css'; 
-import Notification from '../routes/Alerts/Alerts';
+import NotificationsDropdown from '../routes/Alerts/Alerts';
 
 
 const DropDownProfile = () => {
@@ -78,7 +78,7 @@ const Sidebar = () => {
                     <FaBars />
                 </div>
                 <div className="header-toggle-right">
-                    <Notification />
+                    <NotificationsDropdown />
                     <DropDownProfile />
                 </div>
                 
