@@ -78,7 +78,7 @@ function NotificationsDropdown() {
               </div>
             ))
           ) : (
-            <p>No new message</p>
+            <p>No new Notification</p>
           )}
         </div>
       )}
