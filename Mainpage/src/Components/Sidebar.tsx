@@ -81,9 +81,6 @@ const Sidebar = () => {
                     <NotificationsDropdown />
                     <DropDownProfile />
                 </div>
-                
-            
-            
             </header>
 
         
