@@ -52,13 +52,11 @@ function Home({ isDarkMode }: HomeProps) {
         const title = publication.split(', Title: ')[1];
 
         return (
-          <div key={index}>
             <div key={index} style={{display:'flex'}}>
-              <Link to={`/ResultsDetail/${encodeURIComponent(title)}`} key={index} className="recommendation">
+              <Link to={`/ResultsDetail/${encodeURIComponent(title)}`} key={index} className="recommendation" style={{display:'flex'}}>
                 <p>{title}</p>
               </Link>
             </div>
-    </div>
         );
       })}
       </div>
