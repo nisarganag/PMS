@@ -43,12 +43,13 @@ const MovieCard = ({myData}: MovieCardProps) => {
         </div>
         <p className="bodyL">
           {description ? description.substr(0,150) : ''}
-        </p>
-        <div >
-          <Link to={`/ResultsDetail/${encodeURIComponent(title)}`} className="library-moreinfo">
+          
+          <Link to={`/ResultsDetail/${encodeURIComponent(title)}`} style={{background:'none', }}>
             <div className="library-moreinfo" >More info</div>
           </Link>
-        </div>
+      
+        </p>
+        
       </div>
     </div>
   );

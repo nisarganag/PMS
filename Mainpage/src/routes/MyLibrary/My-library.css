@@ -720,7 +720,6 @@ to {background-position: -100px 0px;background-size:2750px;}
 
 
 .upload-form-button {
-  appaerance: none;
   font: inherit;
   border: none;
   background: none;
@@ -1081,16 +1080,19 @@ to {background-position: -100px 0px;background-size:2750px;}
 }
 
 .library-moreinfo{
-  position: relative;
+  position: fixed;
   font-size: 20px;
   text-decoration: none;
   color: black;
   background: none;
-  margin-top: 60px;
-  height: 0px;
-  left: 26vw;
+  background-color: transparent;
+  margin-top: 35px;
+  height: 10px;
+  width: 100px;
+  left: 52vw;
 }
 
 .library-moreinfo:hover{
-  background: transparent;
+  background: none;
+  
 }
