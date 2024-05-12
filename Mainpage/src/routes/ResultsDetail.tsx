@@ -65,28 +65,36 @@ function ResultDetail() {
     <div>
       {result && result[0] && (
         <div>
-          <h1>{result[0].title}</h1>
-          <h2>{result[0].author}</h2>
-          {Object.entries(result[0]).map(([key, value]) => {
-            if (key !== 'data' && key !== 'id' && key !== 'title' && key !== 'author' && value !== null) {
-              return (
-                <p key={key}><strong>{key}:</strong> {value}</p>
-              );
-            }
-            return null;
-          })}
-          {result[0].data && (
-            <object
-              data={`data:application/pdf;base64,${result[0].data}`}
-              type="application/pdf"
-              style={{ height: '500px', width: '100%' }}
-            >
-              <embed
-                src={`data:application/pdf;base64,${result[0].data}`}
+          <div className='detail-header'>
+            <h1>{result[0].title}</h1>
+            <h2> By {result[0].author}</h2>
+          </div>
+          <div className='detail-body'>
+            {Object.entries(result[0]).map(([key, value]) => {
+              if (key !== 'data' && key !== 'id' && key !== 'title' && key !== 'author' && value !== null) {
+                return (
+                  <div className='detail-body-content'>
+                    <p key={key}><strong>{key}:</strong> {value}</p>
+                  </div>
+                
+                );
+              }
+              return null;
+            })}
+            {result[0].data && (
+              <object
+                data={`data:application/pdf;base64,${result[0].data}`}
                 type="application/pdf"
-              />
-            </object>
-          )}
+                style={{ height: '500px', width: '95%', marginTop: '50px',marginLeft: '2vw', marginBottom: '10px'}}
+              >
+                <embed
+                  src={`data:application/pdf;base64,${result[0].data}`}
+                  type="application/pdf"
+                />
+              </object>
+            )}
+          </div>
+          
         </div>
       )}
     </div>

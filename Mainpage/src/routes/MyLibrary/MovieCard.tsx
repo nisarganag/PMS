@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 interface MovieData {
   title: string;
@@ -40,12 +41,10 @@ const MovieCard = ({myData}: MovieCardProps) => {
 
           <h2 className="library-card-author">By: {author}</h2>
         </div>
-        {/* <div>
-          {isVisible && <p className="library-card-body">{description ? description.substr(0,150) : ''}</p>}
-        </div> */}
         <p className="bodyL">{description ? description.substr(0,150) : ''}</p>
       </div>
     </div>
+  </Link>
   );
 };
 

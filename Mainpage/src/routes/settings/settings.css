@@ -1,0 +1,132 @@
+.setting-btn {
+    border-radius: 4px;
+    background-color: #389a92;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 17px;
+    padding: 16px;
+    width: 130px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin-top: 10vh ;
+    align-items: center;
+    justify-content: center;
+    left: 39.5vw;
+   }
+   
+   .setting-btn, span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+   }
+   
+   .setting-btn span:after {
+    content: '»';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -15px;
+    transition: 0.5s;
+   }
+   
+   .setting-btn:hover span {
+    padding-right: 15px;
+   }
+   
+   .setting-btn:hover span:after {
+    opacity: 1;
+    right: 0;
+   }
+
+   .setting-btn-del {
+    border-radius: 4px;
+    background-color: #9f3030;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 17px;
+    padding: 16px;
+    width: 130px;
+    transition: all 0.5s;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    margin: 10vh 0px 0px 39.5vw ;
+   }
+   
+   .setting-btn-del span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+   }
+   
+   .setting-btn-del span:after {
+    content: '»';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -15px;
+    transition: 0.5s;
+   }
+   
+   .setting-btn-del:hover span {
+    padding-right: 15px;
+   }
+
+   .setting-btn-del:hover span:after {
+    opacity: 1;
+    right: 0;
+   }
+
+   .setting-change-pass{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(191, 191, 191);
+   }
+
+   .setting-change-pass div{
+    display: flex;
+   }
+
+
+   .setting-submitBtn {
+    width: 120px;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.13);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    background: linear-gradient(to left,rgb(227, 227, 227),rgb(61, 61, 61));
+    letter-spacing: 0.7px;
+    margin: 10px 0px 10px 40vw;
+  }
+  
+  .setting-submitBtn:hover .arrow {
+    animation: slide-in-left 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  }
+  
+  @keyframes slide-in-left {
+    0% {
+      transform: translateX(-10px);
+      opacity: 0;
+    }
+  
+    100% {
+      transform: translateX(0px);
+      opacity: 1;
+    }
+  }
+  
+  .setting-submitBtn:active {
+    transform: scale(0.97);
+  }

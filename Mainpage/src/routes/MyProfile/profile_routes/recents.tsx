@@ -38,15 +38,15 @@ function NotificationsDropdown() {
             <h1>Recents:</h1>
           {alerts.length > 0 ? (
             alerts.map((alert) => (
-              <div key={alert.id}>
-                <h3>{alert.message}</h3>
+              <div key={alert.id} >
+                <h3 style={{marginTop:'10vh'}} >{alert.message}</h3>
               </div>
             ))
           ) : (
-            <h1>No new Activity</h1>
+            <h3 style={{marginTop:'10vh'}}>No new Activity</h3>
           )}
           <div>
-          <button
+          <button className="recent-clr-btn"
               onClick={async () => {
                   const userEmail = localStorage.getItem("emailId");
                   const res = await fetch(`${BASE_URL}/api/v1/auth/view?email=${userEmail}`, {

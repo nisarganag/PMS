@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './settings.css';
 
 function Settings() {
   const [currentPassword, setCurrentPassword] = useState('');
@@ -34,27 +35,37 @@ function Settings() {
   };
 
   return (
-    <div style={{ textAlign: 'center', marginTop: '50px' }}>
-      <h1>Settings</h1>
-      <button onClick={() => setShowChangePassword(!showChangePassword)}>Change Password</button>
-      {showChangePassword && (
-        <form onSubmit={handleChangePassword}>
-          <label>
-            Current Password:
-            <input type="password" value={currentPassword} onChange={(e) => setCurrentPassword(e.target.value)} />
-          </label>
-          <label>
-            New Password:
-            <input type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
-          </label>
-          <label>
-            Confirm New Password:
-            <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
-          </label>
-          <button type="submit">Submit</button>
-        </form>
-      )}
-      <button onClick={handleDeleteProfile}>Delete Profile</button>
+    <div style={{ textAlign: 'center', marginTop: '50px', }}>
+      <h1  >Settings</h1>
+      <div style={{textAlign: 'center', display:'flex', flexDirection:'column'}} >
+        <button className='setting-btn' onClick={() => setShowChangePassword(!showChangePassword)}>
+          <span>Change Password</span>
+        </button>
+        {showChangePassword && (
+          <form className='setting-change-pass' onSubmit={handleChangePassword}>
+            <div>
+              <div className="detail-left" style={{textAlign:'left'}}>
+                <p> Current Password:</p>
+                <p> New Password:</p>
+                <p> Confirm New Password:</p>
+              </div>
+              <div className="detail-right">
+                <input type="password" value={currentPassword} onChange={(e) => setCurrentPassword(e.target.value)} />
+                <input type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
+                <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+              </div>
+            </div>
+            <button className="setting-submitBtn"  type="submit">
+              Submit
+              <svg fill="white" viewBox="0 0 448 512" height="1em" className="arrow"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg>
+            </button>
+          </form>
+        )}
+        <button className='setting-btn-del' onClick={handleDeleteProfile}>
+          <span>Delete Profile</span>
+        </button>
+      </div>
+      
     </div>
   );
 }
