@@ -94,7 +94,7 @@ const Sidebar = () => {
                             onClick={() => handleLinkClick('Home')}
                         >
                             <FaHome className='nav-logo-icon' />
-                            <span className="nav-logo-name">Home</span>
+                            <span style={{marginTop:'-95px'}} className="nav-logo-name">Home</span>
                         </Link>
 
                         <Link 
@@ -103,7 +103,7 @@ const Sidebar = () => {
                             onClick={() => handleLinkClick('My_profile')}
                         >
                             <FaGraduationCap className='nav-logo-icon' />
-                            <span className="nav-logo-name">My Profile</span>
+                            <span style={{marginTop:'-95px'}} className="nav-logo-name">My Profile</span>
                         </Link>
 
                         <Link 
@@ -112,7 +112,7 @@ const Sidebar = () => {
                             onClick={() => handleLinkClick('My_library')}
                         >
                             <IoIosStar className='nav-logo-icon' />
-                            <span className="nav-logo-name">My Library</span>
+                            <span style={{marginTop:'-95px'}} className="nav-logo-name">My Library</span>
                         </Link>
 
                         <Link 
@@ -121,7 +121,7 @@ const Sidebar = () => {
                             onClick={() => handleLinkClick('Advanced_Search')}
                         >
                             <GrSearchAdvanced className='nav-logo-icon'/>
-                            <span className="nav-logo-name">Advanced Search</span>
+                            <span style={{marginTop:'-95px'}} className="nav-logo-name">Advanced Search</span>
                         </Link> 
 
                         <Link 
@@ -130,7 +130,7 @@ const Sidebar = () => {
                             onClick={() => handleLinkClick('Settings')}
                             >
                             <IoMdSettings className='nav-logo-icon'/>
-                            <span className="nav-logo-name">Settings</span>
+                            <span style={{marginTop:'-95px'}} className="nav-logo-name">Settings</span>
                         </Link>
                     </div> 
                 </nav>

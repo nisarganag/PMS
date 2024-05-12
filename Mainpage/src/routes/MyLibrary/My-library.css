@@ -1079,3 +1079,18 @@ to {background-position: -100px 0px;background-size:2750px;}
   border-radius: 50%;
   
 }
+
+.library-moreinfo{
+  position: relative;
+  font-size: 20px;
+  text-decoration: none;
+  color: black;
+  background: none;
+  margin-top: 60px;
+  height: 0px;
+  left: 26vw;
+}
+
+.library-moreinfo:hover{
+  background: transparent;
+}
