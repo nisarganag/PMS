@@ -55,7 +55,7 @@ function SearchResults() {
     <div className='search-result-page'>
       <h1 style={{marginLeft:'10px', borderBottom:'black 2px solid'}}>Search Results:</h1>
       {currentItems.map((result) => (
-        <React.Fragment key={result.id}>
+        <React.Fragment key={result.id} >
           <Link to={`/ResultsDetail/${encodeURIComponent(result.title)}`} key={result.id} className="after-result-container">
             <div key={result.id}>
               <h2>{result.title}</h2>

@@ -57,7 +57,7 @@ function Home({ isDarkMode }: HomeProps) {
 
         return (
           <div key={index}>
-            <div key={index}>
+            <div key={index} style={{display:'flex'}}>
               <Link to={`/ResultsDetail/${encodeURIComponent(title)}`} key={index} className="recommendation">
                 <p>{title}</p>
               </Link>

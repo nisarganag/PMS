@@ -106,8 +106,9 @@
 .recommendation{
   margin-top: 100px;
   display: flex;
+  flex-direction: row;
   width: 100%;
-  border-radius: 27px;
+  border-radius: 5px;
   padding: 8px;
   gap: 20px;
   text-decoration: none;
