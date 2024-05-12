@@ -5,14 +5,13 @@ import logo from './Screenshot_2024-03-20_202235.png';
 import darkLogo from './Screenshot_2024-03-20_202252.png'; // Replace with the path to your dark mode logo
 import { useCallback, useEffect, useState } from 'react';
 import { BASE_URL } from '../config/config';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 interface HomeProps {
   isDarkMode: boolean;
 }
 function Home({ isDarkMode }: HomeProps) {
   const [data, setData] = useState<string | null>(null);
   const currentLogo = isDarkMode ? darkLogo : logo;
-  const history = useHistory();
 
   const recommendation = useCallback(async () => {
     const userEmail = localStorage.getItem("emailId");
@@ -39,7 +38,6 @@ function Home({ isDarkMode }: HomeProps) {
   const handleTitleClick = (title: string) => {
     // Handle the click event here
     console.log(`Title clicked: ${title}`);
-    history.push(`/ResultsDetail/${title}`);
   };
   const publications = data ? data.split('ID: ') : [];
   return (
@@ -59,9 +57,11 @@ function Home({ isDarkMode }: HomeProps) {
 
         return (
           <div key={index}>
-      <a onClick={() => handleTitleClick(title)}>
-        <p>{title}</p>
-      </a>
+            <div key={index}>
+              <Link to={`/ResultsDetail/${encodeURIComponent(title)}`} key={index} className="after-result-container">
+                <p>{title}</p>
+              </Link>
+            </div>
     </div>
         );
       })}
