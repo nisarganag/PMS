@@ -35,10 +35,6 @@ function Home({ isDarkMode }: HomeProps) {
   useEffect(() => {
     recommendation();
   }, [recommendation]);
-  const handleTitleClick = (title: string) => {
-    // Handle the click event here
-    console.log(`Title clicked: ${title}`);
-  };
   const publications = data ? data.split('ID: ') : [];
   return (
     <div className='homePage'>
