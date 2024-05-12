@@ -23,9 +23,8 @@ const MovieCard = ({myData}: MovieCardProps) => {
 
   const { title, description, author } = myData;
   return (
-  
+    
     <div className="library-card">
-      <Link to={`/ResultsDetail/${encodeURIComponent(title)}`}>
       <div className="library-card-info">
         <div className="library-card-header">
           <h2 className="library-card-title">{title.length > 20 ? `${title.substr(0, 20)}...` : title}</h2>
@@ -42,12 +41,16 @@ const MovieCard = ({myData}: MovieCardProps) => {
 
           <h2 className="library-card-author">By: {author}</h2>
         </div>
-        
-        <p className="bodyL">{description ? description.substr(0,150) : ''}</p>
-      
-      </div></Link>
+        <p className="bodyL">
+          {description ? description.substr(0,150) : ''}
+        </p>
+        <div >
+          <Link to={`/ResultsDetail/${encodeURIComponent(title)}`} className="library-moreinfo">
+            <div className="library-moreinfo" >More info</div>
+          </Link>
+        </div>
+      </div>
     </div>
-  
   );
 };
 

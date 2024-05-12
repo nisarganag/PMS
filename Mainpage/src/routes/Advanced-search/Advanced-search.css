@@ -81,9 +81,6 @@
     
   }
   
-  .adv-search-btn:hover::before {
-    
-  }
   
   .adv-search-btn:hover svg {
     fill: rgb(25, 145, 149);
