@@ -121,5 +121,5 @@
   display: flex;
   gap: 20px;
   height: fit-content;
-  width: 40vw;
+  width: max-content;
 }
