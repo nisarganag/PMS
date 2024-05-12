@@ -104,14 +104,22 @@
 }
 
 .recommendation{
-  margin-top: 100px;
-  display: flex !important;
-  flex-direction: row;
+  margin: 20px;
+  display: flex ;
+  flex-wrap: wrap;
   width: 100%;
   border-radius: 5px;
   padding: 8px;
-  gap: 20px;
+  gap: px;
   text-decoration: none;
   color: inherit;
   box-shadow: 3px 3px 6px 1px rgba(0, 0, 0, 1);
+}
+
+.recommendation-container{
+  margin-top: 10vh;
+  display: flex;
+  gap: 20px;
+  height: fit-content;
+  width: 50vw;
 }
