@@ -23,11 +23,10 @@ const MovieCard = ({myData}: MovieCardProps) => {
 
   const { title, description, author } = myData;
   return (
-    
+  
     <div className="library-card">
       <Link to={`/ResultsDetail/${encodeURIComponent(title)}`}>
       <div className="library-card-info">
-      
         <div className="library-card-header">
           <h2 className="library-card-title">{title.length > 20 ? `${title.substr(0, 20)}...` : title}</h2>
           <div className="book">
