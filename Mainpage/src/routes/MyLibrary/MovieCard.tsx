@@ -22,6 +22,7 @@ const MovieCard = ({myData}: MovieCardProps) => {
 
   const { title, description, author } = myData;
   return (
+    
     <div className="library-card">
       <div className="library-card-info">
         <div className="library-card-header">

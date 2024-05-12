@@ -267,6 +267,7 @@ public class PublicationService {
 
     private ViewEachPublicationDTO convertToViewEachPublicationDTO(Publications publication) {
         ViewEachPublicationDTO dto = new ViewEachPublicationDTO();
+        dto.setId(publication.getId());
         dto.setAuthor(publication.getAuthor());
         dto.setCategory(publication.getCategory());
         dto.setCountry(publication.getCountry());

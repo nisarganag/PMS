@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ViewEachPublicationDTO {
+    private String id;
     private String author;
     private String category;
     private String country;

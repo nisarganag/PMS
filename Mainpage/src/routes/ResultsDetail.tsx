@@ -3,56 +3,91 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { BASE_URL } from './config/config';
 
-type ResultData = {
+type ResultData = Array<{
+  id: string;
   title: string;
   author: string;
   description: string;
-  pdfBase64: string;
   data: string;
-};
+  category: string;
+  country: string;
+  language: string;
+
+}>;
 
 function ResultDetail() {
   const { title } = useParams();
-  const sanitizedTitle = title ? title.replace(/[^\w\s]/gi, '') : '';
+  // const sanitizedTitle = title ? title.replace(/[^\w\s]/gi, '') : '';
   const [result, setResult] = useState<ResultData | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-
+  const [, setError] = useState<string | null>(null);
+  const [, setIsLoading] = useState<boolean>(true);
+  const [, setImage] = useState<string | null>(null);
+  console.log(title);
   useEffect(() => {
-    const url = `${BASE_URL}/api/v1/publications/view/${sanitizedTitle}`;
-    console.log('Fetching from URL:', url);
-    axios.get(url)
-      .then(response => {
+    const fetchData = async () => {
+      const url = `${BASE_URL}/api/v1/publications/view/${title}`;
+      console.log('Fetching from URL:', url);
+      try {
+        const response = await axios.get(url);
         console.log('Received data:', response.data);
         setResult(response.data);
-      })
-      .catch(error => {
+      } catch (error) {
         console.error('Error fetching data:', error);
         setError('Something went wrong');
-      })
-      .finally(() => {
+      } finally {
         setIsLoading(false);
-      });
-  }, [sanitizedTitle]);
-
+      }
+    };
+  
+    fetchData();
+  }, [title]);
+  
+  // Second useEffect to fetch the image
+  useEffect(() => {
+    const fetchImage = async () => {
+      if (result && result[0] && result[0].id) {
+        const url = `${BASE_URL}/api/v1/publications/view/image/${result[0].id}`;
+        console.log('Fetching image from URL:', url);
+        try {
+          const response = await fetch(url);
+          const blob = await response.blob();
+          const imageUrl = URL.createObjectURL(blob);
+          setImage(imageUrl);
+        } catch (error) {
+          console.error('Error fetching image:', error);
+        }
+      }
+    };
+  
+    fetchImage();
+  }, [result]);
   return (
     <div>
-      {error ? (
-        <p>{error}</p>
-      ) : isLoading ? (
-        <p>Loading...</p>
-      ) : result ? (
-        <>
-          <embed src={`data:application/pdf;base64,${result.pdfBase64}`} type="application/pdf" width="100%" height="600px" />
-          <div>
-            <h2>Title: {result.title}</h2>
-            <h3>By: {result.author}</h3>
-            <p> Description: {result.description}</p>
-            {/* Display other details */}
-          </div>
-        </>
-      ) : (
-        <p>No data available</p>
+      {result && result[0] && (
+        <div>
+          <h1>{result[0].title}</h1>
+          <h2>{result[0].author}</h2>
+          {Object.entries(result[0]).map(([key, value]) => {
+            if (key !== 'data' && key !== 'id' && key !== 'title' && key !== 'author' && value !== null) {
+              return (
+                <p key={key}><strong>{key}:</strong> {value}</p>
+              );
+            }
+            return null;
+          })}
+          {result[0].data && (
+            <object
+              data={`data:application/pdf;base64,${result[0].data}`}
+              type="application/pdf"
+              style={{ height: '500px', width: '100%' }}
+            >
+              <embed
+                src={`data:application/pdf;base64,${result[0].data}`}
+                type="application/pdf"
+              />
+            </object>
+          )}
+        </div>
       )}
     </div>
   );
