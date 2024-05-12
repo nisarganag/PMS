@@ -58,7 +58,7 @@ function Home({ isDarkMode }: HomeProps) {
         return (
           <div key={index}>
             <div key={index}>
-              <Link to={`/ResultsDetail/${encodeURIComponent(title)}`} key={index} className="after-result-container">
+              <Link to={`/ResultsDetail/${encodeURIComponent(title)}`} key={index} className="recommendation">
                 <p>{title}</p>
               </Link>
             </div>
