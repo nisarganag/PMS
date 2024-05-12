@@ -44,21 +44,24 @@ function Home({ isDarkMode }: HomeProps) {
         </div>
         <Searchbar />
         <SearchResults />
-        {publications.map((publication, index) => {
-        // Ignore the first empty string from the split
-        if (index === 0) return null;
+        <div>
+          {publications.map((publication, index) => {
+          // Ignore the first empty string from the split
+          if (index === 0) return null;
 
-        // Extract the title from the publication string
-        const title = publication.split(', Title: ')[1];
+          // Extract the title from the publication string
+          const title = publication.split(', Title: ')[1];
 
-        return (
-          <div key={index} >
-            <Link to={`/ResultsDetail/${encodeURIComponent(title)}`} key={index} className="recommendation" >
-              <p>{title}</p>
-            </Link>
-          </div>
-        );
-      })}
+          return (
+            <div key={index} >
+              <Link to={`/ResultsDetail/${encodeURIComponent(title)}`} key={index} className="recommendation" >
+                <p>{title}</p>
+              </Link>
+            </div>
+          );
+        })}
+        </div>
+        
       </div>
     </div>
   );

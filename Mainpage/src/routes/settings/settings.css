@@ -9,10 +9,9 @@
     width: 130px;
     transition: all 0.5s;
     cursor: pointer;
-    margin-top: 10vh ;
     align-items: center;
     justify-content: center;
-    left: 39.5vw;
+    margin: 50px;
    }
    
    .setting-btn, span {
@@ -53,7 +52,7 @@
     cursor: pointer;
     align-items: center;
     justify-content: center;
-    margin: 10vh 0px 0px 39.5vw ;
+    margin: 50px;
    }
    
    .setting-btn-del span {
