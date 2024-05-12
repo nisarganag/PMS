@@ -77,12 +77,13 @@
 
 .after-result-container{
   width: 87vw;
-  box-shadow: rgb(38, 57, 77) 0px 20px 20px -10px;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   border-bottom: 1px solid #212121;
-  border-radius: 10px;
+  border-radius: 30px;
   -webkit-animation: scale-in-ver-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 	animation: scale-in-ver-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
   text-decoration: none;
+  color: inherit;
 }
 
 .after-result-container h3{
@@ -101,3 +102,4 @@
   margin: 5px 0 10px 2vw;
   font-size: 20px; 
 }
+

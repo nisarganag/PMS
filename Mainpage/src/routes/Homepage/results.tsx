@@ -12,11 +12,23 @@ interface SearchResult {
 }
 
 const ResultsPage: React.FC = () => {
-    const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
-    const location = useLocation();
-    const searchParams = new URLSearchParams(location.search);
-    const searchTerm = searchParams.get('q');
-    const [loading, setLoading] = useState(true);
+  const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const searchTerm = searchParams.get('q');
+  const [loading, setLoading] = useState(true);
+
+  const handleNext = () => {
+    setCurrentPage(currentPage + 1);
+  };
+
+  const handlePrevious = () => {
+      if (currentPage > 1) {
+          setCurrentPage(currentPage - 1);
+      }
+  };
 
     useEffect(() => {
         setLoading(true);
@@ -37,17 +49,20 @@ const ResultsPage: React.FC = () => {
           });
       }, [location.search, searchTerm, BASE_URL]);
 
+      if (loading) {
+        return <div>Loading...</div>;
+    }
+
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+      const currentItems = searchResults.slice(startIndex, endIndex);
+      const totalPages = Math.ceil(searchResults.length / itemsPerPage);
+
     return (
         <div className='search-result-page'>
             <Searchbar />
             
-            {loading ? (
-              <div>
-                Please wait while we fetch the results.....
-              </div>
-            ) : (
-              
-              searchResults.map((result) => (
+            {currentItems.map((result) => (
                 <React.Fragment key={result.id}>
                   <Link to={`/ResultsDetail/${encodeURIComponent(result.title)}`} key={result.id} className="after-result-container">
                     <div >
@@ -58,7 +73,9 @@ const ResultsPage: React.FC = () => {
                   </Link>
                 </React.Fragment>
               ))
-            )}
+            }
+            <button className="result-page-change" onClick={handlePrevious} disabled={currentPage === 1}>Previous</button>
+            <button className="result-page-change" onClick={handleNext} disabled={currentPage === totalPages}>Next</button>
         </div>
     );
 };

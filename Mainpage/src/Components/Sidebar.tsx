@@ -36,7 +36,7 @@ const DropDownProfile = () => {
         <div className={"dropdown"}  onMouseEnter={toggleDropdown} onMouseLeave={toggleDropdown } >
             <button className="dropbtn">
                 <Link to={isLoggedIn() ? "/My_profile" : "/Login"} className="userLogo">
-                    <FaRegUser />
+                    <FaRegUser className="alert-logo" />
                 </Link>
             </button>
             {showDropdown && (

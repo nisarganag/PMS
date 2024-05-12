@@ -63,15 +63,15 @@ function NotificationsDropdown() {
       {showDropdown && (
         <div className="dropdown-alert" ref={dropdownRef}>
           <div className="notify-top">
-              <h2 >
-                <MdNotificationsNone className="drop-alert-logo" />
-                Notification:
-              </h2>
-              <button className="notify-button" onClick={toggleDropdown}>
-                <span className="notify-X"></span>
-                <span className="notify-Y"></span>
-              </button>
-            </div>
+            <h2>
+              <MdNotificationsNone className="drop-alert-logo" />
+              Notification:
+            </h2>
+            <button className="notify-button" onClick={toggleDropdown}>
+              <span className="notify-X"></span>
+              <span className="notify-Y"></span>
+            </button>
+          </div>
           {alerts.length > 0 ? (
             
             alerts.map((alert) => (
@@ -82,7 +82,34 @@ function NotificationsDropdown() {
           ) : (
             <p className="notify-bottom">No new message</p>
           )}
+          <button className="alert-clr-btn"
+              onClick={async () => {
+                  const userEmail = localStorage.getItem("emailId");
+                  const res = await fetch(`${BASE_URL}/api/v1/auth/view?email=${userEmail}`, {
+                    headers: {
+                      Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    },
+                  });
+                  const userData = await res.json();
+                  const userId = userData.id;
+                const response = await fetch(`${BASE_URL}/api/v1/notifications/updateNotificationStatus/${userId}`, {
+                  method: 'PUT', // or 'PUT'
+                  headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                  },
+                  // Include any necessary data in the body
+                });
+                if (!response.ok) {
+                  // Handle error
+                  console.error('Error:', response.status);
+                }
+                fetchAlerts();
+              }}
+            >
+              Clear all
+            </button>
         </div>
+        
       )}
     </div>
   );

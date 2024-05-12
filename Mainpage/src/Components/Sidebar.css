@@ -66,7 +66,7 @@ main {
     font-size: 1.25rem;
     cursor: pointer;
     color: var(--white-color);
-    margin-top: 9px;
+    margin-top: 16px;
 }
 
 .sidebar {
@@ -236,16 +236,15 @@ main {
     position: relative;
     display: inline-block;
     z-index: 100;
-    
+    margin-top: -10px;
   }
   
   .dropbtn {
     background: none;
     padding: 15px;
-    font-size: 16px;
     border: none;
     cursor: pointer;
-    margin-top: -5px;
+    
   }
   
   .dropdown-content {

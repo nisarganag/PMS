@@ -9,7 +9,7 @@ import useLocalStorage from "use-local-storage";
 import My_profile from "./routes/MyProfile/My-profile"
 import Advanced_search from './routes/Advanced-search/Advances-search';
 import My_library from './routes/MyLibrary/My-library';
-import Settings from './routes/settings';
+import Settings from './routes/settings/settings';
 import Alerts from './routes/Alerts/Alerts';
 import Home from './routes/Homepage/Homepage';
 import Login from './routes/LoginPage/Login';
